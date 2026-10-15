@@ -29,3 +29,8 @@ dev_dependencies:
   freezed: ^3.0.0
   json_serializable: ^6.9.0
   isar_community_generator: ^3.4.1
+
+flutter:
+  # FIX: sin esto la fuente MaterialIcons no se empaqueta y TODOS los iconos
+  # (sincronizar, ajustes, carrito...) se ven como cajas vacías en el móvil.
+  uses-material-design: true
