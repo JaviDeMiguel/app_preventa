@@ -6,6 +6,7 @@ import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/core/sync/states/catalog_sync_state.dart';
+import 'package:app_preventa/features/orders/presentation/widgets/pending_review_banner.dart';
 
 /// Pantalla de Liquidación Diaria y Control de Stock en Vehículo para el Comercial
 class SalesDashboardScreen extends StatelessWidget {
@@ -85,6 +86,10 @@ class SalesDashboardScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // Lo primero que ve el comercial: documentos que el ERP rechazó.
+                PendingReviewBanner(dependencies: dependencies),
+                const SizedBox(height: 8),
+
                 // Tarjeta Principal de Facturación de Hoy
                 Card(
                   elevation: 0,

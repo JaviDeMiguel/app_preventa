@@ -749,6 +749,21 @@ void main() {
                 },
         );
 
+    test('el aviso del dashboard cuenta los documentos por revisar', () async {
+      final counts = <int>[];
+      final subscription =
+          engine.watchDocumentsNeedingReview().listen(counts.add);
+      addTearDown(subscription.cancel);
+
+      await seedRejectedVanSale();
+      await Future<void>.delayed(const Duration(milliseconds: 200));
+      expect(counts.last, 1);
+
+      await engine.discardDocument('TA');
+      await Future<void>.delayed(const Duration(milliseconds: 200));
+      expect(counts.last, 0, reason: 'al anularlo deja de requerir revisión');
+    });
+
     test('muestra el motivo del rechazo', () async {
       await seedRejectedVanSale();
 

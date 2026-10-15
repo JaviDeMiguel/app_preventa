@@ -491,6 +491,20 @@ class SyncEngine {
         null => null,
       };
 
+  /// FEAT (Revisión): número de documentos que el ERP rechazó y esperan que el
+  /// comercial los reintente o anule. Se actualiza solo con cada cambio.
+  /// Mismos estados que admite la revisión ([SyncTaskStore.reviewableStatuses]).
+  Stream<int> watchDocumentsNeedingReview() =>
+      _isar.orderEntitys.watchLazy(fireImmediately: true).asyncMap(
+            (_) => _isar.orderEntitys
+                .filter()
+                .anyOf(
+                  SyncTaskStore.reviewableStatuses,
+                  (q, SyncStatus status) => q.syncStatusEqualTo(status),
+                )
+                .count(),
+          );
+
   /// FEAT (Revisión): reenvía un documento en conflicto/rechazado tras
   /// corregir la causa (stock, datos del cliente...).
   Future<bool> retryDocument(String taskUuid) async {
