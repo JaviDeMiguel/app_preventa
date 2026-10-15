@@ -20,6 +20,10 @@ _$SyncTaskImpl _$$SyncTaskImplFromJson(Map<String, dynamic> json) =>
       lastAttemptAt: json['lastAttemptAt'] == null
           ? null
           : DateTime.parse(json['lastAttemptAt'] as String),
+      nextAttemptAt: json['nextAttemptAt'] == null
+          ? null
+          : DateTime.parse(json['nextAttemptAt'] as String),
+      deliveryUncertain: json['deliveryUncertain'] as bool? ?? false,
       errorMessage: json['errorMessage'] as String?,
     );
 
@@ -34,6 +38,8 @@ Map<String, dynamic> _$$SyncTaskImplToJson(_$SyncTaskImpl instance) =>
       'status': _$SyncStatusEnumMap[instance.status]!,
       'createdAt': instance.createdAt.toIso8601String(),
       'lastAttemptAt': instance.lastAttemptAt?.toIso8601String(),
+      'nextAttemptAt': instance.nextAttemptAt?.toIso8601String(),
+      'deliveryUncertain': instance.deliveryUncertain,
       'errorMessage': instance.errorMessage,
     };
 
@@ -50,4 +56,5 @@ const _$SyncStatusEnumMap = {
   SyncStatus.completed: 'completed',
   SyncStatus.failed: 'failed',
   SyncStatus.fatalError: 'fatalError',
+  SyncStatus.conflict: 'conflict',
 };

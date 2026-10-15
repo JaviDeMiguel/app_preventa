@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
+import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/features/orders/presentation/screens/order_submission_screen.dart';
@@ -31,10 +34,23 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
   final Map<String, int> _cartQuantities = {};
   final Map<String, ProductEntity> _productCache = {};
 
+  static const _searchDebounce = Duration(milliseconds: 300);
+  Timer? _searchTimer;
+
   @override
   void dispose() {
+    _searchTimer?.cancel();
     _searchController.dispose();
     super.dispose();
+  }
+
+  /// FIX (Rendimiento): debounce; antes cada tecla abría una consulta nueva.
+  void _onSearchChanged(String value) {
+    _searchTimer?.cancel();
+    _searchTimer = Timer(_searchDebounce, () {
+      if (!mounted) return;
+      setState(() => _searchQuery = value);
+    });
   }
 
   void _updateQuantity(ProductEntity product, int delta) {
@@ -77,7 +93,8 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
       return;
     }
 
-    // Mapeo a las líneas de pedido esperadas por FacturaScripts v3 (/api/3/pedidoscliente)
+    // Líneas locales del carrito; `buildSalesDocumentPayload` las traduce al
+    // formato de `crearPedidoCliente`/`crearAlbaranCliente`.
     final orderLines = _cartQuantities.entries.map((entry) {
       final product = _productCache[entry.key]!;
       final pvpTotal = product.precio * entry.value;
@@ -140,12 +157,13 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
                   IconButton(
                     icon: const Icon(Icons.clear),
                     onPressed: () {
+                      _searchTimer?.cancel();
                       _searchController.clear();
                       setState(() => _searchQuery = '');
                     },
                   ),
               ],
-              onChanged: (val) => setState(() => _searchQuery = val),
+              onChanged: _onSearchChanged,
             ),
           ),
           Padding(
@@ -169,8 +187,11 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
           ),
           const Divider(height: 1),
           Expanded(
-            child: StreamBuilder<List<ProductEntity>>(
-              stream: widget.dependencies.clientRepository.watchProducts(
+            // FIX (Rendimiento): el stream sobrevive a los setState del carrito;
+            // antes cada +/− re-consultaba y deserializaba el catálogo entero.
+            child: KeyedStreamBuilder<List<ProductEntity>>(
+              streamKey: (_searchQuery, _onlyWithStock),
+              create: () => widget.dependencies.clientRepository.watchProducts(
                 query: _searchQuery,
                 onlyWithStock: _onlyWithStock,
               ),

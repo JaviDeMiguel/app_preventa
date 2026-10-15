@@ -23,17 +23,18 @@ FacturaScriptsClientDto _$FacturaScriptsClientDtoFromJson(
 mixin _$FacturaScriptsClientDto {
   String get codcliente => throw _privateConstructorUsedError;
   String get nombre => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientString)
   String get cifnif => throw _privateConstructorUsedError;
   String? get telefono1 => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  String? get direccion => throw _privateConstructorUsedError;
-  String? get codpostal => throw _privateConstructorUsedError;
-  String? get ciudad => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientDouble)
   double get riesgomax => throw _privateConstructorUsedError;
-  double get deuda => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientDouble)
+  double get riesgoalcanzado => throw _privateConstructorUsedError;
   String? get codtarifa => throw _privateConstructorUsedError;
-  bool get recargo => throw _privateConstructorUsedError;
-  String? get fechaModificacion => throw _privateConstructorUsedError;
+  String? get regimeniva => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientBool)
+  bool get debaja => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,17 +51,14 @@ abstract class $FacturaScriptsClientDtoCopyWith<$Res> {
   $Res call(
       {String codcliente,
       String nombre,
-      String cifnif,
+      @JsonKey(fromJson: lenientString) String cifnif,
       String? telefono1,
       String? email,
-      String? direccion,
-      String? codpostal,
-      String? ciudad,
-      double riesgomax,
-      double deuda,
+      @JsonKey(fromJson: lenientDouble) double riesgomax,
+      @JsonKey(fromJson: lenientDouble) double riesgoalcanzado,
       String? codtarifa,
-      bool recargo,
-      String? fechaModificacion});
+      String? regimeniva,
+      @JsonKey(fromJson: lenientBool) bool debaja});
 }
 
 /// @nodoc
@@ -82,14 +80,11 @@ class _$FacturaScriptsClientDtoCopyWithImpl<$Res,
     Object? cifnif = null,
     Object? telefono1 = freezed,
     Object? email = freezed,
-    Object? direccion = freezed,
-    Object? codpostal = freezed,
-    Object? ciudad = freezed,
     Object? riesgomax = null,
-    Object? deuda = null,
+    Object? riesgoalcanzado = null,
     Object? codtarifa = freezed,
-    Object? recargo = null,
-    Object? fechaModificacion = freezed,
+    Object? regimeniva = freezed,
+    Object? debaja = null,
   }) {
     return _then(_value.copyWith(
       codcliente: null == codcliente
@@ -112,38 +107,26 @@ class _$FacturaScriptsClientDtoCopyWithImpl<$Res,
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      direccion: freezed == direccion
-          ? _value.direccion
-          : direccion // ignore: cast_nullable_to_non_nullable
-              as String?,
-      codpostal: freezed == codpostal
-          ? _value.codpostal
-          : codpostal // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ciudad: freezed == ciudad
-          ? _value.ciudad
-          : ciudad // ignore: cast_nullable_to_non_nullable
-              as String?,
       riesgomax: null == riesgomax
           ? _value.riesgomax
           : riesgomax // ignore: cast_nullable_to_non_nullable
               as double,
-      deuda: null == deuda
-          ? _value.deuda
-          : deuda // ignore: cast_nullable_to_non_nullable
+      riesgoalcanzado: null == riesgoalcanzado
+          ? _value.riesgoalcanzado
+          : riesgoalcanzado // ignore: cast_nullable_to_non_nullable
               as double,
       codtarifa: freezed == codtarifa
           ? _value.codtarifa
           : codtarifa // ignore: cast_nullable_to_non_nullable
               as String?,
-      recargo: null == recargo
-          ? _value.recargo
-          : recargo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      fechaModificacion: freezed == fechaModificacion
-          ? _value.fechaModificacion
-          : fechaModificacion // ignore: cast_nullable_to_non_nullable
+      regimeniva: freezed == regimeniva
+          ? _value.regimeniva
+          : regimeniva // ignore: cast_nullable_to_non_nullable
               as String?,
+      debaja: null == debaja
+          ? _value.debaja
+          : debaja // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -160,17 +143,14 @@ abstract class _$$FacturaScriptsClientDtoImplCopyWith<$Res>
   $Res call(
       {String codcliente,
       String nombre,
-      String cifnif,
+      @JsonKey(fromJson: lenientString) String cifnif,
       String? telefono1,
       String? email,
-      String? direccion,
-      String? codpostal,
-      String? ciudad,
-      double riesgomax,
-      double deuda,
+      @JsonKey(fromJson: lenientDouble) double riesgomax,
+      @JsonKey(fromJson: lenientDouble) double riesgoalcanzado,
       String? codtarifa,
-      bool recargo,
-      String? fechaModificacion});
+      String? regimeniva,
+      @JsonKey(fromJson: lenientBool) bool debaja});
 }
 
 /// @nodoc
@@ -191,14 +171,11 @@ class __$$FacturaScriptsClientDtoImplCopyWithImpl<$Res>
     Object? cifnif = null,
     Object? telefono1 = freezed,
     Object? email = freezed,
-    Object? direccion = freezed,
-    Object? codpostal = freezed,
-    Object? ciudad = freezed,
     Object? riesgomax = null,
-    Object? deuda = null,
+    Object? riesgoalcanzado = null,
     Object? codtarifa = freezed,
-    Object? recargo = null,
-    Object? fechaModificacion = freezed,
+    Object? regimeniva = freezed,
+    Object? debaja = null,
   }) {
     return _then(_$FacturaScriptsClientDtoImpl(
       codcliente: null == codcliente
@@ -221,38 +198,26 @@ class __$$FacturaScriptsClientDtoImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      direccion: freezed == direccion
-          ? _value.direccion
-          : direccion // ignore: cast_nullable_to_non_nullable
-              as String?,
-      codpostal: freezed == codpostal
-          ? _value.codpostal
-          : codpostal // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ciudad: freezed == ciudad
-          ? _value.ciudad
-          : ciudad // ignore: cast_nullable_to_non_nullable
-              as String?,
       riesgomax: null == riesgomax
           ? _value.riesgomax
           : riesgomax // ignore: cast_nullable_to_non_nullable
               as double,
-      deuda: null == deuda
-          ? _value.deuda
-          : deuda // ignore: cast_nullable_to_non_nullable
+      riesgoalcanzado: null == riesgoalcanzado
+          ? _value.riesgoalcanzado
+          : riesgoalcanzado // ignore: cast_nullable_to_non_nullable
               as double,
       codtarifa: freezed == codtarifa
           ? _value.codtarifa
           : codtarifa // ignore: cast_nullable_to_non_nullable
               as String?,
-      recargo: null == recargo
-          ? _value.recargo
-          : recargo // ignore: cast_nullable_to_non_nullable
-              as bool,
-      fechaModificacion: freezed == fechaModificacion
-          ? _value.fechaModificacion
-          : fechaModificacion // ignore: cast_nullable_to_non_nullable
+      regimeniva: freezed == regimeniva
+          ? _value.regimeniva
+          : regimeniva // ignore: cast_nullable_to_non_nullable
               as String?,
+      debaja: null == debaja
+          ? _value.debaja
+          : debaja // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -263,17 +228,14 @@ class _$FacturaScriptsClientDtoImpl extends _FacturaScriptsClientDto {
   const _$FacturaScriptsClientDtoImpl(
       {required this.codcliente,
       required this.nombre,
-      this.cifnif = '',
+      @JsonKey(fromJson: lenientString) this.cifnif = '',
       this.telefono1,
       this.email,
-      this.direccion,
-      this.codpostal,
-      this.ciudad,
-      this.riesgomax = 0.0,
-      this.deuda = 0.0,
+      @JsonKey(fromJson: lenientDouble) this.riesgomax = 0.0,
+      @JsonKey(fromJson: lenientDouble) this.riesgoalcanzado = 0.0,
       this.codtarifa,
-      this.recargo = false,
-      this.fechaModificacion})
+      this.regimeniva,
+      @JsonKey(fromJson: lenientBool) this.debaja = false})
       : super._();
 
   factory _$FacturaScriptsClientDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -284,35 +246,29 @@ class _$FacturaScriptsClientDtoImpl extends _FacturaScriptsClientDto {
   @override
   final String nombre;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: lenientString)
   final String cifnif;
   @override
   final String? telefono1;
   @override
   final String? email;
   @override
-  final String? direccion;
-  @override
-  final String? codpostal;
-  @override
-  final String? ciudad;
-  @override
-  @JsonKey()
+  @JsonKey(fromJson: lenientDouble)
   final double riesgomax;
   @override
-  @JsonKey()
-  final double deuda;
+  @JsonKey(fromJson: lenientDouble)
+  final double riesgoalcanzado;
   @override
   final String? codtarifa;
   @override
-  @JsonKey()
-  final bool recargo;
+  final String? regimeniva;
   @override
-  final String? fechaModificacion;
+  @JsonKey(fromJson: lenientBool)
+  final bool debaja;
 
   @override
   String toString() {
-    return 'FacturaScriptsClientDto(codcliente: $codcliente, nombre: $nombre, cifnif: $cifnif, telefono1: $telefono1, email: $email, direccion: $direccion, codpostal: $codpostal, ciudad: $ciudad, riesgomax: $riesgomax, deuda: $deuda, codtarifa: $codtarifa, recargo: $recargo, fechaModificacion: $fechaModificacion)';
+    return 'FacturaScriptsClientDto(codcliente: $codcliente, nombre: $nombre, cifnif: $cifnif, telefono1: $telefono1, email: $email, riesgomax: $riesgomax, riesgoalcanzado: $riesgoalcanzado, codtarifa: $codtarifa, regimeniva: $regimeniva, debaja: $debaja)';
   }
 
   @override
@@ -327,19 +283,15 @@ class _$FacturaScriptsClientDtoImpl extends _FacturaScriptsClientDto {
             (identical(other.telefono1, telefono1) ||
                 other.telefono1 == telefono1) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.direccion, direccion) ||
-                other.direccion == direccion) &&
-            (identical(other.codpostal, codpostal) ||
-                other.codpostal == codpostal) &&
-            (identical(other.ciudad, ciudad) || other.ciudad == ciudad) &&
             (identical(other.riesgomax, riesgomax) ||
                 other.riesgomax == riesgomax) &&
-            (identical(other.deuda, deuda) || other.deuda == deuda) &&
+            (identical(other.riesgoalcanzado, riesgoalcanzado) ||
+                other.riesgoalcanzado == riesgoalcanzado) &&
             (identical(other.codtarifa, codtarifa) ||
                 other.codtarifa == codtarifa) &&
-            (identical(other.recargo, recargo) || other.recargo == recargo) &&
-            (identical(other.fechaModificacion, fechaModificacion) ||
-                other.fechaModificacion == fechaModificacion));
+            (identical(other.regimeniva, regimeniva) ||
+                other.regimeniva == regimeniva) &&
+            (identical(other.debaja, debaja) || other.debaja == debaja));
   }
 
   @JsonKey(ignore: true)
@@ -351,14 +303,11 @@ class _$FacturaScriptsClientDtoImpl extends _FacturaScriptsClientDto {
       cifnif,
       telefono1,
       email,
-      direccion,
-      codpostal,
-      ciudad,
       riesgomax,
-      deuda,
+      riesgoalcanzado,
       codtarifa,
-      recargo,
-      fechaModificacion);
+      regimeniva,
+      debaja);
 
   @JsonKey(ignore: true)
   @override
@@ -377,19 +326,17 @@ class _$FacturaScriptsClientDtoImpl extends _FacturaScriptsClientDto {
 
 abstract class _FacturaScriptsClientDto extends FacturaScriptsClientDto {
   const factory _FacturaScriptsClientDto(
-      {required final String codcliente,
-      required final String nombre,
-      final String cifnif,
-      final String? telefono1,
-      final String? email,
-      final String? direccion,
-      final String? codpostal,
-      final String? ciudad,
-      final double riesgomax,
-      final double deuda,
-      final String? codtarifa,
-      final bool recargo,
-      final String? fechaModificacion}) = _$FacturaScriptsClientDtoImpl;
+          {required final String codcliente,
+          required final String nombre,
+          @JsonKey(fromJson: lenientString) final String cifnif,
+          final String? telefono1,
+          final String? email,
+          @JsonKey(fromJson: lenientDouble) final double riesgomax,
+          @JsonKey(fromJson: lenientDouble) final double riesgoalcanzado,
+          final String? codtarifa,
+          final String? regimeniva,
+          @JsonKey(fromJson: lenientBool) final bool debaja}) =
+      _$FacturaScriptsClientDtoImpl;
   const _FacturaScriptsClientDto._() : super._();
 
   factory _FacturaScriptsClientDto.fromJson(Map<String, dynamic> json) =
@@ -400,27 +347,25 @@ abstract class _FacturaScriptsClientDto extends FacturaScriptsClientDto {
   @override
   String get nombre;
   @override
+  @JsonKey(fromJson: lenientString)
   String get cifnif;
   @override
   String? get telefono1;
   @override
   String? get email;
   @override
-  String? get direccion;
-  @override
-  String? get codpostal;
-  @override
-  String? get ciudad;
-  @override
+  @JsonKey(fromJson: lenientDouble)
   double get riesgomax;
   @override
-  double get deuda;
+  @JsonKey(fromJson: lenientDouble)
+  double get riesgoalcanzado;
   @override
   String? get codtarifa;
   @override
-  bool get recargo;
+  String? get regimeniva;
   @override
-  String? get fechaModificacion;
+  @JsonKey(fromJson: lenientBool)
+  bool get debaja;
   @override
   @JsonKey(ignore: true)
   _$$FacturaScriptsClientDtoImplCopyWith<_$FacturaScriptsClientDtoImpl>
@@ -435,13 +380,17 @@ FacturaScriptsProductDto _$FacturaScriptsProductDtoFromJson(
 /// @nodoc
 mixin _$FacturaScriptsProductDto {
   String get referencia => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientString)
   String get descripcion => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientDouble)
   double get precio => throw _privateConstructorUsedError;
-  double get iva => throw _privateConstructorUsedError;
-  int get stockfisico => throw _privateConstructorUsedError;
-  int get stockdisponible => throw _privateConstructorUsedError;
+  String? get codimpuesto => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientDouble)
+  double get stockfis => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientBool)
   bool get bloqueado => throw _privateConstructorUsedError;
-  String? get fechaModificacion => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientBoolTrue)
+  bool get sevende => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -457,13 +406,12 @@ abstract class $FacturaScriptsProductDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {String referencia,
-      String descripcion,
-      double precio,
-      double iva,
-      int stockfisico,
-      int stockdisponible,
-      bool bloqueado,
-      String? fechaModificacion});
+      @JsonKey(fromJson: lenientString) String descripcion,
+      @JsonKey(fromJson: lenientDouble) double precio,
+      String? codimpuesto,
+      @JsonKey(fromJson: lenientDouble) double stockfis,
+      @JsonKey(fromJson: lenientBool) bool bloqueado,
+      @JsonKey(fromJson: lenientBoolTrue) bool sevende});
 }
 
 /// @nodoc
@@ -483,11 +431,10 @@ class _$FacturaScriptsProductDtoCopyWithImpl<$Res,
     Object? referencia = null,
     Object? descripcion = null,
     Object? precio = null,
-    Object? iva = null,
-    Object? stockfisico = null,
-    Object? stockdisponible = null,
+    Object? codimpuesto = freezed,
+    Object? stockfis = null,
     Object? bloqueado = null,
-    Object? fechaModificacion = freezed,
+    Object? sevende = null,
   }) {
     return _then(_value.copyWith(
       referencia: null == referencia
@@ -502,26 +449,22 @@ class _$FacturaScriptsProductDtoCopyWithImpl<$Res,
           ? _value.precio
           : precio // ignore: cast_nullable_to_non_nullable
               as double,
-      iva: null == iva
-          ? _value.iva
-          : iva // ignore: cast_nullable_to_non_nullable
+      codimpuesto: freezed == codimpuesto
+          ? _value.codimpuesto
+          : codimpuesto // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stockfis: null == stockfis
+          ? _value.stockfis
+          : stockfis // ignore: cast_nullable_to_non_nullable
               as double,
-      stockfisico: null == stockfisico
-          ? _value.stockfisico
-          : stockfisico // ignore: cast_nullable_to_non_nullable
-              as int,
-      stockdisponible: null == stockdisponible
-          ? _value.stockdisponible
-          : stockdisponible // ignore: cast_nullable_to_non_nullable
-              as int,
       bloqueado: null == bloqueado
           ? _value.bloqueado
           : bloqueado // ignore: cast_nullable_to_non_nullable
               as bool,
-      fechaModificacion: freezed == fechaModificacion
-          ? _value.fechaModificacion
-          : fechaModificacion // ignore: cast_nullable_to_non_nullable
-              as String?,
+      sevende: null == sevende
+          ? _value.sevende
+          : sevende // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -537,13 +480,12 @@ abstract class _$$FacturaScriptsProductDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {String referencia,
-      String descripcion,
-      double precio,
-      double iva,
-      int stockfisico,
-      int stockdisponible,
-      bool bloqueado,
-      String? fechaModificacion});
+      @JsonKey(fromJson: lenientString) String descripcion,
+      @JsonKey(fromJson: lenientDouble) double precio,
+      String? codimpuesto,
+      @JsonKey(fromJson: lenientDouble) double stockfis,
+      @JsonKey(fromJson: lenientBool) bool bloqueado,
+      @JsonKey(fromJson: lenientBoolTrue) bool sevende});
 }
 
 /// @nodoc
@@ -562,11 +504,10 @@ class __$$FacturaScriptsProductDtoImplCopyWithImpl<$Res>
     Object? referencia = null,
     Object? descripcion = null,
     Object? precio = null,
-    Object? iva = null,
-    Object? stockfisico = null,
-    Object? stockdisponible = null,
+    Object? codimpuesto = freezed,
+    Object? stockfis = null,
     Object? bloqueado = null,
-    Object? fechaModificacion = freezed,
+    Object? sevende = null,
   }) {
     return _then(_$FacturaScriptsProductDtoImpl(
       referencia: null == referencia
@@ -581,43 +522,37 @@ class __$$FacturaScriptsProductDtoImplCopyWithImpl<$Res>
           ? _value.precio
           : precio // ignore: cast_nullable_to_non_nullable
               as double,
-      iva: null == iva
-          ? _value.iva
-          : iva // ignore: cast_nullable_to_non_nullable
+      codimpuesto: freezed == codimpuesto
+          ? _value.codimpuesto
+          : codimpuesto // ignore: cast_nullable_to_non_nullable
+              as String?,
+      stockfis: null == stockfis
+          ? _value.stockfis
+          : stockfis // ignore: cast_nullable_to_non_nullable
               as double,
-      stockfisico: null == stockfisico
-          ? _value.stockfisico
-          : stockfisico // ignore: cast_nullable_to_non_nullable
-              as int,
-      stockdisponible: null == stockdisponible
-          ? _value.stockdisponible
-          : stockdisponible // ignore: cast_nullable_to_non_nullable
-              as int,
       bloqueado: null == bloqueado
           ? _value.bloqueado
           : bloqueado // ignore: cast_nullable_to_non_nullable
               as bool,
-      fechaModificacion: freezed == fechaModificacion
-          ? _value.fechaModificacion
-          : fechaModificacion // ignore: cast_nullable_to_non_nullable
-              as String?,
+      sevende: null == sevende
+          ? _value.sevende
+          : sevende // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$FacturaScriptsProductDtoImpl extends _FacturaScriptsProductDto {
+class _$FacturaScriptsProductDtoImpl implements _FacturaScriptsProductDto {
   const _$FacturaScriptsProductDtoImpl(
       {required this.referencia,
-      required this.descripcion,
-      this.precio = 0.0,
-      this.iva = 21.0,
-      this.stockfisico = 0,
-      this.stockdisponible = 0,
-      this.bloqueado = false,
-      this.fechaModificacion})
-      : super._();
+      @JsonKey(fromJson: lenientString) this.descripcion = '',
+      @JsonKey(fromJson: lenientDouble) this.precio = 0.0,
+      this.codimpuesto,
+      @JsonKey(fromJson: lenientDouble) this.stockfis = 0.0,
+      @JsonKey(fromJson: lenientBool) this.bloqueado = false,
+      @JsonKey(fromJson: lenientBoolTrue) this.sevende = true});
 
   factory _$FacturaScriptsProductDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$FacturaScriptsProductDtoImplFromJson(json);
@@ -625,28 +560,26 @@ class _$FacturaScriptsProductDtoImpl extends _FacturaScriptsProductDto {
   @override
   final String referencia;
   @override
+  @JsonKey(fromJson: lenientString)
   final String descripcion;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: lenientDouble)
   final double precio;
   @override
-  @JsonKey()
-  final double iva;
+  final String? codimpuesto;
   @override
-  @JsonKey()
-  final int stockfisico;
+  @JsonKey(fromJson: lenientDouble)
+  final double stockfis;
   @override
-  @JsonKey()
-  final int stockdisponible;
-  @override
-  @JsonKey()
+  @JsonKey(fromJson: lenientBool)
   final bool bloqueado;
   @override
-  final String? fechaModificacion;
+  @JsonKey(fromJson: lenientBoolTrue)
+  final bool sevende;
 
   @override
   String toString() {
-    return 'FacturaScriptsProductDto(referencia: $referencia, descripcion: $descripcion, precio: $precio, iva: $iva, stockfisico: $stockfisico, stockdisponible: $stockdisponible, bloqueado: $bloqueado, fechaModificacion: $fechaModificacion)';
+    return 'FacturaScriptsProductDto(referencia: $referencia, descripcion: $descripcion, precio: $precio, codimpuesto: $codimpuesto, stockfis: $stockfis, bloqueado: $bloqueado, sevende: $sevende)';
   }
 
   @override
@@ -659,21 +592,19 @@ class _$FacturaScriptsProductDtoImpl extends _FacturaScriptsProductDto {
             (identical(other.descripcion, descripcion) ||
                 other.descripcion == descripcion) &&
             (identical(other.precio, precio) || other.precio == precio) &&
-            (identical(other.iva, iva) || other.iva == iva) &&
-            (identical(other.stockfisico, stockfisico) ||
-                other.stockfisico == stockfisico) &&
-            (identical(other.stockdisponible, stockdisponible) ||
-                other.stockdisponible == stockdisponible) &&
+            (identical(other.codimpuesto, codimpuesto) ||
+                other.codimpuesto == codimpuesto) &&
+            (identical(other.stockfis, stockfis) ||
+                other.stockfis == stockfis) &&
             (identical(other.bloqueado, bloqueado) ||
                 other.bloqueado == bloqueado) &&
-            (identical(other.fechaModificacion, fechaModificacion) ||
-                other.fechaModificacion == fechaModificacion));
+            (identical(other.sevende, sevende) || other.sevende == sevende));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, referencia, descripcion, precio,
-      iva, stockfisico, stockdisponible, bloqueado, fechaModificacion);
+      codimpuesto, stockfis, bloqueado, sevende);
 
   @JsonKey(ignore: true)
   @override
@@ -690,17 +621,16 @@ class _$FacturaScriptsProductDtoImpl extends _FacturaScriptsProductDto {
   }
 }
 
-abstract class _FacturaScriptsProductDto extends FacturaScriptsProductDto {
+abstract class _FacturaScriptsProductDto implements FacturaScriptsProductDto {
   const factory _FacturaScriptsProductDto(
-      {required final String referencia,
-      required final String descripcion,
-      final double precio,
-      final double iva,
-      final int stockfisico,
-      final int stockdisponible,
-      final bool bloqueado,
-      final String? fechaModificacion}) = _$FacturaScriptsProductDtoImpl;
-  const _FacturaScriptsProductDto._() : super._();
+          {required final String referencia,
+          @JsonKey(fromJson: lenientString) final String descripcion,
+          @JsonKey(fromJson: lenientDouble) final double precio,
+          final String? codimpuesto,
+          @JsonKey(fromJson: lenientDouble) final double stockfis,
+          @JsonKey(fromJson: lenientBool) final bool bloqueado,
+          @JsonKey(fromJson: lenientBoolTrue) final bool sevende}) =
+      _$FacturaScriptsProductDtoImpl;
 
   factory _FacturaScriptsProductDto.fromJson(Map<String, dynamic> json) =
       _$FacturaScriptsProductDtoImpl.fromJson;
@@ -708,21 +638,385 @@ abstract class _FacturaScriptsProductDto extends FacturaScriptsProductDto {
   @override
   String get referencia;
   @override
+  @JsonKey(fromJson: lenientString)
   String get descripcion;
   @override
+  @JsonKey(fromJson: lenientDouble)
   double get precio;
   @override
-  double get iva;
+  String? get codimpuesto;
   @override
-  int get stockfisico;
+  @JsonKey(fromJson: lenientDouble)
+  double get stockfis;
   @override
-  int get stockdisponible;
-  @override
+  @JsonKey(fromJson: lenientBool)
   bool get bloqueado;
   @override
-  String? get fechaModificacion;
+  @JsonKey(fromJson: lenientBoolTrue)
+  bool get sevende;
   @override
   @JsonKey(ignore: true)
   _$$FacturaScriptsProductDtoImplCopyWith<_$FacturaScriptsProductDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+FacturaScriptsTaxDto _$FacturaScriptsTaxDtoFromJson(Map<String, dynamic> json) {
+  return _FacturaScriptsTaxDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FacturaScriptsTaxDto {
+  String get codimpuesto => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientDouble)
+  double get iva => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FacturaScriptsTaxDtoCopyWith<FacturaScriptsTaxDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FacturaScriptsTaxDtoCopyWith<$Res> {
+  factory $FacturaScriptsTaxDtoCopyWith(FacturaScriptsTaxDto value,
+          $Res Function(FacturaScriptsTaxDto) then) =
+      _$FacturaScriptsTaxDtoCopyWithImpl<$Res, FacturaScriptsTaxDto>;
+  @useResult
+  $Res call({String codimpuesto, @JsonKey(fromJson: lenientDouble) double iva});
+}
+
+/// @nodoc
+class _$FacturaScriptsTaxDtoCopyWithImpl<$Res,
+        $Val extends FacturaScriptsTaxDto>
+    implements $FacturaScriptsTaxDtoCopyWith<$Res> {
+  _$FacturaScriptsTaxDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codimpuesto = null,
+    Object? iva = null,
+  }) {
+    return _then(_value.copyWith(
+      codimpuesto: null == codimpuesto
+          ? _value.codimpuesto
+          : codimpuesto // ignore: cast_nullable_to_non_nullable
+              as String,
+      iva: null == iva
+          ? _value.iva
+          : iva // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FacturaScriptsTaxDtoImplCopyWith<$Res>
+    implements $FacturaScriptsTaxDtoCopyWith<$Res> {
+  factory _$$FacturaScriptsTaxDtoImplCopyWith(_$FacturaScriptsTaxDtoImpl value,
+          $Res Function(_$FacturaScriptsTaxDtoImpl) then) =
+      __$$FacturaScriptsTaxDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String codimpuesto, @JsonKey(fromJson: lenientDouble) double iva});
+}
+
+/// @nodoc
+class __$$FacturaScriptsTaxDtoImplCopyWithImpl<$Res>
+    extends _$FacturaScriptsTaxDtoCopyWithImpl<$Res, _$FacturaScriptsTaxDtoImpl>
+    implements _$$FacturaScriptsTaxDtoImplCopyWith<$Res> {
+  __$$FacturaScriptsTaxDtoImplCopyWithImpl(_$FacturaScriptsTaxDtoImpl _value,
+      $Res Function(_$FacturaScriptsTaxDtoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? codimpuesto = null,
+    Object? iva = null,
+  }) {
+    return _then(_$FacturaScriptsTaxDtoImpl(
+      codimpuesto: null == codimpuesto
+          ? _value.codimpuesto
+          : codimpuesto // ignore: cast_nullable_to_non_nullable
+              as String,
+      iva: null == iva
+          ? _value.iva
+          : iva // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FacturaScriptsTaxDtoImpl implements _FacturaScriptsTaxDto {
+  const _$FacturaScriptsTaxDtoImpl(
+      {required this.codimpuesto,
+      @JsonKey(fromJson: lenientDouble) this.iva = 0.0});
+
+  factory _$FacturaScriptsTaxDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FacturaScriptsTaxDtoImplFromJson(json);
+
+  @override
+  final String codimpuesto;
+  @override
+  @JsonKey(fromJson: lenientDouble)
+  final double iva;
+
+  @override
+  String toString() {
+    return 'FacturaScriptsTaxDto(codimpuesto: $codimpuesto, iva: $iva)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FacturaScriptsTaxDtoImpl &&
+            (identical(other.codimpuesto, codimpuesto) ||
+                other.codimpuesto == codimpuesto) &&
+            (identical(other.iva, iva) || other.iva == iva));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, codimpuesto, iva);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FacturaScriptsTaxDtoImplCopyWith<_$FacturaScriptsTaxDtoImpl>
+      get copyWith =>
+          __$$FacturaScriptsTaxDtoImplCopyWithImpl<_$FacturaScriptsTaxDtoImpl>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FacturaScriptsTaxDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FacturaScriptsTaxDto implements FacturaScriptsTaxDto {
+  const factory _FacturaScriptsTaxDto(
+          {required final String codimpuesto,
+          @JsonKey(fromJson: lenientDouble) final double iva}) =
+      _$FacturaScriptsTaxDtoImpl;
+
+  factory _FacturaScriptsTaxDto.fromJson(Map<String, dynamic> json) =
+      _$FacturaScriptsTaxDtoImpl.fromJson;
+
+  @override
+  String get codimpuesto;
+  @override
+  @JsonKey(fromJson: lenientDouble)
+  double get iva;
+  @override
+  @JsonKey(ignore: true)
+  _$$FacturaScriptsTaxDtoImplCopyWith<_$FacturaScriptsTaxDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+FacturaScriptsStockDto _$FacturaScriptsStockDtoFromJson(
+    Map<String, dynamic> json) {
+  return _FacturaScriptsStockDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FacturaScriptsStockDto {
+  String get referencia => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientDouble)
+  double get cantidad => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: lenientDouble)
+  double get disponible => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FacturaScriptsStockDtoCopyWith<FacturaScriptsStockDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FacturaScriptsStockDtoCopyWith<$Res> {
+  factory $FacturaScriptsStockDtoCopyWith(FacturaScriptsStockDto value,
+          $Res Function(FacturaScriptsStockDto) then) =
+      _$FacturaScriptsStockDtoCopyWithImpl<$Res, FacturaScriptsStockDto>;
+  @useResult
+  $Res call(
+      {String referencia,
+      @JsonKey(fromJson: lenientDouble) double cantidad,
+      @JsonKey(fromJson: lenientDouble) double disponible});
+}
+
+/// @nodoc
+class _$FacturaScriptsStockDtoCopyWithImpl<$Res,
+        $Val extends FacturaScriptsStockDto>
+    implements $FacturaScriptsStockDtoCopyWith<$Res> {
+  _$FacturaScriptsStockDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? referencia = null,
+    Object? cantidad = null,
+    Object? disponible = null,
+  }) {
+    return _then(_value.copyWith(
+      referencia: null == referencia
+          ? _value.referencia
+          : referencia // ignore: cast_nullable_to_non_nullable
+              as String,
+      cantidad: null == cantidad
+          ? _value.cantidad
+          : cantidad // ignore: cast_nullable_to_non_nullable
+              as double,
+      disponible: null == disponible
+          ? _value.disponible
+          : disponible // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FacturaScriptsStockDtoImplCopyWith<$Res>
+    implements $FacturaScriptsStockDtoCopyWith<$Res> {
+  factory _$$FacturaScriptsStockDtoImplCopyWith(
+          _$FacturaScriptsStockDtoImpl value,
+          $Res Function(_$FacturaScriptsStockDtoImpl) then) =
+      __$$FacturaScriptsStockDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String referencia,
+      @JsonKey(fromJson: lenientDouble) double cantidad,
+      @JsonKey(fromJson: lenientDouble) double disponible});
+}
+
+/// @nodoc
+class __$$FacturaScriptsStockDtoImplCopyWithImpl<$Res>
+    extends _$FacturaScriptsStockDtoCopyWithImpl<$Res,
+        _$FacturaScriptsStockDtoImpl>
+    implements _$$FacturaScriptsStockDtoImplCopyWith<$Res> {
+  __$$FacturaScriptsStockDtoImplCopyWithImpl(
+      _$FacturaScriptsStockDtoImpl _value,
+      $Res Function(_$FacturaScriptsStockDtoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? referencia = null,
+    Object? cantidad = null,
+    Object? disponible = null,
+  }) {
+    return _then(_$FacturaScriptsStockDtoImpl(
+      referencia: null == referencia
+          ? _value.referencia
+          : referencia // ignore: cast_nullable_to_non_nullable
+              as String,
+      cantidad: null == cantidad
+          ? _value.cantidad
+          : cantidad // ignore: cast_nullable_to_non_nullable
+              as double,
+      disponible: null == disponible
+          ? _value.disponible
+          : disponible // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$FacturaScriptsStockDtoImpl implements _FacturaScriptsStockDto {
+  const _$FacturaScriptsStockDtoImpl(
+      {required this.referencia,
+      @JsonKey(fromJson: lenientDouble) this.cantidad = 0.0,
+      @JsonKey(fromJson: lenientDouble) this.disponible = 0.0});
+
+  factory _$FacturaScriptsStockDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FacturaScriptsStockDtoImplFromJson(json);
+
+  @override
+  final String referencia;
+  @override
+  @JsonKey(fromJson: lenientDouble)
+  final double cantidad;
+  @override
+  @JsonKey(fromJson: lenientDouble)
+  final double disponible;
+
+  @override
+  String toString() {
+    return 'FacturaScriptsStockDto(referencia: $referencia, cantidad: $cantidad, disponible: $disponible)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FacturaScriptsStockDtoImpl &&
+            (identical(other.referencia, referencia) ||
+                other.referencia == referencia) &&
+            (identical(other.cantidad, cantidad) ||
+                other.cantidad == cantidad) &&
+            (identical(other.disponible, disponible) ||
+                other.disponible == disponible));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, referencia, cantidad, disponible);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FacturaScriptsStockDtoImplCopyWith<_$FacturaScriptsStockDtoImpl>
+      get copyWith => __$$FacturaScriptsStockDtoImplCopyWithImpl<
+          _$FacturaScriptsStockDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$FacturaScriptsStockDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FacturaScriptsStockDto implements FacturaScriptsStockDto {
+  const factory _FacturaScriptsStockDto(
+          {required final String referencia,
+          @JsonKey(fromJson: lenientDouble) final double cantidad,
+          @JsonKey(fromJson: lenientDouble) final double disponible}) =
+      _$FacturaScriptsStockDtoImpl;
+
+  factory _FacturaScriptsStockDto.fromJson(Map<String, dynamic> json) =
+      _$FacturaScriptsStockDtoImpl.fromJson;
+
+  @override
+  String get referencia;
+  @override
+  @JsonKey(fromJson: lenientDouble)
+  double get cantidad;
+  @override
+  @JsonKey(fromJson: lenientDouble)
+  double get disponible;
+  @override
+  @JsonKey(ignore: true)
+  _$$FacturaScriptsStockDtoImplCopyWith<_$FacturaScriptsStockDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

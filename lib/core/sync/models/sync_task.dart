@@ -3,7 +3,22 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'sync_task.freezed.dart';
 part 'sync_task.g.dart';
 
-enum SyncStatus { pending, inProgress, completed, failed, fatalError }
+/// Estados de una tarea de sincronización ascendente.
+///
+/// IMPORTANTE: Isar persiste este enum por ordinal (`@enumerated`).
+/// Los nuevos valores SOLO pueden añadirse al final para no corromper datos existentes.
+enum SyncStatus {
+  pending,
+  inProgress,
+  completed,
+  failed,
+  fatalError,
+
+  // FEAT: El ERP rechazó la operación por una regla de negocio (stock real
+  // insuficiente, documento duplicado, entrega no verificable...). Requiere
+  // revisión humana; nunca se reintenta automáticamente.
+  conflict,
+}
 
 enum HttpMethod { get, post, put, delete }
 
@@ -25,6 +40,10 @@ class SyncTask with _$SyncTask {
     @Default(SyncStatus.pending) SyncStatus status,
     required DateTime createdAt,
     DateTime? lastAttemptAt,
+    // FEAT: Instante a partir del cual la tarea es elegible (Exponential Backoff).
+    DateTime? nextAttemptAt,
+    // FIX: true si el ERP pudo haber recibido la petición sin confirmarlo.
+    @Default(false) bool deliveryUncertain,
     String? errorMessage,
   }) = _SyncTask;
 

@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
+import 'package:app_preventa/core/sync/engine/erp_payloads.dart';
+import 'package:app_preventa/core/sync/engine/erp_resource.dart';
 import 'package:app_preventa/core/sync/engine/sync_engine.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
@@ -65,9 +68,9 @@ class _OrderSubmissionScreenState extends State<OrderSubmissionScreen> {
       initialSignerName: widget.client?.nombre ?? widget.codcliente,
       initialSignerDni: widget.client?.cifnif ?? '',
     );
-    if (result != null) {
-      setState(() => _signatureData = result);
-    }
+    // FIX: [ECC: Seguridad de Contexto] setState tras await sin comprobar mounted.
+    if (!mounted || result == null) return;
+    setState(() => _signatureData = result);
   }
 
   Future<void> _handleSaveAndQueueOrder() async {
@@ -82,26 +85,42 @@ class _OrderSubmissionScreenState extends State<OrderSubmissionScreen> {
       final generatedOrderId =
           '${isAlbaran ? "ALB" : "ORD"}-${DateTime.now().millisecondsSinceEpoch}';
       final syncTaskUuid = 'TASK-${DateTime.now().microsecondsSinceEpoch}';
+      final issuedAt = DateTime.now();
+      final resource = isAlbaran ? ErpResource.albaranes : ErpResource.pedidos;
 
       // 1. Guardar atómicamente el documento y encolar la tarea en Isar
       final syncTaskEntity = SyncTaskCollection()
         ..uuid = syncTaskUuid
-        ..endpoint =
-            isAlbaran ? '/api/3/albaranescliente' : '/api/3/pedidoscliente'
+        // FIX (Contrato API): crearPedidoCliente/crearAlbaranCliente guardan
+        // cabecera + líneas en una transacción; los endpoints anteriores no
+        // existían y las líneas anidadas nunca llegaban al ERP.
+        ..endpoint = resource.createPath
         ..method = HttpMethod.post
-        ..payloadJson = jsonEncode({
-          'codcliente': widget.codcliente,
-          'fecha': DateTime.now().toIso8601String().substring(0, 10),
-          'idpedido_origen_local': generatedOrderId,
-          'lineas': widget.orderLines,
-          'firmante_nombre': _signatureData?.signerName,
-          'firmante_dni': _signatureData?.signerDni,
-          'firma_svg': _signatureData?.svg,
-        })
+        ..payloadJson = jsonEncode(
+          buildSalesDocumentPayload(
+            codcliente: widget.codcliente,
+            localDocumentId: generatedOrderId,
+            issuedAt: issuedAt,
+            // Autoventa: el albarán descuenta del almacén de la furgoneta.
+            warehouseCode: widget.syncEngine.warehouseCode,
+            signerName: _signatureData?.signerName,
+            signerDni: _signatureData?.signerDni,
+            lines: [
+              for (final line in widget.orderLines)
+                (
+                  referencia: line['referencia'] as String?,
+                  descripcion: line['descripcion'] as String?,
+                  cantidad: line['cantidad'] as num,
+                  pvpunitario: line['pvpunitario'] as num,
+                  dtopor: (line['dsc'] as num?) ?? 0,
+                ),
+            ],
+          ),
+        )
         ..retries = 0
-        ..maxRetries = 3
+        ..maxRetries = defaultTaskMaxRetries
         ..status = SyncStatus.pending
-        ..createdAt = DateTime.now();
+        ..createdAt = issuedAt;
 
       double totalNeto = 0.0;
       double totalIva = 0.0;
@@ -171,8 +190,10 @@ class _OrderSubmissionScreenState extends State<OrderSubmissionScreen> {
       });
 
       // 2. Disparar sincronización oportunista en segundo plano
-      widget.syncEngine.processUpstreamQueue();
+      unawaited(widget.syncEngine.processUpstreamQueue());
 
+      // FIX: [ECC: Seguridad de Contexto] setState tras await sin mounted.
+      if (!mounted) return;
       setState(() {
         _state = OrderSaveState.success(
           orderId: generatedOrderId,
@@ -180,7 +201,8 @@ class _OrderSubmissionScreenState extends State<OrderSubmissionScreen> {
           isOnlineSynced: false,
         );
       });
-    } catch (e) {
+    } on Exception catch (e) {
+      if (!mounted) return;
       setState(() {
         _state = OrderSaveState.failure(
           errorMessage:

@@ -28,7 +28,11 @@ mixin _$SyncTask {
   int get maxRetries => throw _privateConstructorUsedError;
   SyncStatus get status => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime? get lastAttemptAt => throw _privateConstructorUsedError;
+  DateTime? get lastAttemptAt =>
+      throw _privateConstructorUsedError; // FEAT: Instante a partir del cual la tarea es elegible (Exponential Backoff).
+  DateTime? get nextAttemptAt =>
+      throw _privateConstructorUsedError; // FIX: true si el ERP pudo haber recibido la petición sin confirmarlo.
+  bool get deliveryUncertain => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,6 +56,8 @@ abstract class $SyncTaskCopyWith<$Res> {
       SyncStatus status,
       DateTime createdAt,
       DateTime? lastAttemptAt,
+      DateTime? nextAttemptAt,
+      bool deliveryUncertain,
       String? errorMessage});
 }
 
@@ -77,6 +83,8 @@ class _$SyncTaskCopyWithImpl<$Res, $Val extends SyncTask>
     Object? status = null,
     Object? createdAt = null,
     Object? lastAttemptAt = freezed,
+    Object? nextAttemptAt = freezed,
+    Object? deliveryUncertain = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -116,6 +124,14 @@ class _$SyncTaskCopyWithImpl<$Res, $Val extends SyncTask>
           ? _value.lastAttemptAt
           : lastAttemptAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      nextAttemptAt: freezed == nextAttemptAt
+          ? _value.nextAttemptAt
+          : nextAttemptAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deliveryUncertain: null == deliveryUncertain
+          ? _value.deliveryUncertain
+          : deliveryUncertain // ignore: cast_nullable_to_non_nullable
+              as bool,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -142,6 +158,8 @@ abstract class _$$SyncTaskImplCopyWith<$Res>
       SyncStatus status,
       DateTime createdAt,
       DateTime? lastAttemptAt,
+      DateTime? nextAttemptAt,
+      bool deliveryUncertain,
       String? errorMessage});
 }
 
@@ -165,6 +183,8 @@ class __$$SyncTaskImplCopyWithImpl<$Res>
     Object? status = null,
     Object? createdAt = null,
     Object? lastAttemptAt = freezed,
+    Object? nextAttemptAt = freezed,
+    Object? deliveryUncertain = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_$SyncTaskImpl(
@@ -204,6 +224,14 @@ class __$$SyncTaskImplCopyWithImpl<$Res>
           ? _value.lastAttemptAt
           : lastAttemptAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      nextAttemptAt: freezed == nextAttemptAt
+          ? _value.nextAttemptAt
+          : nextAttemptAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deliveryUncertain: null == deliveryUncertain
+          ? _value.deliveryUncertain
+          : deliveryUncertain // ignore: cast_nullable_to_non_nullable
+              as bool,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -225,6 +253,8 @@ class _$SyncTaskImpl implements _SyncTask {
       this.status = SyncStatus.pending,
       required this.createdAt,
       this.lastAttemptAt,
+      this.nextAttemptAt,
+      this.deliveryUncertain = false,
       this.errorMessage})
       : _payload = payload;
 
@@ -258,12 +288,19 @@ class _$SyncTaskImpl implements _SyncTask {
   final DateTime createdAt;
   @override
   final DateTime? lastAttemptAt;
+// FEAT: Instante a partir del cual la tarea es elegible (Exponential Backoff).
+  @override
+  final DateTime? nextAttemptAt;
+// FIX: true si el ERP pudo haber recibido la petición sin confirmarlo.
+  @override
+  @JsonKey()
+  final bool deliveryUncertain;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'SyncTask(id: $id, endpoint: $endpoint, method: $method, payload: $payload, retries: $retries, maxRetries: $maxRetries, status: $status, createdAt: $createdAt, lastAttemptAt: $lastAttemptAt, errorMessage: $errorMessage)';
+    return 'SyncTask(id: $id, endpoint: $endpoint, method: $method, payload: $payload, retries: $retries, maxRetries: $maxRetries, status: $status, createdAt: $createdAt, lastAttemptAt: $lastAttemptAt, nextAttemptAt: $nextAttemptAt, deliveryUncertain: $deliveryUncertain, errorMessage: $errorMessage)';
   }
 
   @override
@@ -284,6 +321,10 @@ class _$SyncTaskImpl implements _SyncTask {
                 other.createdAt == createdAt) &&
             (identical(other.lastAttemptAt, lastAttemptAt) ||
                 other.lastAttemptAt == lastAttemptAt) &&
+            (identical(other.nextAttemptAt, nextAttemptAt) ||
+                other.nextAttemptAt == nextAttemptAt) &&
+            (identical(other.deliveryUncertain, deliveryUncertain) ||
+                other.deliveryUncertain == deliveryUncertain) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -301,6 +342,8 @@ class _$SyncTaskImpl implements _SyncTask {
       status,
       createdAt,
       lastAttemptAt,
+      nextAttemptAt,
+      deliveryUncertain,
       errorMessage);
 
   @JsonKey(ignore: true)
@@ -328,6 +371,8 @@ abstract class _SyncTask implements SyncTask {
       final SyncStatus status,
       required final DateTime createdAt,
       final DateTime? lastAttemptAt,
+      final DateTime? nextAttemptAt,
+      final bool deliveryUncertain,
       final String? errorMessage}) = _$SyncTaskImpl;
 
   factory _SyncTask.fromJson(Map<String, dynamic> json) =
@@ -351,6 +396,10 @@ abstract class _SyncTask implements SyncTask {
   DateTime get createdAt;
   @override
   DateTime? get lastAttemptAt;
+  @override // FEAT: Instante a partir del cual la tarea es elegible (Exponential Backoff).
+  DateTime? get nextAttemptAt;
+  @override // FIX: true si el ERP pudo haber recibido la petición sin confirmarlo.
+  bool get deliveryUncertain;
   @override
   String? get errorMessage;
   @override

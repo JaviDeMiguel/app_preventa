@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
+import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/features/orders/presentation/widgets/digital_receipt_dialog.dart';
@@ -9,6 +12,8 @@ import 'package:app_preventa/features/orders/presentation/widgets/signature_prev
 
 /// Pantalla de historial de pedidos locales y estado de sincronización con el ERP
 class OrdersHistoryScreen extends StatelessWidget {
+  static const _historyLimit = 300;
+
   final AppDependencies dependencies;
 
   const OrdersHistoryScreen({
@@ -167,7 +172,8 @@ class OrdersHistoryScreen extends StatelessWidget {
             icon: const Icon(Icons.sync),
             tooltip: 'Reintentar sincronización',
             onPressed: () {
-              dependencies.syncEngine.processUpstreamQueue();
+              // FIX: Antes las tareas `failed` nunca volvían a la cola.
+              unawaited(dependencies.syncEngine.retryFailedTasks());
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('Procesando cola de pedidos...'),
@@ -178,10 +184,13 @@ class OrdersHistoryScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: StreamBuilder<List<OrderEntity>>(
-        stream: dependencies.isar.orderEntitys
+      // FIX (Rendimiento): stream estable y acotado; antes se recreaba en cada
+      // rebuild y observaba TODOS los pedidos históricos.
+      body: KeyedStreamBuilder<List<OrderEntity>>(
+        create: () => dependencies.isar.orderEntitys
             .where()
             .sortByFechaDesc()
+            .limit(_historyLimit)
             .watch(fireImmediately: true),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting &&
@@ -231,8 +240,13 @@ class OrdersHistoryScreen extends StatelessWidget {
                   ),
                 SyncStatus.failed => (
                     Colors.orange.shade800,
-                    'Reintentando',
+                    'Reintentos agotados',
                     Icons.warning_amber,
+                  ),
+                SyncStatus.conflict => (
+                    Colors.deepPurple.shade700,
+                    'En conflicto',
+                    Icons.report_problem_outlined,
                   ),
                 SyncStatus.fatalError => (
                     Colors.red.shade800,

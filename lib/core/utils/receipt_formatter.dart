@@ -21,7 +21,10 @@ class ReceiptFormatter {
       SyncStatus.completed => 'Sincronizado ERP (#${order.erpId ?? "OK"})',
       SyncStatus.pending => 'En cola local (Offline)',
       SyncStatus.inProgress => 'Enviando a FacturaScripts...',
-      SyncStatus.failed || SyncStatus.fatalError => 'Pendiente de reintento',
+      // FIX: `failed` ya no se reintenta solo; el texto anterior engañaba.
+      SyncStatus.failed => 'Reintentos agotados (reintento manual)',
+      SyncStatus.fatalError => 'Rechazado por el ERP',
+      SyncStatus.conflict => 'En conflicto con el ERP (revisión)',
     };
 
     buffer.writeln('========================================');

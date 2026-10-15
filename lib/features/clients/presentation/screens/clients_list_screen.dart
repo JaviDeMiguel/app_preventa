@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
+import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/core/sync/states/catalog_sync_state.dart';
 import 'package:app_preventa/features/clients/presentation/screens/client_detail_screen.dart';
@@ -27,15 +30,22 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
+  static const _searchDebounce = Duration(milliseconds: 300);
+  Timer? _searchTimer;
+
   @override
   void dispose() {
+    _searchTimer?.cancel();
     _searchController.dispose();
     super.dispose();
   }
 
+  /// FIX (Rendimiento): debounce; antes cada tecla abría una consulta nueva.
   void _onSearchChanged(String value) {
-    setState(() {
-      _searchQuery = value;
+    _searchTimer?.cancel();
+    _searchTimer = Timer(_searchDebounce, () {
+      if (!mounted) return;
+      setState(() => _searchQuery = value);
     });
   }
 
@@ -120,6 +130,7 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
           ),
           StreamBuilder<CatalogSyncState>(
             stream: widget.dependencies.syncEngine.catalogSyncStream,
+            initialData: widget.dependencies.syncEngine.currentCatalogState,
             builder: (context, snapshot) {
               final state = snapshot.data ?? const CatalogSyncState.idle();
 
@@ -167,6 +178,7 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
           // Banner de estado de sincronización reactivo
           StreamBuilder<CatalogSyncState>(
             stream: widget.dependencies.syncEngine.catalogSyncStream,
+            initialData: widget.dependencies.syncEngine.currentCatalogState,
             builder: (context, snapshot) {
               final state = snapshot.data;
               if (state == null) return const SizedBox.shrink();
@@ -237,8 +249,9 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
             ),
           ),
           Expanded(
-            child: StreamBuilder<List<ClientEntity>>(
-              stream: widget.dependencies.clientRepository
+            child: KeyedStreamBuilder<List<ClientEntity>>(
+              streamKey: _searchQuery,
+              create: () => widget.dependencies.clientRepository
                   .watchClients(query: _searchQuery),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting &&
