@@ -24,6 +24,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Tiempo simulado en los tests del orquestador (debounce, backoff).
+  fake_async: any
   flutter_lints: ^3.0.0
   build_runner: ^2.5.0
   freezed: ^3.0.0
