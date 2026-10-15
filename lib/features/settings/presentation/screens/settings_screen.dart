@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
 import 'package:app_preventa/core/network/facturascripts_api_client.dart';

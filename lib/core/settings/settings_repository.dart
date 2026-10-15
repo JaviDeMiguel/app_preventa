@@ -2,7 +2,7 @@ import 'dart:developer' as developer;
 
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/network/facturascripts_api_client.dart';
 import 'package:app_preventa/core/settings/secret_store.dart';

@@ -85,6 +85,9 @@ class _NewClientScreenState extends State<NewClientScreen> {
             cifnif: clientEntity.cifnif,
             telefono: clientEntity.telefono,
             email: clientEntity.email,
+            direccion: clientEntity.direccion,
+            codpostal: clientEntity.codpostal,
+            ciudad: clientEntity.ciudad,
           ),
         )
         ..retries = 0

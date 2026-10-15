@@ -2,22 +2,24 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 
-/// Carga el binario nativo empaquetado por `isar_flutter_libs` (sin red).
+/// Carga el binario nativo empaquetado por `isar_community_flutter_libs` (sin red).
 Future<void> initIsarCoreForTests() async {
   final packageConfig = jsonDecode(
     await File('.dart_tool/package_config.json').readAsString(),
   ) as Map<String, dynamic>;
   final libsRoot = (packageConfig['packages'] as List<dynamic>)
-      .cast<Map<String, dynamic>>()
-      .firstWhere((p) => p['name'] == 'isar_flutter_libs')['rootUri'] as String;
+          .cast<Map<String, dynamic>>()
+          .firstWhere(
+              (p) => p['name'] == 'isar_community_flutter_libs')['rootUri']
+      as String;
   final root = Uri.parse(libsRoot).toFilePath();
   await Isar.initializeIsarCore(
     libraries: {
-      Abi.windowsX64: '$root/windows/isar.dll',
+      Abi.windowsX64: '$root/windows/libisar.dll',
       Abi.linuxX64: '$root/linux/libisar.so',
     },
   );

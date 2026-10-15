@@ -7,7 +7,7 @@ part of 'sync_task_collection.dart';
 // **************************************************************************
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types, experimental_member_use
 
 extension GetSyncTaskCollectionCollection on Isar {
   IsarCollection<SyncTaskCollection> get syncTaskCollections =>
@@ -145,7 +145,7 @@ const SyncTaskCollectionSchema = CollectionSchema(
   getId: _syncTaskCollectionGetId,
   getLinks: _syncTaskCollectionGetLinks,
   attach: _syncTaskCollectionAttach,
-  version: '3.1.0+1',
+  version: '3.4.1',
 );
 
 int _syncTaskCollectionEstimateSize(
@@ -258,12 +258,14 @@ const _SyncTaskCollectionmethodEnumValueMap = {
   'post': 1,
   'put': 2,
   'delete': 3,
+  'upload': 4,
 };
 const _SyncTaskCollectionmethodValueEnumMap = {
   0: HttpMethod.get,
   1: HttpMethod.post,
   2: HttpMethod.put,
   3: HttpMethod.delete,
+  4: HttpMethod.upload,
 };
 const _SyncTaskCollectionstatusEnumValueMap = {
   'pending': 0,
@@ -272,6 +274,7 @@ const _SyncTaskCollectionstatusEnumValueMap = {
   'failed': 3,
   'fatalError': 4,
   'conflict': 5,
+  'discarded': 6,
 };
 const _SyncTaskCollectionstatusValueEnumMap = {
   0: SyncStatus.pending,
@@ -280,6 +283,7 @@ const _SyncTaskCollectionstatusValueEnumMap = {
   3: SyncStatus.failed,
   4: SyncStatus.fatalError,
   5: SyncStatus.conflict,
+  6: SyncStatus.discarded,
 };
 
 Id _syncTaskCollectionGetId(SyncTaskCollection object) {
@@ -2404,7 +2408,7 @@ extension SyncTaskCollectionQueryProperty
 }
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types, experimental_member_use
 
 extension GetSyncMetadataCollectionCollection on Isar {
   IsarCollection<SyncMetadataCollection> get syncMetadataCollections =>
@@ -2456,7 +2460,7 @@ const SyncMetadataCollectionSchema = CollectionSchema(
   getId: _syncMetadataCollectionGetId,
   getLinks: _syncMetadataCollectionGetLinks,
   attach: _syncMetadataCollectionAttach,
-  version: '3.1.0+1',
+  version: '3.4.1',
 );
 
 int _syncMetadataCollectionEstimateSize(
@@ -3185,7 +3189,7 @@ extension SyncMetadataCollectionQueryProperty on QueryBuilder<
 }
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types, experimental_member_use
 
 extension GetClientEntityCollection on Isar {
   IsarCollection<ClientEntity> get clientEntitys => this.collection();
@@ -3299,7 +3303,7 @@ const ClientEntitySchema = CollectionSchema(
   getId: _clientEntityGetId,
   getLinks: _clientEntityGetLinks,
   attach: _clientEntityAttach,
-  version: '3.1.0+1',
+  version: '3.4.1',
 );
 
 int _clientEntityEstimateSize(
@@ -5883,7 +5887,7 @@ extension ClientEntityQueryProperty
 }
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types, experimental_member_use
 
 extension GetProductEntityCollection on Isar {
   IsarCollection<ProductEntity> get productEntitys => this.collection();
@@ -5972,7 +5976,7 @@ const ProductEntitySchema = CollectionSchema(
   getId: _productEntityGetId,
   getLinks: _productEntityGetLinks,
   attach: _productEntityAttach,
-  version: '3.1.0+1',
+  version: '3.4.1',
 );
 
 int _productEntityEstimateSize(
@@ -7390,7 +7394,7 @@ extension ProductEntityQueryProperty
 }
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types, experimental_member_use
 
 extension GetOrderEntityCollection on Isar {
   IsarCollection<OrderEntity> get orderEntitys => this.collection();
@@ -7546,7 +7550,7 @@ const OrderEntitySchema = CollectionSchema(
   getId: _orderEntityGetId,
   getLinks: _orderEntityGetLinks,
   attach: _orderEntityAttach,
-  version: '3.1.0+1',
+  version: '3.4.1',
 );
 
 int _orderEntityEstimateSize(
@@ -7759,6 +7763,7 @@ const _OrderEntitysyncStatusEnumValueMap = {
   'failed': 3,
   'fatalError': 4,
   'conflict': 5,
+  'discarded': 6,
 };
 const _OrderEntitysyncStatusValueEnumMap = {
   0: SyncStatus.pending,
@@ -7767,6 +7772,7 @@ const _OrderEntitysyncStatusValueEnumMap = {
   3: SyncStatus.failed,
   4: SyncStatus.fatalError,
   5: SyncStatus.conflict,
+  6: SyncStatus.discarded,
 };
 
 Id _orderEntityGetId(OrderEntity object) {
@@ -10601,7 +10607,7 @@ extension OrderEntityQueryProperty
 }
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types, experimental_member_use
 
 extension GetAppSettingsEntityCollection on Isar {
   IsarCollection<AppSettingsEntity> get appSettingsEntitys => this.collection();
@@ -10647,7 +10653,7 @@ const AppSettingsEntitySchema = CollectionSchema(
   getId: _appSettingsEntityGetId,
   getLinks: _appSettingsEntityGetLinks,
   attach: _appSettingsEntityAttach,
-  version: '3.1.0+1',
+  version: '3.4.1',
 );
 
 int _appSettingsEntityEstimateSize(
@@ -11347,7 +11353,7 @@ extension AppSettingsEntityQueryProperty
 // **************************************************************************
 
 // coverage:ignore-file
-// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
+// ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types, experimental_member_use
 
 const OrderLineEmbeddedSchema = Schema(
   name: r'OrderLineEmbedded',

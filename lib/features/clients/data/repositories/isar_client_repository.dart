@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/features/clients/domain/repositories/client_repository.dart';
@@ -53,6 +53,8 @@ class IsarClientRepository implements ClientRepository {
         .cifnifContains(trimmed, caseSensitive: false)
         .or()
         .codclienteContains(trimmed, caseSensitive: false)
+        // FIX: orden estable; sin él cada página podía traer filas distintas.
+        .sortByNombre()
         .limit(limit)
         .watch(fireImmediately: true);
   }
@@ -129,7 +131,11 @@ class IsarClientRepository implements ClientRepository {
           .watch(fireImmediately: true);
     }
 
-    return afterFilter.limit(limit).watch(fireImmediately: true);
+    // FIX: orden estable; sin él cada página podía traer filas distintas.
+    return afterFilter
+        .sortByDescripcion()
+        .limit(limit)
+        .watch(fireImmediately: true);
   }
 
   @override

@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
 import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/features/orders/presentation/widgets/digital_receipt_dialog.dart';
+import 'package:app_preventa/features/orders/presentation/widgets/document_review_panel.dart';
 import 'package:app_preventa/features/orders/presentation/widgets/signature_preview_card.dart';
 
 /// Pantalla de historial de pedidos locales y estado de sincronización con el ERP
@@ -60,6 +61,10 @@ class OrdersHistoryScreen extends StatelessWidget {
                   Text(
                     'Fecha: ${order.fecha.toLocal().toString().substring(0, 16)}',
                     style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
+                  ),
+                  DocumentReviewPanel(
+                    syncEngine: dependencies.syncEngine,
+                    order: order,
                   ),
                   const Divider(height: 24),
                   const Text(
@@ -247,6 +252,11 @@ class OrdersHistoryScreen extends StatelessWidget {
                     Colors.deepPurple.shade700,
                     'En conflicto',
                     Icons.report_problem_outlined,
+                  ),
+                SyncStatus.discarded => (
+                    Colors.blueGrey.shade600,
+                    'Anulado',
+                    Icons.block,
                   ),
                 SyncStatus.fatalError => (
                     Colors.red.shade800,

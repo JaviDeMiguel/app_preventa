@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,151 +9,148 @@ part of 'catalog_sync_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CatalogSyncState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function(String currentStep, double progress) inProgress,
-    required TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)
-        success,
-    required TResult Function(String errorMessage, bool canRetry) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function(String currentStep, double progress)? inProgress,
-    TResult? Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult? Function(String errorMessage, bool canRetry)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function(String currentStep, double progress)? inProgress,
-    TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult Function(String errorMessage, bool canRetry)? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CatalogSyncIdle value) idle,
-    required TResult Function(CatalogSyncInProgress value) inProgress,
-    required TResult Function(CatalogSyncSuccess value) success,
-    required TResult Function(CatalogSyncFailure value) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CatalogSyncIdle value)? idle,
-    TResult? Function(CatalogSyncInProgress value)? inProgress,
-    TResult? Function(CatalogSyncSuccess value)? success,
-    TResult? Function(CatalogSyncFailure value)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CatalogSyncIdle value)? idle,
-    TResult Function(CatalogSyncInProgress value)? inProgress,
-    TResult Function(CatalogSyncSuccess value)? success,
-    TResult Function(CatalogSyncFailure value)? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CatalogSyncStateCopyWith<$Res> {
-  factory $CatalogSyncStateCopyWith(
-          CatalogSyncState value, $Res Function(CatalogSyncState) then) =
-      _$CatalogSyncStateCopyWithImpl<$Res, CatalogSyncState>;
-}
-
-/// @nodoc
-class _$CatalogSyncStateCopyWithImpl<$Res, $Val extends CatalogSyncState>
-    implements $CatalogSyncStateCopyWith<$Res> {
-  _$CatalogSyncStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$CatalogSyncIdleImplCopyWith<$Res> {
-  factory _$$CatalogSyncIdleImplCopyWith(_$CatalogSyncIdleImpl value,
-          $Res Function(_$CatalogSyncIdleImpl) then) =
-      __$$CatalogSyncIdleImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$CatalogSyncIdleImplCopyWithImpl<$Res>
-    extends _$CatalogSyncStateCopyWithImpl<$Res, _$CatalogSyncIdleImpl>
-    implements _$$CatalogSyncIdleImplCopyWith<$Res> {
-  __$$CatalogSyncIdleImplCopyWithImpl(
-      _$CatalogSyncIdleImpl _value, $Res Function(_$CatalogSyncIdleImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$CatalogSyncIdleImpl implements CatalogSyncIdle {
-  const _$CatalogSyncIdleImpl();
-
-  @override
-  String toString() {
-    return 'CatalogSyncState.idle()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CatalogSyncIdleImpl);
+        (other.runtimeType == runtimeType && other is CatalogSyncState);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
+  String toString() {
+    return 'CatalogSyncState()';
+  }
+}
+
+/// @nodoc
+class $CatalogSyncStateCopyWith<$Res> {
+  $CatalogSyncStateCopyWith(
+      CatalogSyncState _, $Res Function(CatalogSyncState) __);
+}
+
+/// Adds pattern-matching-related methods to [CatalogSyncState].
+extension CatalogSyncStatePatterns on CatalogSyncState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function(String currentStep, double progress) inProgress,
-    required TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)
-        success,
-    required TResult Function(String errorMessage, bool canRetry) failure,
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CatalogSyncIdle value)? idle,
+    TResult Function(CatalogSyncInProgress value)? inProgress,
+    TResult Function(CatalogSyncSuccess value)? success,
+    TResult Function(CatalogSyncFailure value)? failure,
+    required TResult orElse(),
   }) {
-    return idle();
+    final _that = this;
+    switch (_that) {
+      case CatalogSyncIdle() when idle != null:
+        return idle(_that);
+      case CatalogSyncInProgress() when inProgress != null:
+        return inProgress(_that);
+      case CatalogSyncSuccess() when success != null:
+        return success(_that);
+      case CatalogSyncFailure() when failure != null:
+        return failure(_that);
+      case _:
+        return orElse();
+    }
   }
 
-  @override
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function(String currentStep, double progress)? inProgress,
-    TResult? Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult? Function(String errorMessage, bool canRetry)? failure,
+  TResult map<TResult extends Object?>({
+    required TResult Function(CatalogSyncIdle value) idle,
+    required TResult Function(CatalogSyncInProgress value) inProgress,
+    required TResult Function(CatalogSyncSuccess value) success,
+    required TResult Function(CatalogSyncFailure value) failure,
   }) {
-    return idle?.call();
+    final _that = this;
+    switch (_that) {
+      case CatalogSyncIdle():
+        return idle(_that);
+      case CatalogSyncInProgress():
+        return inProgress(_that);
+      case CatalogSyncSuccess():
+        return success(_that);
+      case CatalogSyncFailure():
+        return failure(_that);
+    }
   }
 
-  @override
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CatalogSyncIdle value)? idle,
+    TResult? Function(CatalogSyncInProgress value)? inProgress,
+    TResult? Function(CatalogSyncSuccess value)? success,
+    TResult? Function(CatalogSyncFailure value)? failure,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case CatalogSyncIdle() when idle != null:
+        return idle(_that);
+      case CatalogSyncInProgress() when inProgress != null:
+        return inProgress(_that);
+      case CatalogSyncSuccess() when success != null:
+        return success(_that);
+      case CatalogSyncFailure() when failure != null:
+        return failure(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
@@ -164,112 +161,138 @@ class _$CatalogSyncIdleImpl implements CatalogSyncIdle {
     TResult Function(String errorMessage, bool canRetry)? failure,
     required TResult orElse(),
   }) {
-    if (idle != null) {
-      return idle();
+    final _that = this;
+    switch (_that) {
+      case CatalogSyncIdle() when idle != null:
+        return idle();
+      case CatalogSyncInProgress() when inProgress != null:
+        return inProgress(_that.currentStep, _that.progress);
+      case CatalogSyncSuccess() when success != null:
+        return success(
+            _that.completedAt, _that.clientsUpdated, _that.productsUpdated);
+      case CatalogSyncFailure() when failure != null:
+        return failure(_that.errorMessage, _that.canRetry);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CatalogSyncIdle value) idle,
-    required TResult Function(CatalogSyncInProgress value) inProgress,
-    required TResult Function(CatalogSyncSuccess value) success,
-    required TResult Function(CatalogSyncFailure value) failure,
-  }) {
-    return idle(this);
-  }
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
 
-  @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CatalogSyncIdle value)? idle,
-    TResult? Function(CatalogSyncInProgress value)? inProgress,
-    TResult? Function(CatalogSyncSuccess value)? success,
-    TResult? Function(CatalogSyncFailure value)? failure,
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function(String currentStep, double progress) inProgress,
+    required TResult Function(
+            DateTime completedAt, int clientsUpdated, int productsUpdated)
+        success,
+    required TResult Function(String errorMessage, bool canRetry) failure,
   }) {
-    return idle?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CatalogSyncIdle value)? idle,
-    TResult Function(CatalogSyncInProgress value)? inProgress,
-    TResult Function(CatalogSyncSuccess value)? success,
-    TResult Function(CatalogSyncFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (idle != null) {
-      return idle(this);
+    final _that = this;
+    switch (_that) {
+      case CatalogSyncIdle():
+        return idle();
+      case CatalogSyncInProgress():
+        return inProgress(_that.currentStep, _that.progress);
+      case CatalogSyncSuccess():
+        return success(
+            _that.completedAt, _that.clientsUpdated, _that.productsUpdated);
+      case CatalogSyncFailure():
+        return failure(_that.errorMessage, _that.canRetry);
     }
-    return orElse();
   }
-}
 
-abstract class CatalogSyncIdle implements CatalogSyncState {
-  const factory CatalogSyncIdle() = _$CatalogSyncIdleImpl;
-}
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
 
-/// @nodoc
-abstract class _$$CatalogSyncInProgressImplCopyWith<$Res> {
-  factory _$$CatalogSyncInProgressImplCopyWith(
-          _$CatalogSyncInProgressImpl value,
-          $Res Function(_$CatalogSyncInProgressImpl) then) =
-      __$$CatalogSyncInProgressImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String currentStep, double progress});
-}
-
-/// @nodoc
-class __$$CatalogSyncInProgressImplCopyWithImpl<$Res>
-    extends _$CatalogSyncStateCopyWithImpl<$Res, _$CatalogSyncInProgressImpl>
-    implements _$$CatalogSyncInProgressImplCopyWith<$Res> {
-  __$$CatalogSyncInProgressImplCopyWithImpl(_$CatalogSyncInProgressImpl _value,
-      $Res Function(_$CatalogSyncInProgressImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? currentStep = null,
-    Object? progress = null,
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function(String currentStep, double progress)? inProgress,
+    TResult? Function(
+            DateTime completedAt, int clientsUpdated, int productsUpdated)?
+        success,
+    TResult? Function(String errorMessage, bool canRetry)? failure,
   }) {
-    return _then(_$CatalogSyncInProgressImpl(
-      currentStep: null == currentStep
-          ? _value.currentStep
-          : currentStep // ignore: cast_nullable_to_non_nullable
-              as String,
-      progress: null == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+    final _that = this;
+    switch (_that) {
+      case CatalogSyncIdle() when idle != null:
+        return idle();
+      case CatalogSyncInProgress() when inProgress != null:
+        return inProgress(_that.currentStep, _that.progress);
+      case CatalogSyncSuccess() when success != null:
+        return success(
+            _that.completedAt, _that.clientsUpdated, _that.productsUpdated);
+      case CatalogSyncFailure() when failure != null:
+        return failure(_that.errorMessage, _that.canRetry);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$CatalogSyncInProgressImpl implements CatalogSyncInProgress {
-  const _$CatalogSyncInProgressImpl(
-      {required this.currentStep, required this.progress});
+class CatalogSyncIdle implements CatalogSyncState {
+  const CatalogSyncIdle();
 
   @override
-  final String currentStep;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CatalogSyncIdle);
+  }
+
   @override
-  final double progress;
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
-    return 'CatalogSyncState.inProgress(currentStep: $currentStep, progress: $progress)';
+    return 'CatalogSyncState.idle()';
   }
+}
+
+/// @nodoc
+
+class CatalogSyncInProgress implements CatalogSyncState {
+  const CatalogSyncInProgress(
+      {required this.currentStep, required this.progress});
+
+  final String currentStep;
+  final double progress;
+
+  /// Create a copy of CatalogSyncState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CatalogSyncInProgressCopyWith<CatalogSyncInProgress> get copyWith =>
+      _$CatalogSyncInProgressCopyWithImpl<CatalogSyncInProgress>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CatalogSyncInProgressImpl &&
+            other is CatalogSyncInProgress &&
             (identical(other.currentStep, currentStep) ||
                 other.currentStep == currentStep) &&
             (identical(other.progress, progress) ||
@@ -279,172 +302,74 @@ class _$CatalogSyncInProgressImpl implements CatalogSyncInProgress {
   @override
   int get hashCode => Object.hash(runtimeType, currentStep, progress);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$CatalogSyncInProgressImplCopyWith<_$CatalogSyncInProgressImpl>
-      get copyWith => __$$CatalogSyncInProgressImplCopyWithImpl<
-          _$CatalogSyncInProgressImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function(String currentStep, double progress) inProgress,
-    required TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)
-        success,
-    required TResult Function(String errorMessage, bool canRetry) failure,
-  }) {
-    return inProgress(currentStep, progress);
+  String toString() {
+    return 'CatalogSyncState.inProgress(currentStep: $currentStep, progress: $progress)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function(String currentStep, double progress)? inProgress,
-    TResult? Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult? Function(String errorMessage, bool canRetry)? failure,
-  }) {
-    return inProgress?.call(currentStep, progress);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function(String currentStep, double progress)? inProgress,
-    TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult Function(String errorMessage, bool canRetry)? failure,
-    required TResult orElse(),
-  }) {
-    if (inProgress != null) {
-      return inProgress(currentStep, progress);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CatalogSyncIdle value) idle,
-    required TResult Function(CatalogSyncInProgress value) inProgress,
-    required TResult Function(CatalogSyncSuccess value) success,
-    required TResult Function(CatalogSyncFailure value) failure,
-  }) {
-    return inProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CatalogSyncIdle value)? idle,
-    TResult? Function(CatalogSyncInProgress value)? inProgress,
-    TResult? Function(CatalogSyncSuccess value)? success,
-    TResult? Function(CatalogSyncFailure value)? failure,
-  }) {
-    return inProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CatalogSyncIdle value)? idle,
-    TResult Function(CatalogSyncInProgress value)? inProgress,
-    TResult Function(CatalogSyncSuccess value)? success,
-    TResult Function(CatalogSyncFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (inProgress != null) {
-      return inProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CatalogSyncInProgress implements CatalogSyncState {
-  const factory CatalogSyncInProgress(
-      {required final String currentStep,
-      required final double progress}) = _$CatalogSyncInProgressImpl;
-
-  String get currentStep;
-  double get progress;
-  @JsonKey(ignore: true)
-  _$$CatalogSyncInProgressImplCopyWith<_$CatalogSyncInProgressImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CatalogSyncSuccessImplCopyWith<$Res> {
-  factory _$$CatalogSyncSuccessImplCopyWith(_$CatalogSyncSuccessImpl value,
-          $Res Function(_$CatalogSyncSuccessImpl) then) =
-      __$$CatalogSyncSuccessImplCopyWithImpl<$Res>;
+abstract mixin class $CatalogSyncInProgressCopyWith<$Res>
+    implements $CatalogSyncStateCopyWith<$Res> {
+  factory $CatalogSyncInProgressCopyWith(CatalogSyncInProgress value,
+          $Res Function(CatalogSyncInProgress) _then) =
+      _$CatalogSyncInProgressCopyWithImpl;
   @useResult
-  $Res call({DateTime completedAt, int clientsUpdated, int productsUpdated});
+  $Res call({String currentStep, double progress});
 }
 
 /// @nodoc
-class __$$CatalogSyncSuccessImplCopyWithImpl<$Res>
-    extends _$CatalogSyncStateCopyWithImpl<$Res, _$CatalogSyncSuccessImpl>
-    implements _$$CatalogSyncSuccessImplCopyWith<$Res> {
-  __$$CatalogSyncSuccessImplCopyWithImpl(_$CatalogSyncSuccessImpl _value,
-      $Res Function(_$CatalogSyncSuccessImpl) _then)
-      : super(_value, _then);
+class _$CatalogSyncInProgressCopyWithImpl<$Res>
+    implements $CatalogSyncInProgressCopyWith<$Res> {
+  _$CatalogSyncInProgressCopyWithImpl(this._self, this._then);
 
+  final CatalogSyncInProgress _self;
+  final $Res Function(CatalogSyncInProgress) _then;
+
+  /// Create a copy of CatalogSyncState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? completedAt = null,
-    Object? clientsUpdated = null,
-    Object? productsUpdated = null,
+    Object? currentStep = null,
+    Object? progress = null,
   }) {
-    return _then(_$CatalogSyncSuccessImpl(
-      completedAt: null == completedAt
-          ? _value.completedAt
-          : completedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      clientsUpdated: null == clientsUpdated
-          ? _value.clientsUpdated
-          : clientsUpdated // ignore: cast_nullable_to_non_nullable
-              as int,
-      productsUpdated: null == productsUpdated
-          ? _value.productsUpdated
-          : productsUpdated // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(CatalogSyncInProgress(
+      currentStep: null == currentStep
+          ? _self.currentStep
+          : currentStep // ignore: cast_nullable_to_non_nullable
+              as String,
+      progress: null == progress
+          ? _self.progress
+          : progress // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
 
-class _$CatalogSyncSuccessImpl implements CatalogSyncSuccess {
-  const _$CatalogSyncSuccessImpl(
+class CatalogSyncSuccess implements CatalogSyncState {
+  const CatalogSyncSuccess(
       {required this.completedAt,
       required this.clientsUpdated,
       required this.productsUpdated});
 
-  @override
   final DateTime completedAt;
-  @override
   final int clientsUpdated;
-  @override
   final int productsUpdated;
 
-  @override
-  String toString() {
-    return 'CatalogSyncState.success(completedAt: $completedAt, clientsUpdated: $clientsUpdated, productsUpdated: $productsUpdated)';
-  }
+  /// Create a copy of CatalogSyncState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CatalogSyncSuccessCopyWith<CatalogSyncSuccess> get copyWith =>
+      _$CatalogSyncSuccessCopyWithImpl<CatalogSyncSuccess>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CatalogSyncSuccessImpl &&
+            other is CatalogSyncSuccess &&
             (identical(other.completedAt, completedAt) ||
                 other.completedAt == completedAt) &&
             (identical(other.clientsUpdated, clientsUpdated) ||
@@ -457,166 +382,76 @@ class _$CatalogSyncSuccessImpl implements CatalogSyncSuccess {
   int get hashCode =>
       Object.hash(runtimeType, completedAt, clientsUpdated, productsUpdated);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$CatalogSyncSuccessImplCopyWith<_$CatalogSyncSuccessImpl> get copyWith =>
-      __$$CatalogSyncSuccessImplCopyWithImpl<_$CatalogSyncSuccessImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function(String currentStep, double progress) inProgress,
-    required TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)
-        success,
-    required TResult Function(String errorMessage, bool canRetry) failure,
-  }) {
-    return success(completedAt, clientsUpdated, productsUpdated);
+  String toString() {
+    return 'CatalogSyncState.success(completedAt: $completedAt, clientsUpdated: $clientsUpdated, productsUpdated: $productsUpdated)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function(String currentStep, double progress)? inProgress,
-    TResult? Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult? Function(String errorMessage, bool canRetry)? failure,
-  }) {
-    return success?.call(completedAt, clientsUpdated, productsUpdated);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function(String currentStep, double progress)? inProgress,
-    TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult Function(String errorMessage, bool canRetry)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(completedAt, clientsUpdated, productsUpdated);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CatalogSyncIdle value) idle,
-    required TResult Function(CatalogSyncInProgress value) inProgress,
-    required TResult Function(CatalogSyncSuccess value) success,
-    required TResult Function(CatalogSyncFailure value) failure,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CatalogSyncIdle value)? idle,
-    TResult? Function(CatalogSyncInProgress value)? inProgress,
-    TResult? Function(CatalogSyncSuccess value)? success,
-    TResult? Function(CatalogSyncFailure value)? failure,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CatalogSyncIdle value)? idle,
-    TResult Function(CatalogSyncInProgress value)? inProgress,
-    TResult Function(CatalogSyncSuccess value)? success,
-    TResult Function(CatalogSyncFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class CatalogSyncSuccess implements CatalogSyncState {
-  const factory CatalogSyncSuccess(
-      {required final DateTime completedAt,
-      required final int clientsUpdated,
-      required final int productsUpdated}) = _$CatalogSyncSuccessImpl;
-
-  DateTime get completedAt;
-  int get clientsUpdated;
-  int get productsUpdated;
-  @JsonKey(ignore: true)
-  _$$CatalogSyncSuccessImplCopyWith<_$CatalogSyncSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CatalogSyncFailureImplCopyWith<$Res> {
-  factory _$$CatalogSyncFailureImplCopyWith(_$CatalogSyncFailureImpl value,
-          $Res Function(_$CatalogSyncFailureImpl) then) =
-      __$$CatalogSyncFailureImplCopyWithImpl<$Res>;
+abstract mixin class $CatalogSyncSuccessCopyWith<$Res>
+    implements $CatalogSyncStateCopyWith<$Res> {
+  factory $CatalogSyncSuccessCopyWith(
+          CatalogSyncSuccess value, $Res Function(CatalogSyncSuccess) _then) =
+      _$CatalogSyncSuccessCopyWithImpl;
   @useResult
-  $Res call({String errorMessage, bool canRetry});
+  $Res call({DateTime completedAt, int clientsUpdated, int productsUpdated});
 }
 
 /// @nodoc
-class __$$CatalogSyncFailureImplCopyWithImpl<$Res>
-    extends _$CatalogSyncStateCopyWithImpl<$Res, _$CatalogSyncFailureImpl>
-    implements _$$CatalogSyncFailureImplCopyWith<$Res> {
-  __$$CatalogSyncFailureImplCopyWithImpl(_$CatalogSyncFailureImpl _value,
-      $Res Function(_$CatalogSyncFailureImpl) _then)
-      : super(_value, _then);
+class _$CatalogSyncSuccessCopyWithImpl<$Res>
+    implements $CatalogSyncSuccessCopyWith<$Res> {
+  _$CatalogSyncSuccessCopyWithImpl(this._self, this._then);
 
+  final CatalogSyncSuccess _self;
+  final $Res Function(CatalogSyncSuccess) _then;
+
+  /// Create a copy of CatalogSyncState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? errorMessage = null,
-    Object? canRetry = null,
+    Object? completedAt = null,
+    Object? clientsUpdated = null,
+    Object? productsUpdated = null,
   }) {
-    return _then(_$CatalogSyncFailureImpl(
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      canRetry: null == canRetry
-          ? _value.canRetry
-          : canRetry // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(CatalogSyncSuccess(
+      completedAt: null == completedAt
+          ? _self.completedAt
+          : completedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      clientsUpdated: null == clientsUpdated
+          ? _self.clientsUpdated
+          : clientsUpdated // ignore: cast_nullable_to_non_nullable
+              as int,
+      productsUpdated: null == productsUpdated
+          ? _self.productsUpdated
+          : productsUpdated // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$CatalogSyncFailureImpl implements CatalogSyncFailure {
-  const _$CatalogSyncFailureImpl(
-      {required this.errorMessage, this.canRetry = true});
+class CatalogSyncFailure implements CatalogSyncState {
+  const CatalogSyncFailure({required this.errorMessage, this.canRetry = true});
 
-  @override
   final String errorMessage;
-  @override
   @JsonKey()
   final bool canRetry;
 
-  @override
-  String toString() {
-    return 'CatalogSyncState.failure(errorMessage: $errorMessage, canRetry: $canRetry)';
-  }
+  /// Create a copy of CatalogSyncState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $CatalogSyncFailureCopyWith<CatalogSyncFailure> get copyWith =>
+      _$CatalogSyncFailureCopyWithImpl<CatalogSyncFailure>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CatalogSyncFailureImpl &&
+            other is CatalogSyncFailure &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.canRetry, canRetry) ||
@@ -626,102 +461,48 @@ class _$CatalogSyncFailureImpl implements CatalogSyncFailure {
   @override
   int get hashCode => Object.hash(runtimeType, errorMessage, canRetry);
 
-  @JsonKey(ignore: true)
   @override
+  String toString() {
+    return 'CatalogSyncState.failure(errorMessage: $errorMessage, canRetry: $canRetry)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $CatalogSyncFailureCopyWith<$Res>
+    implements $CatalogSyncStateCopyWith<$Res> {
+  factory $CatalogSyncFailureCopyWith(
+          CatalogSyncFailure value, $Res Function(CatalogSyncFailure) _then) =
+      _$CatalogSyncFailureCopyWithImpl;
+  @useResult
+  $Res call({String errorMessage, bool canRetry});
+}
+
+/// @nodoc
+class _$CatalogSyncFailureCopyWithImpl<$Res>
+    implements $CatalogSyncFailureCopyWith<$Res> {
+  _$CatalogSyncFailureCopyWithImpl(this._self, this._then);
+
+  final CatalogSyncFailure _self;
+  final $Res Function(CatalogSyncFailure) _then;
+
+  /// Create a copy of CatalogSyncState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  _$$CatalogSyncFailureImplCopyWith<_$CatalogSyncFailureImpl> get copyWith =>
-      __$$CatalogSyncFailureImplCopyWithImpl<_$CatalogSyncFailureImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() idle,
-    required TResult Function(String currentStep, double progress) inProgress,
-    required TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)
-        success,
-    required TResult Function(String errorMessage, bool canRetry) failure,
+  $Res call({
+    Object? errorMessage = null,
+    Object? canRetry = null,
   }) {
-    return failure(errorMessage, canRetry);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? idle,
-    TResult? Function(String currentStep, double progress)? inProgress,
-    TResult? Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult? Function(String errorMessage, bool canRetry)? failure,
-  }) {
-    return failure?.call(errorMessage, canRetry);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? idle,
-    TResult Function(String currentStep, double progress)? inProgress,
-    TResult Function(
-            DateTime completedAt, int clientsUpdated, int productsUpdated)?
-        success,
-    TResult Function(String errorMessage, bool canRetry)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(errorMessage, canRetry);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(CatalogSyncIdle value) idle,
-    required TResult Function(CatalogSyncInProgress value) inProgress,
-    required TResult Function(CatalogSyncSuccess value) success,
-    required TResult Function(CatalogSyncFailure value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(CatalogSyncIdle value)? idle,
-    TResult? Function(CatalogSyncInProgress value)? inProgress,
-    TResult? Function(CatalogSyncSuccess value)? success,
-    TResult? Function(CatalogSyncFailure value)? failure,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(CatalogSyncIdle value)? idle,
-    TResult Function(CatalogSyncInProgress value)? inProgress,
-    TResult Function(CatalogSyncSuccess value)? success,
-    TResult Function(CatalogSyncFailure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
+    return _then(CatalogSyncFailure(
+      errorMessage: null == errorMessage
+          ? _self.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+      canRetry: null == canRetry
+          ? _self.canRetry
+          : canRetry // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
-abstract class CatalogSyncFailure implements CatalogSyncState {
-  const factory CatalogSyncFailure(
-      {required final String errorMessage,
-      final bool canRetry}) = _$CatalogSyncFailureImpl;
-
-  String get errorMessage;
-  bool get canRetry;
-  @JsonKey(ignore: true)
-  _$$CatalogSyncFailureImplCopyWith<_$CatalogSyncFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

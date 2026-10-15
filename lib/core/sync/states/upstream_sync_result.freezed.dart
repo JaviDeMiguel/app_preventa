@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,68 +9,46 @@ part of 'upstream_sync_result.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DispatchOutcome {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? erpId) delivered,
-    required TResult Function(String message, bool ambiguous) unreachable,
-    required TResult Function(
-            String message, bool ambiguous, Duration? retryAfter)
-        transient,
-    required TResult Function(String message) unauthorized,
-    required TResult Function(String message) conflict,
-    required TResult Function(String message) rejected,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? erpId)? delivered,
-    TResult? Function(String message, bool ambiguous)? unreachable,
-    TResult? Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult? Function(String message)? unauthorized,
-    TResult? Function(String message)? conflict,
-    TResult? Function(String message)? rejected,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? erpId)? delivered,
-    TResult Function(String message, bool ambiguous)? unreachable,
-    TResult Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult Function(String message)? unauthorized,
-    TResult Function(String message)? conflict,
-    TResult Function(String message)? rejected,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DispatchDelivered value) delivered,
-    required TResult Function(DispatchUnreachable value) unreachable,
-    required TResult Function(DispatchTransient value) transient,
-    required TResult Function(DispatchUnauthorized value) unauthorized,
-    required TResult Function(DispatchConflict value) conflict,
-    required TResult Function(DispatchRejected value) rejected,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DispatchDelivered value)? delivered,
-    TResult? Function(DispatchUnreachable value)? unreachable,
-    TResult? Function(DispatchTransient value)? transient,
-    TResult? Function(DispatchUnauthorized value)? unauthorized,
-    TResult? Function(DispatchConflict value)? conflict,
-    TResult? Function(DispatchRejected value)? rejected,
-  }) =>
-      throw _privateConstructorUsedError;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is DispatchOutcome);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'DispatchOutcome()';
+  }
+}
+
+/// @nodoc
+class $DispatchOutcomeCopyWith<$Res> {
+  $DispatchOutcomeCopyWith(
+      DispatchOutcome _, $Res Function(DispatchOutcome) __);
+}
+
+/// Adds pattern-matching-related methods to [DispatchOutcome].
+extension DispatchOutcomePatterns on DispatchOutcome {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(DispatchDelivered value)? delivered,
@@ -80,249 +58,333 @@ mixin _$DispatchOutcome {
     TResult Function(DispatchConflict value)? conflict,
     TResult Function(DispatchRejected value)? rejected,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DispatchOutcomeCopyWith<$Res> {
-  factory $DispatchOutcomeCopyWith(
-          DispatchOutcome value, $Res Function(DispatchOutcome) then) =
-      _$DispatchOutcomeCopyWithImpl<$Res, DispatchOutcome>;
-}
-
-/// @nodoc
-class _$DispatchOutcomeCopyWithImpl<$Res, $Val extends DispatchOutcome>
-    implements $DispatchOutcomeCopyWith<$Res> {
-  _$DispatchOutcomeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$DispatchDeliveredImplCopyWith<$Res> {
-  factory _$$DispatchDeliveredImplCopyWith(_$DispatchDeliveredImpl value,
-          $Res Function(_$DispatchDeliveredImpl) then) =
-      __$$DispatchDeliveredImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? erpId});
-}
-
-/// @nodoc
-class __$$DispatchDeliveredImplCopyWithImpl<$Res>
-    extends _$DispatchOutcomeCopyWithImpl<$Res, _$DispatchDeliveredImpl>
-    implements _$$DispatchDeliveredImplCopyWith<$Res> {
-  __$$DispatchDeliveredImplCopyWithImpl(_$DispatchDeliveredImpl _value,
-      $Res Function(_$DispatchDeliveredImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? erpId = freezed,
   }) {
-    return _then(_$DispatchDeliveredImpl(
-      erpId: freezed == erpId
-          ? _value.erpId
-          : erpId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    final _that = this;
+    switch (_that) {
+      case DispatchDelivered() when delivered != null:
+        return delivered(_that);
+      case DispatchUnreachable() when unreachable != null:
+        return unreachable(_that);
+      case DispatchTransient() when transient != null:
+        return transient(_that);
+      case DispatchUnauthorized() when unauthorized != null:
+        return unauthorized(_that);
+      case DispatchConflict() when conflict != null:
+        return conflict(_that);
+      case DispatchRejected() when rejected != null:
+        return rejected(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DispatchDelivered value) delivered,
+    required TResult Function(DispatchUnreachable value) unreachable,
+    required TResult Function(DispatchTransient value) transient,
+    required TResult Function(DispatchUnauthorized value) unauthorized,
+    required TResult Function(DispatchConflict value) conflict,
+    required TResult Function(DispatchRejected value) rejected,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DispatchDelivered():
+        return delivered(_that);
+      case DispatchUnreachable():
+        return unreachable(_that);
+      case DispatchTransient():
+        return transient(_that);
+      case DispatchUnauthorized():
+        return unauthorized(_that);
+      case DispatchConflict():
+        return conflict(_that);
+      case DispatchRejected():
+        return rejected(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DispatchDelivered value)? delivered,
+    TResult? Function(DispatchUnreachable value)? unreachable,
+    TResult? Function(DispatchTransient value)? transient,
+    TResult? Function(DispatchUnauthorized value)? unauthorized,
+    TResult? Function(DispatchConflict value)? conflict,
+    TResult? Function(DispatchRejected value)? rejected,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DispatchDelivered() when delivered != null:
+        return delivered(_that);
+      case DispatchUnreachable() when unreachable != null:
+        return unreachable(_that);
+      case DispatchTransient() when transient != null:
+        return transient(_that);
+      case DispatchUnauthorized() when unauthorized != null:
+        return unauthorized(_that);
+      case DispatchConflict() when conflict != null:
+        return conflict(_that);
+      case DispatchRejected() when rejected != null:
+        return rejected(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? erpId, Map<String, Object?> record)? delivered,
+    TResult Function(String message, bool ambiguous)? unreachable,
+    TResult Function(String message, bool ambiguous, Duration? retryAfter)?
+        transient,
+    TResult Function(String message)? unauthorized,
+    TResult Function(String message)? conflict,
+    TResult Function(String message)? rejected,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DispatchDelivered() when delivered != null:
+        return delivered(_that.erpId, _that.record);
+      case DispatchUnreachable() when unreachable != null:
+        return unreachable(_that.message, _that.ambiguous);
+      case DispatchTransient() when transient != null:
+        return transient(_that.message, _that.ambiguous, _that.retryAfter);
+      case DispatchUnauthorized() when unauthorized != null:
+        return unauthorized(_that.message);
+      case DispatchConflict() when conflict != null:
+        return conflict(_that.message);
+      case DispatchRejected() when rejected != null:
+        return rejected(_that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? erpId, Map<String, Object?> record)
+        delivered,
+    required TResult Function(String message, bool ambiguous) unreachable,
+    required TResult Function(
+            String message, bool ambiguous, Duration? retryAfter)
+        transient,
+    required TResult Function(String message) unauthorized,
+    required TResult Function(String message) conflict,
+    required TResult Function(String message) rejected,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DispatchDelivered():
+        return delivered(_that.erpId, _that.record);
+      case DispatchUnreachable():
+        return unreachable(_that.message, _that.ambiguous);
+      case DispatchTransient():
+        return transient(_that.message, _that.ambiguous, _that.retryAfter);
+      case DispatchUnauthorized():
+        return unauthorized(_that.message);
+      case DispatchConflict():
+        return conflict(_that.message);
+      case DispatchRejected():
+        return rejected(_that.message);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? erpId, Map<String, Object?> record)? delivered,
+    TResult? Function(String message, bool ambiguous)? unreachable,
+    TResult? Function(String message, bool ambiguous, Duration? retryAfter)?
+        transient,
+    TResult? Function(String message)? unauthorized,
+    TResult? Function(String message)? conflict,
+    TResult? Function(String message)? rejected,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DispatchDelivered() when delivered != null:
+        return delivered(_that.erpId, _that.record);
+      case DispatchUnreachable() when unreachable != null:
+        return unreachable(_that.message, _that.ambiguous);
+      case DispatchTransient() when transient != null:
+        return transient(_that.message, _that.ambiguous, _that.retryAfter);
+      case DispatchUnauthorized() when unauthorized != null:
+        return unauthorized(_that.message);
+      case DispatchConflict() when conflict != null:
+        return conflict(_that.message);
+      case DispatchRejected() when rejected != null:
+        return rejected(_that.message);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$DispatchDeliveredImpl implements DispatchDelivered {
-  const _$DispatchDeliveredImpl({this.erpId});
+class DispatchDelivered implements DispatchOutcome {
+  const DispatchDelivered(
+      {this.erpId,
+      final Map<String, Object?> record = const <String, Object?>{}})
+      : _record = record;
 
-  @override
   final String? erpId;
-
-  @override
-  String toString() {
-    return 'DispatchOutcome.delivered(erpId: $erpId)';
+  final Map<String, Object?> _record;
+  @JsonKey()
+  Map<String, Object?> get record {
+    if (_record is EqualUnmodifiableMapView) return _record;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_record);
   }
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DispatchDeliveredCopyWith<DispatchDelivered> get copyWith =>
+      _$DispatchDeliveredCopyWithImpl<DispatchDelivered>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DispatchDeliveredImpl &&
-            (identical(other.erpId, erpId) || other.erpId == erpId));
+            other is DispatchDelivered &&
+            (identical(other.erpId, erpId) || other.erpId == erpId) &&
+            const DeepCollectionEquality().equals(other._record, _record));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, erpId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DispatchDeliveredImplCopyWith<_$DispatchDeliveredImpl> get copyWith =>
-      __$$DispatchDeliveredImplCopyWithImpl<_$DispatchDeliveredImpl>(
-          this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, erpId, const DeepCollectionEquality().hash(_record));
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? erpId) delivered,
-    required TResult Function(String message, bool ambiguous) unreachable,
-    required TResult Function(
-            String message, bool ambiguous, Duration? retryAfter)
-        transient,
-    required TResult Function(String message) unauthorized,
-    required TResult Function(String message) conflict,
-    required TResult Function(String message) rejected,
-  }) {
-    return delivered(erpId);
+  String toString() {
+    return 'DispatchOutcome.delivered(erpId: $erpId, record: $record)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? erpId)? delivered,
-    TResult? Function(String message, bool ambiguous)? unreachable,
-    TResult? Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult? Function(String message)? unauthorized,
-    TResult? Function(String message)? conflict,
-    TResult? Function(String message)? rejected,
-  }) {
-    return delivered?.call(erpId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? erpId)? delivered,
-    TResult Function(String message, bool ambiguous)? unreachable,
-    TResult Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult Function(String message)? unauthorized,
-    TResult Function(String message)? conflict,
-    TResult Function(String message)? rejected,
-    required TResult orElse(),
-  }) {
-    if (delivered != null) {
-      return delivered(erpId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DispatchDelivered value) delivered,
-    required TResult Function(DispatchUnreachable value) unreachable,
-    required TResult Function(DispatchTransient value) transient,
-    required TResult Function(DispatchUnauthorized value) unauthorized,
-    required TResult Function(DispatchConflict value) conflict,
-    required TResult Function(DispatchRejected value) rejected,
-  }) {
-    return delivered(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DispatchDelivered value)? delivered,
-    TResult? Function(DispatchUnreachable value)? unreachable,
-    TResult? Function(DispatchTransient value)? transient,
-    TResult? Function(DispatchUnauthorized value)? unauthorized,
-    TResult? Function(DispatchConflict value)? conflict,
-    TResult? Function(DispatchRejected value)? rejected,
-  }) {
-    return delivered?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DispatchDelivered value)? delivered,
-    TResult Function(DispatchUnreachable value)? unreachable,
-    TResult Function(DispatchTransient value)? transient,
-    TResult Function(DispatchUnauthorized value)? unauthorized,
-    TResult Function(DispatchConflict value)? conflict,
-    TResult Function(DispatchRejected value)? rejected,
-    required TResult orElse(),
-  }) {
-    if (delivered != null) {
-      return delivered(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DispatchDelivered implements DispatchOutcome {
-  const factory DispatchDelivered({final String? erpId}) =
-      _$DispatchDeliveredImpl;
-
-  String? get erpId;
-  @JsonKey(ignore: true)
-  _$$DispatchDeliveredImplCopyWith<_$DispatchDeliveredImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DispatchUnreachableImplCopyWith<$Res> {
-  factory _$$DispatchUnreachableImplCopyWith(_$DispatchUnreachableImpl value,
-          $Res Function(_$DispatchUnreachableImpl) then) =
-      __$$DispatchUnreachableImplCopyWithImpl<$Res>;
+abstract mixin class $DispatchDeliveredCopyWith<$Res>
+    implements $DispatchOutcomeCopyWith<$Res> {
+  factory $DispatchDeliveredCopyWith(
+          DispatchDelivered value, $Res Function(DispatchDelivered) _then) =
+      _$DispatchDeliveredCopyWithImpl;
   @useResult
-  $Res call({String message, bool ambiguous});
+  $Res call({String? erpId, Map<String, Object?> record});
 }
 
 /// @nodoc
-class __$$DispatchUnreachableImplCopyWithImpl<$Res>
-    extends _$DispatchOutcomeCopyWithImpl<$Res, _$DispatchUnreachableImpl>
-    implements _$$DispatchUnreachableImplCopyWith<$Res> {
-  __$$DispatchUnreachableImplCopyWithImpl(_$DispatchUnreachableImpl _value,
-      $Res Function(_$DispatchUnreachableImpl) _then)
-      : super(_value, _then);
+class _$DispatchDeliveredCopyWithImpl<$Res>
+    implements $DispatchDeliveredCopyWith<$Res> {
+  _$DispatchDeliveredCopyWithImpl(this._self, this._then);
 
+  final DispatchDelivered _self;
+  final $Res Function(DispatchDelivered) _then;
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? message = null,
-    Object? ambiguous = null,
+    Object? erpId = freezed,
+    Object? record = null,
   }) {
-    return _then(_$DispatchUnreachableImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-      ambiguous: null == ambiguous
-          ? _value.ambiguous
-          : ambiguous // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(DispatchDelivered(
+      erpId: freezed == erpId
+          ? _self.erpId
+          : erpId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      record: null == record
+          ? _self._record
+          : record // ignore: cast_nullable_to_non_nullable
+              as Map<String, Object?>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$DispatchUnreachableImpl implements DispatchUnreachable {
-  const _$DispatchUnreachableImpl(
-      {required this.message, this.ambiguous = false});
+class DispatchUnreachable implements DispatchOutcome {
+  const DispatchUnreachable({required this.message, this.ambiguous = false});
 
-  @override
   final String message;
-  @override
   @JsonKey()
   final bool ambiguous;
 
-  @override
-  String toString() {
-    return 'DispatchOutcome.unreachable(message: $message, ambiguous: $ambiguous)';
-  }
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DispatchUnreachableCopyWith<DispatchUnreachable> get copyWith =>
+      _$DispatchUnreachableCopyWithImpl<DispatchUnreachable>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DispatchUnreachableImpl &&
+            other is DispatchUnreachable &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.ambiguous, ambiguous) ||
                 other.ambiguous == ambiguous));
@@ -331,180 +393,72 @@ class _$DispatchUnreachableImpl implements DispatchUnreachable {
   @override
   int get hashCode => Object.hash(runtimeType, message, ambiguous);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$DispatchUnreachableImplCopyWith<_$DispatchUnreachableImpl> get copyWith =>
-      __$$DispatchUnreachableImplCopyWithImpl<_$DispatchUnreachableImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? erpId) delivered,
-    required TResult Function(String message, bool ambiguous) unreachable,
-    required TResult Function(
-            String message, bool ambiguous, Duration? retryAfter)
-        transient,
-    required TResult Function(String message) unauthorized,
-    required TResult Function(String message) conflict,
-    required TResult Function(String message) rejected,
-  }) {
-    return unreachable(message, ambiguous);
+  String toString() {
+    return 'DispatchOutcome.unreachable(message: $message, ambiguous: $ambiguous)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? erpId)? delivered,
-    TResult? Function(String message, bool ambiguous)? unreachable,
-    TResult? Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult? Function(String message)? unauthorized,
-    TResult? Function(String message)? conflict,
-    TResult? Function(String message)? rejected,
-  }) {
-    return unreachable?.call(message, ambiguous);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? erpId)? delivered,
-    TResult Function(String message, bool ambiguous)? unreachable,
-    TResult Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult Function(String message)? unauthorized,
-    TResult Function(String message)? conflict,
-    TResult Function(String message)? rejected,
-    required TResult orElse(),
-  }) {
-    if (unreachable != null) {
-      return unreachable(message, ambiguous);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DispatchDelivered value) delivered,
-    required TResult Function(DispatchUnreachable value) unreachable,
-    required TResult Function(DispatchTransient value) transient,
-    required TResult Function(DispatchUnauthorized value) unauthorized,
-    required TResult Function(DispatchConflict value) conflict,
-    required TResult Function(DispatchRejected value) rejected,
-  }) {
-    return unreachable(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DispatchDelivered value)? delivered,
-    TResult? Function(DispatchUnreachable value)? unreachable,
-    TResult? Function(DispatchTransient value)? transient,
-    TResult? Function(DispatchUnauthorized value)? unauthorized,
-    TResult? Function(DispatchConflict value)? conflict,
-    TResult? Function(DispatchRejected value)? rejected,
-  }) {
-    return unreachable?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DispatchDelivered value)? delivered,
-    TResult Function(DispatchUnreachable value)? unreachable,
-    TResult Function(DispatchTransient value)? transient,
-    TResult Function(DispatchUnauthorized value)? unauthorized,
-    TResult Function(DispatchConflict value)? conflict,
-    TResult Function(DispatchRejected value)? rejected,
-    required TResult orElse(),
-  }) {
-    if (unreachable != null) {
-      return unreachable(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DispatchUnreachable implements DispatchOutcome {
-  const factory DispatchUnreachable(
-      {required final String message,
-      final bool ambiguous}) = _$DispatchUnreachableImpl;
-
-  String get message;
-  bool get ambiguous;
-  @JsonKey(ignore: true)
-  _$$DispatchUnreachableImplCopyWith<_$DispatchUnreachableImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DispatchTransientImplCopyWith<$Res> {
-  factory _$$DispatchTransientImplCopyWith(_$DispatchTransientImpl value,
-          $Res Function(_$DispatchTransientImpl) then) =
-      __$$DispatchTransientImplCopyWithImpl<$Res>;
+abstract mixin class $DispatchUnreachableCopyWith<$Res>
+    implements $DispatchOutcomeCopyWith<$Res> {
+  factory $DispatchUnreachableCopyWith(
+          DispatchUnreachable value, $Res Function(DispatchUnreachable) _then) =
+      _$DispatchUnreachableCopyWithImpl;
   @useResult
-  $Res call({String message, bool ambiguous, Duration? retryAfter});
+  $Res call({String message, bool ambiguous});
 }
 
 /// @nodoc
-class __$$DispatchTransientImplCopyWithImpl<$Res>
-    extends _$DispatchOutcomeCopyWithImpl<$Res, _$DispatchTransientImpl>
-    implements _$$DispatchTransientImplCopyWith<$Res> {
-  __$$DispatchTransientImplCopyWithImpl(_$DispatchTransientImpl _value,
-      $Res Function(_$DispatchTransientImpl) _then)
-      : super(_value, _then);
+class _$DispatchUnreachableCopyWithImpl<$Res>
+    implements $DispatchUnreachableCopyWith<$Res> {
+  _$DispatchUnreachableCopyWithImpl(this._self, this._then);
 
+  final DispatchUnreachable _self;
+  final $Res Function(DispatchUnreachable) _then;
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? message = null,
     Object? ambiguous = null,
-    Object? retryAfter = freezed,
   }) {
-    return _then(_$DispatchTransientImpl(
+    return _then(DispatchUnreachable(
       message: null == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
       ambiguous: null == ambiguous
-          ? _value.ambiguous
+          ? _self.ambiguous
           : ambiguous // ignore: cast_nullable_to_non_nullable
               as bool,
-      retryAfter: freezed == retryAfter
-          ? _value.retryAfter
-          : retryAfter // ignore: cast_nullable_to_non_nullable
-              as Duration?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$DispatchTransientImpl implements DispatchTransient {
-  const _$DispatchTransientImpl(
+class DispatchTransient implements DispatchOutcome {
+  const DispatchTransient(
       {required this.message, required this.ambiguous, this.retryAfter});
 
-  @override
   final String message;
-  @override
   final bool ambiguous;
-  @override
   final Duration? retryAfter;
 
-  @override
-  String toString() {
-    return 'DispatchOutcome.transient(message: $message, ambiguous: $ambiguous, retryAfter: $retryAfter)';
-  }
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DispatchTransientCopyWith<DispatchTransient> get copyWith =>
+      _$DispatchTransientCopyWithImpl<DispatchTransient>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DispatchTransientImpl &&
+            other is DispatchTransient &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.ambiguous, ambiguous) ||
                 other.ambiguous == ambiguous) &&
@@ -515,307 +469,114 @@ class _$DispatchTransientImpl implements DispatchTransient {
   @override
   int get hashCode => Object.hash(runtimeType, message, ambiguous, retryAfter);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$DispatchTransientImplCopyWith<_$DispatchTransientImpl> get copyWith =>
-      __$$DispatchTransientImplCopyWithImpl<_$DispatchTransientImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? erpId) delivered,
-    required TResult Function(String message, bool ambiguous) unreachable,
-    required TResult Function(
-            String message, bool ambiguous, Duration? retryAfter)
-        transient,
-    required TResult Function(String message) unauthorized,
-    required TResult Function(String message) conflict,
-    required TResult Function(String message) rejected,
-  }) {
-    return transient(message, ambiguous, retryAfter);
+  String toString() {
+    return 'DispatchOutcome.transient(message: $message, ambiguous: $ambiguous, retryAfter: $retryAfter)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? erpId)? delivered,
-    TResult? Function(String message, bool ambiguous)? unreachable,
-    TResult? Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult? Function(String message)? unauthorized,
-    TResult? Function(String message)? conflict,
-    TResult? Function(String message)? rejected,
-  }) {
-    return transient?.call(message, ambiguous, retryAfter);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? erpId)? delivered,
-    TResult Function(String message, bool ambiguous)? unreachable,
-    TResult Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult Function(String message)? unauthorized,
-    TResult Function(String message)? conflict,
-    TResult Function(String message)? rejected,
-    required TResult orElse(),
-  }) {
-    if (transient != null) {
-      return transient(message, ambiguous, retryAfter);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DispatchDelivered value) delivered,
-    required TResult Function(DispatchUnreachable value) unreachable,
-    required TResult Function(DispatchTransient value) transient,
-    required TResult Function(DispatchUnauthorized value) unauthorized,
-    required TResult Function(DispatchConflict value) conflict,
-    required TResult Function(DispatchRejected value) rejected,
-  }) {
-    return transient(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DispatchDelivered value)? delivered,
-    TResult? Function(DispatchUnreachable value)? unreachable,
-    TResult? Function(DispatchTransient value)? transient,
-    TResult? Function(DispatchUnauthorized value)? unauthorized,
-    TResult? Function(DispatchConflict value)? conflict,
-    TResult? Function(DispatchRejected value)? rejected,
-  }) {
-    return transient?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DispatchDelivered value)? delivered,
-    TResult Function(DispatchUnreachable value)? unreachable,
-    TResult Function(DispatchTransient value)? transient,
-    TResult Function(DispatchUnauthorized value)? unauthorized,
-    TResult Function(DispatchConflict value)? conflict,
-    TResult Function(DispatchRejected value)? rejected,
-    required TResult orElse(),
-  }) {
-    if (transient != null) {
-      return transient(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DispatchTransient implements DispatchOutcome {
-  const factory DispatchTransient(
-      {required final String message,
-      required final bool ambiguous,
-      final Duration? retryAfter}) = _$DispatchTransientImpl;
-
-  String get message;
-  bool get ambiguous;
-  Duration? get retryAfter;
-  @JsonKey(ignore: true)
-  _$$DispatchTransientImplCopyWith<_$DispatchTransientImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DispatchUnauthorizedImplCopyWith<$Res> {
-  factory _$$DispatchUnauthorizedImplCopyWith(_$DispatchUnauthorizedImpl value,
-          $Res Function(_$DispatchUnauthorizedImpl) then) =
-      __$$DispatchUnauthorizedImplCopyWithImpl<$Res>;
+abstract mixin class $DispatchTransientCopyWith<$Res>
+    implements $DispatchOutcomeCopyWith<$Res> {
+  factory $DispatchTransientCopyWith(
+          DispatchTransient value, $Res Function(DispatchTransient) _then) =
+      _$DispatchTransientCopyWithImpl;
   @useResult
-  $Res call({String message});
+  $Res call({String message, bool ambiguous, Duration? retryAfter});
 }
 
 /// @nodoc
-class __$$DispatchUnauthorizedImplCopyWithImpl<$Res>
-    extends _$DispatchOutcomeCopyWithImpl<$Res, _$DispatchUnauthorizedImpl>
-    implements _$$DispatchUnauthorizedImplCopyWith<$Res> {
-  __$$DispatchUnauthorizedImplCopyWithImpl(_$DispatchUnauthorizedImpl _value,
-      $Res Function(_$DispatchUnauthorizedImpl) _then)
-      : super(_value, _then);
+class _$DispatchTransientCopyWithImpl<$Res>
+    implements $DispatchTransientCopyWith<$Res> {
+  _$DispatchTransientCopyWithImpl(this._self, this._then);
 
+  final DispatchTransient _self;
+  final $Res Function(DispatchTransient) _then;
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? message = null,
+    Object? ambiguous = null,
+    Object? retryAfter = freezed,
   }) {
-    return _then(_$DispatchUnauthorizedImpl(
+    return _then(DispatchTransient(
       message: null == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      ambiguous: null == ambiguous
+          ? _self.ambiguous
+          : ambiguous // ignore: cast_nullable_to_non_nullable
+              as bool,
+      retryAfter: freezed == retryAfter
+          ? _self.retryAfter
+          : retryAfter // ignore: cast_nullable_to_non_nullable
+              as Duration?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$DispatchUnauthorizedImpl implements DispatchUnauthorized {
-  const _$DispatchUnauthorizedImpl({required this.message});
+class DispatchUnauthorized implements DispatchOutcome {
+  const DispatchUnauthorized({required this.message});
+
+  final String message;
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DispatchUnauthorizedCopyWith<DispatchUnauthorized> get copyWith =>
+      _$DispatchUnauthorizedCopyWithImpl<DispatchUnauthorized>(
+          this, _$identity);
 
   @override
-  final String message;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DispatchUnauthorized &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
 
   @override
   String toString() {
     return 'DispatchOutcome.unauthorized(message: $message)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DispatchUnauthorizedImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DispatchUnauthorizedImplCopyWith<_$DispatchUnauthorizedImpl>
-      get copyWith =>
-          __$$DispatchUnauthorizedImplCopyWithImpl<_$DispatchUnauthorizedImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? erpId) delivered,
-    required TResult Function(String message, bool ambiguous) unreachable,
-    required TResult Function(
-            String message, bool ambiguous, Duration? retryAfter)
-        transient,
-    required TResult Function(String message) unauthorized,
-    required TResult Function(String message) conflict,
-    required TResult Function(String message) rejected,
-  }) {
-    return unauthorized(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? erpId)? delivered,
-    TResult? Function(String message, bool ambiguous)? unreachable,
-    TResult? Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult? Function(String message)? unauthorized,
-    TResult? Function(String message)? conflict,
-    TResult? Function(String message)? rejected,
-  }) {
-    return unauthorized?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? erpId)? delivered,
-    TResult Function(String message, bool ambiguous)? unreachable,
-    TResult Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult Function(String message)? unauthorized,
-    TResult Function(String message)? conflict,
-    TResult Function(String message)? rejected,
-    required TResult orElse(),
-  }) {
-    if (unauthorized != null) {
-      return unauthorized(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DispatchDelivered value) delivered,
-    required TResult Function(DispatchUnreachable value) unreachable,
-    required TResult Function(DispatchTransient value) transient,
-    required TResult Function(DispatchUnauthorized value) unauthorized,
-    required TResult Function(DispatchConflict value) conflict,
-    required TResult Function(DispatchRejected value) rejected,
-  }) {
-    return unauthorized(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DispatchDelivered value)? delivered,
-    TResult? Function(DispatchUnreachable value)? unreachable,
-    TResult? Function(DispatchTransient value)? transient,
-    TResult? Function(DispatchUnauthorized value)? unauthorized,
-    TResult? Function(DispatchConflict value)? conflict,
-    TResult? Function(DispatchRejected value)? rejected,
-  }) {
-    return unauthorized?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DispatchDelivered value)? delivered,
-    TResult Function(DispatchUnreachable value)? unreachable,
-    TResult Function(DispatchTransient value)? transient,
-    TResult Function(DispatchUnauthorized value)? unauthorized,
-    TResult Function(DispatchConflict value)? conflict,
-    TResult Function(DispatchRejected value)? rejected,
-    required TResult orElse(),
-  }) {
-    if (unauthorized != null) {
-      return unauthorized(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DispatchUnauthorized implements DispatchOutcome {
-  const factory DispatchUnauthorized({required final String message}) =
-      _$DispatchUnauthorizedImpl;
-
-  String get message;
-  @JsonKey(ignore: true)
-  _$$DispatchUnauthorizedImplCopyWith<_$DispatchUnauthorizedImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DispatchConflictImplCopyWith<$Res> {
-  factory _$$DispatchConflictImplCopyWith(_$DispatchConflictImpl value,
-          $Res Function(_$DispatchConflictImpl) then) =
-      __$$DispatchConflictImplCopyWithImpl<$Res>;
+abstract mixin class $DispatchUnauthorizedCopyWith<$Res>
+    implements $DispatchOutcomeCopyWith<$Res> {
+  factory $DispatchUnauthorizedCopyWith(DispatchUnauthorized value,
+          $Res Function(DispatchUnauthorized) _then) =
+      _$DispatchUnauthorizedCopyWithImpl;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$DispatchConflictImplCopyWithImpl<$Res>
-    extends _$DispatchOutcomeCopyWithImpl<$Res, _$DispatchConflictImpl>
-    implements _$$DispatchConflictImplCopyWith<$Res> {
-  __$$DispatchConflictImplCopyWithImpl(_$DispatchConflictImpl _value,
-      $Res Function(_$DispatchConflictImpl) _then)
-      : super(_value, _then);
+class _$DispatchUnauthorizedCopyWithImpl<$Res>
+    implements $DispatchUnauthorizedCopyWith<$Res> {
+  _$DispatchUnauthorizedCopyWithImpl(this._self, this._then);
 
+  final DispatchUnauthorized _self;
+  final $Res Function(DispatchUnauthorized) _then;
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$DispatchConflictImpl(
+    return _then(DispatchUnauthorized(
       message: null == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -824,161 +585,62 @@ class __$$DispatchConflictImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DispatchConflictImpl implements DispatchConflict {
-  const _$DispatchConflictImpl({required this.message});
+class DispatchConflict implements DispatchOutcome {
+  const DispatchConflict({required this.message});
+
+  final String message;
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DispatchConflictCopyWith<DispatchConflict> get copyWith =>
+      _$DispatchConflictCopyWithImpl<DispatchConflict>(this, _$identity);
 
   @override
-  final String message;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DispatchConflict &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
 
   @override
   String toString() {
     return 'DispatchOutcome.conflict(message: $message)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DispatchConflictImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DispatchConflictImplCopyWith<_$DispatchConflictImpl> get copyWith =>
-      __$$DispatchConflictImplCopyWithImpl<_$DispatchConflictImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? erpId) delivered,
-    required TResult Function(String message, bool ambiguous) unreachable,
-    required TResult Function(
-            String message, bool ambiguous, Duration? retryAfter)
-        transient,
-    required TResult Function(String message) unauthorized,
-    required TResult Function(String message) conflict,
-    required TResult Function(String message) rejected,
-  }) {
-    return conflict(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? erpId)? delivered,
-    TResult? Function(String message, bool ambiguous)? unreachable,
-    TResult? Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult? Function(String message)? unauthorized,
-    TResult? Function(String message)? conflict,
-    TResult? Function(String message)? rejected,
-  }) {
-    return conflict?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? erpId)? delivered,
-    TResult Function(String message, bool ambiguous)? unreachable,
-    TResult Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult Function(String message)? unauthorized,
-    TResult Function(String message)? conflict,
-    TResult Function(String message)? rejected,
-    required TResult orElse(),
-  }) {
-    if (conflict != null) {
-      return conflict(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DispatchDelivered value) delivered,
-    required TResult Function(DispatchUnreachable value) unreachable,
-    required TResult Function(DispatchTransient value) transient,
-    required TResult Function(DispatchUnauthorized value) unauthorized,
-    required TResult Function(DispatchConflict value) conflict,
-    required TResult Function(DispatchRejected value) rejected,
-  }) {
-    return conflict(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DispatchDelivered value)? delivered,
-    TResult? Function(DispatchUnreachable value)? unreachable,
-    TResult? Function(DispatchTransient value)? transient,
-    TResult? Function(DispatchUnauthorized value)? unauthorized,
-    TResult? Function(DispatchConflict value)? conflict,
-    TResult? Function(DispatchRejected value)? rejected,
-  }) {
-    return conflict?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DispatchDelivered value)? delivered,
-    TResult Function(DispatchUnreachable value)? unreachable,
-    TResult Function(DispatchTransient value)? transient,
-    TResult Function(DispatchUnauthorized value)? unauthorized,
-    TResult Function(DispatchConflict value)? conflict,
-    TResult Function(DispatchRejected value)? rejected,
-    required TResult orElse(),
-  }) {
-    if (conflict != null) {
-      return conflict(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DispatchConflict implements DispatchOutcome {
-  const factory DispatchConflict({required final String message}) =
-      _$DispatchConflictImpl;
-
-  String get message;
-  @JsonKey(ignore: true)
-  _$$DispatchConflictImplCopyWith<_$DispatchConflictImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DispatchRejectedImplCopyWith<$Res> {
-  factory _$$DispatchRejectedImplCopyWith(_$DispatchRejectedImpl value,
-          $Res Function(_$DispatchRejectedImpl) then) =
-      __$$DispatchRejectedImplCopyWithImpl<$Res>;
+abstract mixin class $DispatchConflictCopyWith<$Res>
+    implements $DispatchOutcomeCopyWith<$Res> {
+  factory $DispatchConflictCopyWith(
+          DispatchConflict value, $Res Function(DispatchConflict) _then) =
+      _$DispatchConflictCopyWithImpl;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$DispatchRejectedImplCopyWithImpl<$Res>
-    extends _$DispatchOutcomeCopyWithImpl<$Res, _$DispatchRejectedImpl>
-    implements _$$DispatchRejectedImplCopyWith<$Res> {
-  __$$DispatchRejectedImplCopyWithImpl(_$DispatchRejectedImpl _value,
-      $Res Function(_$DispatchRejectedImpl) _then)
-      : super(_value, _then);
+class _$DispatchConflictCopyWithImpl<$Res>
+    implements $DispatchConflictCopyWith<$Res> {
+  _$DispatchConflictCopyWithImpl(this._self, this._then);
 
+  final DispatchConflict _self;
+  final $Res Function(DispatchConflict) _then;
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$DispatchRejectedImpl(
+    return _then(DispatchConflict(
       message: null == message
-          ? _value.message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -987,291 +649,104 @@ class __$$DispatchRejectedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DispatchRejectedImpl implements DispatchRejected {
-  const _$DispatchRejectedImpl({required this.message});
+class DispatchRejected implements DispatchOutcome {
+  const DispatchRejected({required this.message});
 
-  @override
   final String message;
 
-  @override
-  String toString() {
-    return 'DispatchOutcome.rejected(message: $message)';
-  }
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DispatchRejectedCopyWith<DispatchRejected> get copyWith =>
+      _$DispatchRejectedCopyWithImpl<DispatchRejected>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DispatchRejectedImpl &&
+            other is DispatchRejected &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$DispatchRejectedImplCopyWith<_$DispatchRejectedImpl> get copyWith =>
-      __$$DispatchRejectedImplCopyWithImpl<_$DispatchRejectedImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String? erpId) delivered,
-    required TResult Function(String message, bool ambiguous) unreachable,
-    required TResult Function(
-            String message, bool ambiguous, Duration? retryAfter)
-        transient,
-    required TResult Function(String message) unauthorized,
-    required TResult Function(String message) conflict,
-    required TResult Function(String message) rejected,
-  }) {
-    return rejected(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? erpId)? delivered,
-    TResult? Function(String message, bool ambiguous)? unreachable,
-    TResult? Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult? Function(String message)? unauthorized,
-    TResult? Function(String message)? conflict,
-    TResult? Function(String message)? rejected,
-  }) {
-    return rejected?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? erpId)? delivered,
-    TResult Function(String message, bool ambiguous)? unreachable,
-    TResult Function(String message, bool ambiguous, Duration? retryAfter)?
-        transient,
-    TResult Function(String message)? unauthorized,
-    TResult Function(String message)? conflict,
-    TResult Function(String message)? rejected,
-    required TResult orElse(),
-  }) {
-    if (rejected != null) {
-      return rejected(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DispatchDelivered value) delivered,
-    required TResult Function(DispatchUnreachable value) unreachable,
-    required TResult Function(DispatchTransient value) transient,
-    required TResult Function(DispatchUnauthorized value) unauthorized,
-    required TResult Function(DispatchConflict value) conflict,
-    required TResult Function(DispatchRejected value) rejected,
-  }) {
-    return rejected(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DispatchDelivered value)? delivered,
-    TResult? Function(DispatchUnreachable value)? unreachable,
-    TResult? Function(DispatchTransient value)? transient,
-    TResult? Function(DispatchUnauthorized value)? unauthorized,
-    TResult? Function(DispatchConflict value)? conflict,
-    TResult? Function(DispatchRejected value)? rejected,
-  }) {
-    return rejected?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DispatchDelivered value)? delivered,
-    TResult Function(DispatchUnreachable value)? unreachable,
-    TResult Function(DispatchTransient value)? transient,
-    TResult Function(DispatchUnauthorized value)? unauthorized,
-    TResult Function(DispatchConflict value)? conflict,
-    TResult Function(DispatchRejected value)? rejected,
-    required TResult orElse(),
-  }) {
-    if (rejected != null) {
-      return rejected(this);
-    }
-    return orElse();
+  String toString() {
+    return 'DispatchOutcome.rejected(message: $message)';
   }
 }
 
-abstract class DispatchRejected implements DispatchOutcome {
-  const factory DispatchRejected({required final String message}) =
-      _$DispatchRejectedImpl;
+/// @nodoc
+abstract mixin class $DispatchRejectedCopyWith<$Res>
+    implements $DispatchOutcomeCopyWith<$Res> {
+  factory $DispatchRejectedCopyWith(
+          DispatchRejected value, $Res Function(DispatchRejected) _then) =
+      _$DispatchRejectedCopyWithImpl;
+  @useResult
+  $Res call({String message});
+}
 
-  String get message;
-  @JsonKey(ignore: true)
-  _$$DispatchRejectedImplCopyWith<_$DispatchRejectedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// @nodoc
+class _$DispatchRejectedCopyWithImpl<$Res>
+    implements $DispatchRejectedCopyWith<$Res> {
+  _$DispatchRejectedCopyWithImpl(this._self, this._then);
+
+  final DispatchRejected _self;
+  final $Res Function(DispatchRejected) _then;
+
+  /// Create a copy of DispatchOutcome
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(DispatchRejected(
+      message: null == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$TaskStep {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() skipped,
-    required TResult Function(String reason) deferred,
-    required TResult Function(DispatchOutcome outcome) attempted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? skipped,
-    TResult? Function(String reason)? deferred,
-    TResult? Function(DispatchOutcome outcome)? attempted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? skipped,
-    TResult Function(String reason)? deferred,
-    TResult Function(DispatchOutcome outcome)? attempted,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskSkipped value) skipped,
-    required TResult Function(TaskDeferred value) deferred,
-    required TResult Function(TaskAttempted value) attempted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskSkipped value)? skipped,
-    TResult? Function(TaskDeferred value)? deferred,
-    TResult? Function(TaskAttempted value)? attempted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TaskSkipped value)? skipped,
-    TResult Function(TaskDeferred value)? deferred,
-    TResult Function(TaskAttempted value)? attempted,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TaskStepCopyWith<$Res> {
-  factory $TaskStepCopyWith(TaskStep value, $Res Function(TaskStep) then) =
-      _$TaskStepCopyWithImpl<$Res, TaskStep>;
-}
-
-/// @nodoc
-class _$TaskStepCopyWithImpl<$Res, $Val extends TaskStep>
-    implements $TaskStepCopyWith<$Res> {
-  _$TaskStepCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$TaskSkippedImplCopyWith<$Res> {
-  factory _$$TaskSkippedImplCopyWith(
-          _$TaskSkippedImpl value, $Res Function(_$TaskSkippedImpl) then) =
-      __$$TaskSkippedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TaskSkippedImplCopyWithImpl<$Res>
-    extends _$TaskStepCopyWithImpl<$Res, _$TaskSkippedImpl>
-    implements _$$TaskSkippedImplCopyWith<$Res> {
-  __$$TaskSkippedImplCopyWithImpl(
-      _$TaskSkippedImpl _value, $Res Function(_$TaskSkippedImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$TaskSkippedImpl implements TaskSkipped {
-  const _$TaskSkippedImpl();
-
-  @override
-  String toString() {
-    return 'TaskStep.skipped()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TaskSkippedImpl);
+        (other.runtimeType == runtimeType && other is TaskStep);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() skipped,
-    required TResult Function(String reason) deferred,
-    required TResult Function(DispatchOutcome outcome) attempted,
-  }) {
-    return skipped();
+  String toString() {
+    return 'TaskStep()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? skipped,
-    TResult? Function(String reason)? deferred,
-    TResult? Function(DispatchOutcome outcome)? attempted,
-  }) {
-    return skipped?.call();
-  }
+/// @nodoc
+class $TaskStepCopyWith<$Res> {
+  $TaskStepCopyWith(TaskStep _, $Res Function(TaskStep) __);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? skipped,
-    TResult Function(String reason)? deferred,
-    TResult Function(DispatchOutcome outcome)? attempted,
-    required TResult orElse(),
-  }) {
-    if (skipped != null) {
-      return skipped();
-    }
-    return orElse();
-  }
+/// Adds pattern-matching-related methods to [TaskStep].
+extension TaskStepPatterns on TaskStep {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskSkipped value) skipped,
-    required TResult Function(TaskDeferred value) deferred,
-    required TResult Function(TaskAttempted value) attempted,
-  }) {
-    return skipped(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskSkipped value)? skipped,
-    TResult? Function(TaskDeferred value)? deferred,
-    TResult? Function(TaskAttempted value)? attempted,
-  }) {
-    return skipped?.call(this);
-  }
-
-  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TaskSkipped value)? skipped,
@@ -1279,42 +754,251 @@ class _$TaskSkippedImpl implements TaskSkipped {
     TResult Function(TaskAttempted value)? attempted,
     required TResult orElse(),
   }) {
-    if (skipped != null) {
-      return skipped(this);
+    final _that = this;
+    switch (_that) {
+      case TaskSkipped() when skipped != null:
+        return skipped(_that);
+      case TaskDeferred() when deferred != null:
+        return deferred(_that);
+      case TaskAttempted() when attempted != null:
+        return attempted(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TaskSkipped value) skipped,
+    required TResult Function(TaskDeferred value) deferred,
+    required TResult Function(TaskAttempted value) attempted,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case TaskSkipped():
+        return skipped(_that);
+      case TaskDeferred():
+        return deferred(_that);
+      case TaskAttempted():
+        return attempted(_that);
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TaskSkipped value)? skipped,
+    TResult? Function(TaskDeferred value)? deferred,
+    TResult? Function(TaskAttempted value)? attempted,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case TaskSkipped() when skipped != null:
+        return skipped(_that);
+      case TaskDeferred() when deferred != null:
+        return deferred(_that);
+      case TaskAttempted() when attempted != null:
+        return attempted(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? skipped,
+    TResult Function(String reason)? deferred,
+    TResult Function(DispatchOutcome outcome)? attempted,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case TaskSkipped() when skipped != null:
+        return skipped();
+      case TaskDeferred() when deferred != null:
+        return deferred(_that.reason);
+      case TaskAttempted() when attempted != null:
+        return attempted(_that.outcome);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() skipped,
+    required TResult Function(String reason) deferred,
+    required TResult Function(DispatchOutcome outcome) attempted,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case TaskSkipped():
+        return skipped();
+      case TaskDeferred():
+        return deferred(_that.reason);
+      case TaskAttempted():
+        return attempted(_that.outcome);
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? skipped,
+    TResult? Function(String reason)? deferred,
+    TResult? Function(DispatchOutcome outcome)? attempted,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case TaskSkipped() when skipped != null:
+        return skipped();
+      case TaskDeferred() when deferred != null:
+        return deferred(_that.reason);
+      case TaskAttempted() when attempted != null:
+        return attempted(_that.outcome);
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class TaskSkipped implements TaskStep {
-  const factory TaskSkipped() = _$TaskSkippedImpl;
+/// @nodoc
+
+class TaskSkipped implements TaskStep {
+  const TaskSkipped();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is TaskSkipped);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'TaskStep.skipped()';
+  }
 }
 
 /// @nodoc
-abstract class _$$TaskDeferredImplCopyWith<$Res> {
-  factory _$$TaskDeferredImplCopyWith(
-          _$TaskDeferredImpl value, $Res Function(_$TaskDeferredImpl) then) =
-      __$$TaskDeferredImplCopyWithImpl<$Res>;
+
+class TaskDeferred implements TaskStep {
+  const TaskDeferred({required this.reason});
+
+  final String reason;
+
+  /// Create a copy of TaskStep
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TaskDeferredCopyWith<TaskDeferred> get copyWith =>
+      _$TaskDeferredCopyWithImpl<TaskDeferred>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TaskDeferred &&
+            (identical(other.reason, reason) || other.reason == reason));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, reason);
+
+  @override
+  String toString() {
+    return 'TaskStep.deferred(reason: $reason)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TaskDeferredCopyWith<$Res>
+    implements $TaskStepCopyWith<$Res> {
+  factory $TaskDeferredCopyWith(
+          TaskDeferred value, $Res Function(TaskDeferred) _then) =
+      _$TaskDeferredCopyWithImpl;
   @useResult
   $Res call({String reason});
 }
 
 /// @nodoc
-class __$$TaskDeferredImplCopyWithImpl<$Res>
-    extends _$TaskStepCopyWithImpl<$Res, _$TaskDeferredImpl>
-    implements _$$TaskDeferredImplCopyWith<$Res> {
-  __$$TaskDeferredImplCopyWithImpl(
-      _$TaskDeferredImpl _value, $Res Function(_$TaskDeferredImpl) _then)
-      : super(_value, _then);
+class _$TaskDeferredCopyWithImpl<$Res> implements $TaskDeferredCopyWith<$Res> {
+  _$TaskDeferredCopyWithImpl(this._self, this._then);
 
+  final TaskDeferred _self;
+  final $Res Function(TaskDeferred) _then;
+
+  /// Create a copy of TaskStep
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? reason = null,
   }) {
-    return _then(_$TaskDeferredImpl(
+    return _then(TaskDeferred(
       reason: null == reason
-          ? _value.reason
+          ? _self.reason
           : reason // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1323,118 +1007,41 @@ class __$$TaskDeferredImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TaskDeferredImpl implements TaskDeferred {
-  const _$TaskDeferredImpl({required this.reason});
+class TaskAttempted implements TaskStep {
+  const TaskAttempted(this.outcome);
 
-  @override
-  final String reason;
+  final DispatchOutcome outcome;
 
-  @override
-  String toString() {
-    return 'TaskStep.deferred(reason: $reason)';
-  }
+  /// Create a copy of TaskStep
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $TaskAttemptedCopyWith<TaskAttempted> get copyWith =>
+      _$TaskAttemptedCopyWithImpl<TaskAttempted>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TaskDeferredImpl &&
-            (identical(other.reason, reason) || other.reason == reason));
+            other is TaskAttempted &&
+            (identical(other.outcome, outcome) || other.outcome == outcome));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, reason);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TaskDeferredImplCopyWith<_$TaskDeferredImpl> get copyWith =>
-      __$$TaskDeferredImplCopyWithImpl<_$TaskDeferredImpl>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, outcome);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() skipped,
-    required TResult Function(String reason) deferred,
-    required TResult Function(DispatchOutcome outcome) attempted,
-  }) {
-    return deferred(reason);
+  String toString() {
+    return 'TaskStep.attempted(outcome: $outcome)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? skipped,
-    TResult? Function(String reason)? deferred,
-    TResult? Function(DispatchOutcome outcome)? attempted,
-  }) {
-    return deferred?.call(reason);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? skipped,
-    TResult Function(String reason)? deferred,
-    TResult Function(DispatchOutcome outcome)? attempted,
-    required TResult orElse(),
-  }) {
-    if (deferred != null) {
-      return deferred(reason);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskSkipped value) skipped,
-    required TResult Function(TaskDeferred value) deferred,
-    required TResult Function(TaskAttempted value) attempted,
-  }) {
-    return deferred(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskSkipped value)? skipped,
-    TResult? Function(TaskDeferred value)? deferred,
-    TResult? Function(TaskAttempted value)? attempted,
-  }) {
-    return deferred?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TaskSkipped value)? skipped,
-    TResult Function(TaskDeferred value)? deferred,
-    TResult Function(TaskAttempted value)? attempted,
-    required TResult orElse(),
-  }) {
-    if (deferred != null) {
-      return deferred(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TaskDeferred implements TaskStep {
-  const factory TaskDeferred({required final String reason}) =
-      _$TaskDeferredImpl;
-
-  String get reason;
-  @JsonKey(ignore: true)
-  _$$TaskDeferredImplCopyWith<_$TaskDeferredImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TaskAttemptedImplCopyWith<$Res> {
-  factory _$$TaskAttemptedImplCopyWith(
-          _$TaskAttemptedImpl value, $Res Function(_$TaskAttemptedImpl) then) =
-      __$$TaskAttemptedImplCopyWithImpl<$Res>;
+abstract mixin class $TaskAttemptedCopyWith<$Res>
+    implements $TaskStepCopyWith<$Res> {
+  factory $TaskAttemptedCopyWith(
+          TaskAttempted value, $Res Function(TaskAttempted) _then) =
+      _$TaskAttemptedCopyWithImpl;
   @useResult
   $Res call({DispatchOutcome outcome});
 
@@ -1442,162 +1049,86 @@ abstract class _$$TaskAttemptedImplCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$TaskAttemptedImplCopyWithImpl<$Res>
-    extends _$TaskStepCopyWithImpl<$Res, _$TaskAttemptedImpl>
-    implements _$$TaskAttemptedImplCopyWith<$Res> {
-  __$$TaskAttemptedImplCopyWithImpl(
-      _$TaskAttemptedImpl _value, $Res Function(_$TaskAttemptedImpl) _then)
-      : super(_value, _then);
+class _$TaskAttemptedCopyWithImpl<$Res>
+    implements $TaskAttemptedCopyWith<$Res> {
+  _$TaskAttemptedCopyWithImpl(this._self, this._then);
 
+  final TaskAttempted _self;
+  final $Res Function(TaskAttempted) _then;
+
+  /// Create a copy of TaskStep
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? outcome = null,
   }) {
-    return _then(_$TaskAttemptedImpl(
+    return _then(TaskAttempted(
       null == outcome
-          ? _value.outcome
+          ? _self.outcome
           : outcome // ignore: cast_nullable_to_non_nullable
               as DispatchOutcome,
     ));
   }
 
+  /// Create a copy of TaskStep
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DispatchOutcomeCopyWith<$Res> get outcome {
-    return $DispatchOutcomeCopyWith<$Res>(_value.outcome, (value) {
-      return _then(_value.copyWith(outcome: value));
+    return $DispatchOutcomeCopyWith<$Res>(_self.outcome, (value) {
+      return _then(_self.copyWith(outcome: value));
     });
   }
 }
 
 /// @nodoc
+mixin _$UpstreamRunStats {
+  int get delivered;
+  int get rescheduled;
+  int get deferred;
+  int get conflicts;
+  int get rejected;
 
-class _$TaskAttemptedImpl implements TaskAttempted {
-  const _$TaskAttemptedImpl(this.outcome);
-
-  @override
-  final DispatchOutcome outcome;
-
-  @override
-  String toString() {
-    return 'TaskStep.attempted(outcome: $outcome)';
-  }
+  /// Create a copy of UpstreamRunStats
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UpstreamRunStatsCopyWith<UpstreamRunStats> get copyWith =>
+      _$UpstreamRunStatsCopyWithImpl<UpstreamRunStats>(
+          this as UpstreamRunStats, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TaskAttemptedImpl &&
-            (identical(other.outcome, outcome) || other.outcome == outcome));
+            other is UpstreamRunStats &&
+            (identical(other.delivered, delivered) ||
+                other.delivered == delivered) &&
+            (identical(other.rescheduled, rescheduled) ||
+                other.rescheduled == rescheduled) &&
+            (identical(other.deferred, deferred) ||
+                other.deferred == deferred) &&
+            (identical(other.conflicts, conflicts) ||
+                other.conflicts == conflicts) &&
+            (identical(other.rejected, rejected) ||
+                other.rejected == rejected));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, outcome);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TaskAttemptedImplCopyWith<_$TaskAttemptedImpl> get copyWith =>
-      __$$TaskAttemptedImplCopyWithImpl<_$TaskAttemptedImpl>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType, delivered, rescheduled, deferred, conflicts, rejected);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() skipped,
-    required TResult Function(String reason) deferred,
-    required TResult Function(DispatchOutcome outcome) attempted,
-  }) {
-    return attempted(outcome);
+  String toString() {
+    return 'UpstreamRunStats(delivered: $delivered, rescheduled: $rescheduled, deferred: $deferred, conflicts: $conflicts, rejected: $rejected)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? skipped,
-    TResult? Function(String reason)? deferred,
-    TResult? Function(DispatchOutcome outcome)? attempted,
-  }) {
-    return attempted?.call(outcome);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? skipped,
-    TResult Function(String reason)? deferred,
-    TResult Function(DispatchOutcome outcome)? attempted,
-    required TResult orElse(),
-  }) {
-    if (attempted != null) {
-      return attempted(outcome);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TaskSkipped value) skipped,
-    required TResult Function(TaskDeferred value) deferred,
-    required TResult Function(TaskAttempted value) attempted,
-  }) {
-    return attempted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TaskSkipped value)? skipped,
-    TResult? Function(TaskDeferred value)? deferred,
-    TResult? Function(TaskAttempted value)? attempted,
-  }) {
-    return attempted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TaskSkipped value)? skipped,
-    TResult Function(TaskDeferred value)? deferred,
-    TResult Function(TaskAttempted value)? attempted,
-    required TResult orElse(),
-  }) {
-    if (attempted != null) {
-      return attempted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TaskAttempted implements TaskStep {
-  const factory TaskAttempted(final DispatchOutcome outcome) =
-      _$TaskAttemptedImpl;
-
-  DispatchOutcome get outcome;
-  @JsonKey(ignore: true)
-  _$$TaskAttemptedImplCopyWith<_$TaskAttemptedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$UpstreamRunStats {
-  int get delivered => throw _privateConstructorUsedError;
-  int get rescheduled => throw _privateConstructorUsedError;
-  int get deferred => throw _privateConstructorUsedError;
-  int get conflicts => throw _privateConstructorUsedError;
-  int get rejected => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UpstreamRunStatsCopyWith<UpstreamRunStats> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpstreamRunStatsCopyWith<$Res> {
+abstract mixin class $UpstreamRunStatsCopyWith<$Res> {
   factory $UpstreamRunStatsCopyWith(
-          UpstreamRunStats value, $Res Function(UpstreamRunStats) then) =
-      _$UpstreamRunStatsCopyWithImpl<$Res, UpstreamRunStats>;
+          UpstreamRunStats value, $Res Function(UpstreamRunStats) _then) =
+      _$UpstreamRunStatsCopyWithImpl;
   @useResult
   $Res call(
       {int delivered,
@@ -1608,15 +1139,15 @@ abstract class $UpstreamRunStatsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpstreamRunStatsCopyWithImpl<$Res, $Val extends UpstreamRunStats>
+class _$UpstreamRunStatsCopyWithImpl<$Res>
     implements $UpstreamRunStatsCopyWith<$Res> {
-  _$UpstreamRunStatsCopyWithImpl(this._value, this._then);
+  _$UpstreamRunStatsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UpstreamRunStats _self;
+  final $Res Function(UpstreamRunStats) _then;
 
+  /// Create a copy of UpstreamRunStats
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1626,93 +1157,201 @@ class _$UpstreamRunStatsCopyWithImpl<$Res, $Val extends UpstreamRunStats>
     Object? conflicts = null,
     Object? rejected = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       delivered: null == delivered
-          ? _value.delivered
+          ? _self.delivered
           : delivered // ignore: cast_nullable_to_non_nullable
               as int,
       rescheduled: null == rescheduled
-          ? _value.rescheduled
+          ? _self.rescheduled
           : rescheduled // ignore: cast_nullable_to_non_nullable
               as int,
       deferred: null == deferred
-          ? _value.deferred
+          ? _self.deferred
           : deferred // ignore: cast_nullable_to_non_nullable
               as int,
       conflicts: null == conflicts
-          ? _value.conflicts
+          ? _self.conflicts
           : conflicts // ignore: cast_nullable_to_non_nullable
               as int,
       rejected: null == rejected
-          ? _value.rejected
-          : rejected // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$UpstreamRunStatsImplCopyWith<$Res>
-    implements $UpstreamRunStatsCopyWith<$Res> {
-  factory _$$UpstreamRunStatsImplCopyWith(_$UpstreamRunStatsImpl value,
-          $Res Function(_$UpstreamRunStatsImpl) then) =
-      __$$UpstreamRunStatsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {int delivered,
-      int rescheduled,
-      int deferred,
-      int conflicts,
-      int rejected});
-}
-
-/// @nodoc
-class __$$UpstreamRunStatsImplCopyWithImpl<$Res>
-    extends _$UpstreamRunStatsCopyWithImpl<$Res, _$UpstreamRunStatsImpl>
-    implements _$$UpstreamRunStatsImplCopyWith<$Res> {
-  __$$UpstreamRunStatsImplCopyWithImpl(_$UpstreamRunStatsImpl _value,
-      $Res Function(_$UpstreamRunStatsImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? delivered = null,
-    Object? rescheduled = null,
-    Object? deferred = null,
-    Object? conflicts = null,
-    Object? rejected = null,
-  }) {
-    return _then(_$UpstreamRunStatsImpl(
-      delivered: null == delivered
-          ? _value.delivered
-          : delivered // ignore: cast_nullable_to_non_nullable
-              as int,
-      rescheduled: null == rescheduled
-          ? _value.rescheduled
-          : rescheduled // ignore: cast_nullable_to_non_nullable
-              as int,
-      deferred: null == deferred
-          ? _value.deferred
-          : deferred // ignore: cast_nullable_to_non_nullable
-              as int,
-      conflicts: null == conflicts
-          ? _value.conflicts
-          : conflicts // ignore: cast_nullable_to_non_nullable
-              as int,
-      rejected: null == rejected
-          ? _value.rejected
+          ? _self.rejected
           : rejected // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [UpstreamRunStats].
+extension UpstreamRunStatsPatterns on UpstreamRunStats {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_UpstreamRunStats value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpstreamRunStats() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_UpstreamRunStats value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpstreamRunStats():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_UpstreamRunStats value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpstreamRunStats() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int delivered, int rescheduled, int deferred,
+            int conflicts, int rejected)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _UpstreamRunStats() when $default != null:
+        return $default(_that.delivered, _that.rescheduled, _that.deferred,
+            _that.conflicts, _that.rejected);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int delivered, int rescheduled, int deferred,
+            int conflicts, int rejected)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpstreamRunStats():
+        return $default(_that.delivered, _that.rescheduled, _that.deferred,
+            _that.conflicts, _that.rejected);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int delivered, int rescheduled, int deferred,
+            int conflicts, int rejected)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _UpstreamRunStats() when $default != null:
+        return $default(_that.delivered, _that.rescheduled, _that.deferred,
+            _that.conflicts, _that.rejected);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 
-class _$UpstreamRunStatsImpl extends _UpstreamRunStats {
-  const _$UpstreamRunStatsImpl(
+class _UpstreamRunStats extends UpstreamRunStats {
+  const _UpstreamRunStats(
       {this.delivered = 0,
       this.rescheduled = 0,
       this.deferred = 0,
@@ -1736,16 +1375,19 @@ class _$UpstreamRunStatsImpl extends _UpstreamRunStats {
   @JsonKey()
   final int rejected;
 
+  /// Create a copy of UpstreamRunStats
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'UpstreamRunStats(delivered: $delivered, rescheduled: $rescheduled, deferred: $deferred, conflicts: $conflicts, rejected: $rejected)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$UpstreamRunStatsCopyWith<_UpstreamRunStats> get copyWith =>
+      __$UpstreamRunStatsCopyWithImpl<_UpstreamRunStats>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpstreamRunStatsImpl &&
+            other is _UpstreamRunStats &&
             (identical(other.delivered, delivered) ||
                 other.delivered == delivered) &&
             (identical(other.rescheduled, rescheduled) ||
@@ -1762,173 +1404,202 @@ class _$UpstreamRunStatsImpl extends _UpstreamRunStats {
   int get hashCode => Object.hash(
       runtimeType, delivered, rescheduled, deferred, conflicts, rejected);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$UpstreamRunStatsImplCopyWith<_$UpstreamRunStatsImpl> get copyWith =>
-      __$$UpstreamRunStatsImplCopyWithImpl<_$UpstreamRunStatsImpl>(
-          this, _$identity);
+  String toString() {
+    return 'UpstreamRunStats(delivered: $delivered, rescheduled: $rescheduled, deferred: $deferred, conflicts: $conflicts, rejected: $rejected)';
+  }
 }
 
-abstract class _UpstreamRunStats extends UpstreamRunStats {
-  const factory _UpstreamRunStats(
-      {final int delivered,
-      final int rescheduled,
-      final int deferred,
-      final int conflicts,
-      final int rejected}) = _$UpstreamRunStatsImpl;
-  const _UpstreamRunStats._() : super._();
+/// @nodoc
+abstract mixin class _$UpstreamRunStatsCopyWith<$Res>
+    implements $UpstreamRunStatsCopyWith<$Res> {
+  factory _$UpstreamRunStatsCopyWith(
+          _UpstreamRunStats value, $Res Function(_UpstreamRunStats) _then) =
+      __$UpstreamRunStatsCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {int delivered,
+      int rescheduled,
+      int deferred,
+      int conflicts,
+      int rejected});
+}
 
+/// @nodoc
+class __$UpstreamRunStatsCopyWithImpl<$Res>
+    implements _$UpstreamRunStatsCopyWith<$Res> {
+  __$UpstreamRunStatsCopyWithImpl(this._self, this._then);
+
+  final _UpstreamRunStats _self;
+  final $Res Function(_UpstreamRunStats) _then;
+
+  /// Create a copy of UpstreamRunStats
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  int get delivered;
-  @override
-  int get rescheduled;
-  @override
-  int get deferred;
-  @override
-  int get conflicts;
-  @override
-  int get rejected;
-  @override
-  @JsonKey(ignore: true)
-  _$$UpstreamRunStatsImplCopyWith<_$UpstreamRunStatsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? delivered = null,
+    Object? rescheduled = null,
+    Object? deferred = null,
+    Object? conflicts = null,
+    Object? rejected = null,
+  }) {
+    return _then(_UpstreamRunStats(
+      delivered: null == delivered
+          ? _self.delivered
+          : delivered // ignore: cast_nullable_to_non_nullable
+              as int,
+      rescheduled: null == rescheduled
+          ? _self.rescheduled
+          : rescheduled // ignore: cast_nullable_to_non_nullable
+              as int,
+      deferred: null == deferred
+          ? _self.deferred
+          : deferred // ignore: cast_nullable_to_non_nullable
+              as int,
+      conflicts: null == conflicts
+          ? _self.conflicts
+          : conflicts // ignore: cast_nullable_to_non_nullable
+              as int,
+      rejected: null == rejected
+          ? _self.rejected
+          : rejected // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$UpstreamRunResult {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() offline,
-    required TResult Function(UpstreamRunStats stats, DateTime? nextDueAt)
-        completed,
-    required TResult Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)
-        halted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? offline,
-    TResult? Function(UpstreamRunStats stats, DateTime? nextDueAt)? completed,
-    TResult? Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)?
-        halted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? offline,
-    TResult Function(UpstreamRunStats stats, DateTime? nextDueAt)? completed,
-    TResult Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)?
-        halted,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UpstreamOffline value) offline,
-    required TResult Function(UpstreamCompleted value) completed,
-    required TResult Function(UpstreamHalted value) halted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UpstreamOffline value)? offline,
-    TResult? Function(UpstreamCompleted value)? completed,
-    TResult? Function(UpstreamHalted value)? halted,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UpstreamOffline value)? offline,
-    TResult Function(UpstreamCompleted value)? completed,
-    TResult Function(UpstreamHalted value)? halted,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UpstreamRunResultCopyWith<$Res> {
-  factory $UpstreamRunResultCopyWith(
-          UpstreamRunResult value, $Res Function(UpstreamRunResult) then) =
-      _$UpstreamRunResultCopyWithImpl<$Res, UpstreamRunResult>;
-}
-
-/// @nodoc
-class _$UpstreamRunResultCopyWithImpl<$Res, $Val extends UpstreamRunResult>
-    implements $UpstreamRunResultCopyWith<$Res> {
-  _$UpstreamRunResultCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$UpstreamOfflineImplCopyWith<$Res> {
-  factory _$$UpstreamOfflineImplCopyWith(_$UpstreamOfflineImpl value,
-          $Res Function(_$UpstreamOfflineImpl) then) =
-      __$$UpstreamOfflineImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$UpstreamOfflineImplCopyWithImpl<$Res>
-    extends _$UpstreamRunResultCopyWithImpl<$Res, _$UpstreamOfflineImpl>
-    implements _$$UpstreamOfflineImplCopyWith<$Res> {
-  __$$UpstreamOfflineImplCopyWithImpl(
-      _$UpstreamOfflineImpl _value, $Res Function(_$UpstreamOfflineImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$UpstreamOfflineImpl implements UpstreamOffline {
-  const _$UpstreamOfflineImpl();
-
-  @override
-  String toString() {
-    return 'UpstreamRunResult.offline()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UpstreamOfflineImpl);
+        (other.runtimeType == runtimeType && other is UpstreamRunResult);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
+  String toString() {
+    return 'UpstreamRunResult()';
+  }
+}
+
+/// @nodoc
+class $UpstreamRunResultCopyWith<$Res> {
+  $UpstreamRunResultCopyWith(
+      UpstreamRunResult _, $Res Function(UpstreamRunResult) __);
+}
+
+/// Adds pattern-matching-related methods to [UpstreamRunResult].
+extension UpstreamRunResultPatterns on UpstreamRunResult {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() offline,
-    required TResult Function(UpstreamRunStats stats, DateTime? nextDueAt)
-        completed,
-    required TResult Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)
-        halted,
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UpstreamOffline value)? offline,
+    TResult Function(UpstreamCompleted value)? completed,
+    TResult Function(UpstreamHalted value)? halted,
+    required TResult orElse(),
   }) {
-    return offline();
+    final _that = this;
+    switch (_that) {
+      case UpstreamOffline() when offline != null:
+        return offline(_that);
+      case UpstreamCompleted() when completed != null:
+        return completed(_that);
+      case UpstreamHalted() when halted != null:
+        return halted(_that);
+      case _:
+        return orElse();
+    }
   }
 
-  @override
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? offline,
-    TResult? Function(UpstreamRunStats stats, DateTime? nextDueAt)? completed,
-    TResult? Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)?
-        halted,
+  TResult map<TResult extends Object?>({
+    required TResult Function(UpstreamOffline value) offline,
+    required TResult Function(UpstreamCompleted value) completed,
+    required TResult Function(UpstreamHalted value) halted,
   }) {
-    return offline?.call();
+    final _that = this;
+    switch (_that) {
+      case UpstreamOffline():
+        return offline(_that);
+      case UpstreamCompleted():
+        return completed(_that);
+      case UpstreamHalted():
+        return halted(_that);
+    }
   }
 
-  @override
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UpstreamOffline value)? offline,
+    TResult? Function(UpstreamCompleted value)? completed,
+    TResult? Function(UpstreamHalted value)? halted,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case UpstreamOffline() when offline != null:
+        return offline(_that);
+      case UpstreamCompleted() when completed != null:
+        return completed(_that);
+      case UpstreamHalted() when halted != null:
+        return halted(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? offline,
@@ -1938,117 +1609,129 @@ class _$UpstreamOfflineImpl implements UpstreamOffline {
         halted,
     required TResult orElse(),
   }) {
-    if (offline != null) {
-      return offline();
+    final _that = this;
+    switch (_that) {
+      case UpstreamOffline() when offline != null:
+        return offline();
+      case UpstreamCompleted() when completed != null:
+        return completed(_that.stats, _that.nextDueAt);
+      case UpstreamHalted() when halted != null:
+        return halted(
+            _that.reason, _that.message, _that.stats, _that.nextDueAt);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UpstreamOffline value) offline,
-    required TResult Function(UpstreamCompleted value) completed,
-    required TResult Function(UpstreamHalted value) halted,
-  }) {
-    return offline(this);
-  }
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
 
-  @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UpstreamOffline value)? offline,
-    TResult? Function(UpstreamCompleted value)? completed,
-    TResult? Function(UpstreamHalted value)? halted,
+  TResult when<TResult extends Object?>({
+    required TResult Function() offline,
+    required TResult Function(UpstreamRunStats stats, DateTime? nextDueAt)
+        completed,
+    required TResult Function(UpstreamHaltReason reason, String message,
+            UpstreamRunStats stats, DateTime? nextDueAt)
+        halted,
   }) {
-    return offline?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UpstreamOffline value)? offline,
-    TResult Function(UpstreamCompleted value)? completed,
-    TResult Function(UpstreamHalted value)? halted,
-    required TResult orElse(),
-  }) {
-    if (offline != null) {
-      return offline(this);
+    final _that = this;
+    switch (_that) {
+      case UpstreamOffline():
+        return offline();
+      case UpstreamCompleted():
+        return completed(_that.stats, _that.nextDueAt);
+      case UpstreamHalted():
+        return halted(
+            _that.reason, _that.message, _that.stats, _that.nextDueAt);
     }
-    return orElse();
   }
-}
 
-abstract class UpstreamOffline implements UpstreamRunResult {
-  const factory UpstreamOffline() = _$UpstreamOfflineImpl;
-}
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
 
-/// @nodoc
-abstract class _$$UpstreamCompletedImplCopyWith<$Res> {
-  factory _$$UpstreamCompletedImplCopyWith(_$UpstreamCompletedImpl value,
-          $Res Function(_$UpstreamCompletedImpl) then) =
-      __$$UpstreamCompletedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UpstreamRunStats stats, DateTime? nextDueAt});
-
-  $UpstreamRunStatsCopyWith<$Res> get stats;
-}
-
-/// @nodoc
-class __$$UpstreamCompletedImplCopyWithImpl<$Res>
-    extends _$UpstreamRunResultCopyWithImpl<$Res, _$UpstreamCompletedImpl>
-    implements _$$UpstreamCompletedImplCopyWith<$Res> {
-  __$$UpstreamCompletedImplCopyWithImpl(_$UpstreamCompletedImpl _value,
-      $Res Function(_$UpstreamCompletedImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? stats = null,
-    Object? nextDueAt = freezed,
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? offline,
+    TResult? Function(UpstreamRunStats stats, DateTime? nextDueAt)? completed,
+    TResult? Function(UpstreamHaltReason reason, String message,
+            UpstreamRunStats stats, DateTime? nextDueAt)?
+        halted,
   }) {
-    return _then(_$UpstreamCompletedImpl(
-      stats: null == stats
-          ? _value.stats
-          : stats // ignore: cast_nullable_to_non_nullable
-              as UpstreamRunStats,
-      nextDueAt: freezed == nextDueAt
-          ? _value.nextDueAt
-          : nextDueAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UpstreamRunStatsCopyWith<$Res> get stats {
-    return $UpstreamRunStatsCopyWith<$Res>(_value.stats, (value) {
-      return _then(_value.copyWith(stats: value));
-    });
+    final _that = this;
+    switch (_that) {
+      case UpstreamOffline() when offline != null:
+        return offline();
+      case UpstreamCompleted() when completed != null:
+        return completed(_that.stats, _that.nextDueAt);
+      case UpstreamHalted() when halted != null:
+        return halted(
+            _that.reason, _that.message, _that.stats, _that.nextDueAt);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$UpstreamCompletedImpl implements UpstreamCompleted {
-  const _$UpstreamCompletedImpl({required this.stats, this.nextDueAt});
+class UpstreamOffline implements UpstreamRunResult {
+  const UpstreamOffline();
 
   @override
-  final UpstreamRunStats stats;
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is UpstreamOffline);
+  }
+
   @override
-  final DateTime? nextDueAt;
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
-    return 'UpstreamRunResult.completed(stats: $stats, nextDueAt: $nextDueAt)';
+    return 'UpstreamRunResult.offline()';
   }
+}
+
+/// @nodoc
+
+class UpstreamCompleted implements UpstreamRunResult {
+  const UpstreamCompleted({required this.stats, this.nextDueAt});
+
+  final UpstreamRunStats stats;
+  final DateTime? nextDueAt;
+
+  /// Create a copy of UpstreamRunResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UpstreamCompletedCopyWith<UpstreamCompleted> get copyWith =>
+      _$UpstreamCompletedCopyWithImpl<UpstreamCompleted>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpstreamCompletedImpl &&
+            other is UpstreamCompleted &&
             (identical(other.stats, stats) || other.stats == stats) &&
             (identical(other.nextDueAt, nextDueAt) ||
                 other.nextDueAt == nextDueAt));
@@ -2057,189 +1740,88 @@ class _$UpstreamCompletedImpl implements UpstreamCompleted {
   @override
   int get hashCode => Object.hash(runtimeType, stats, nextDueAt);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$UpstreamCompletedImplCopyWith<_$UpstreamCompletedImpl> get copyWith =>
-      __$$UpstreamCompletedImplCopyWithImpl<_$UpstreamCompletedImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() offline,
-    required TResult Function(UpstreamRunStats stats, DateTime? nextDueAt)
-        completed,
-    required TResult Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)
-        halted,
-  }) {
-    return completed(stats, nextDueAt);
+  String toString() {
+    return 'UpstreamRunResult.completed(stats: $stats, nextDueAt: $nextDueAt)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? offline,
-    TResult? Function(UpstreamRunStats stats, DateTime? nextDueAt)? completed,
-    TResult? Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)?
-        halted,
-  }) {
-    return completed?.call(stats, nextDueAt);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? offline,
-    TResult Function(UpstreamRunStats stats, DateTime? nextDueAt)? completed,
-    TResult Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)?
-        halted,
-    required TResult orElse(),
-  }) {
-    if (completed != null) {
-      return completed(stats, nextDueAt);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UpstreamOffline value) offline,
-    required TResult Function(UpstreamCompleted value) completed,
-    required TResult Function(UpstreamHalted value) halted,
-  }) {
-    return completed(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UpstreamOffline value)? offline,
-    TResult? Function(UpstreamCompleted value)? completed,
-    TResult? Function(UpstreamHalted value)? halted,
-  }) {
-    return completed?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UpstreamOffline value)? offline,
-    TResult Function(UpstreamCompleted value)? completed,
-    TResult Function(UpstreamHalted value)? halted,
-    required TResult orElse(),
-  }) {
-    if (completed != null) {
-      return completed(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpstreamCompleted implements UpstreamRunResult {
-  const factory UpstreamCompleted(
-      {required final UpstreamRunStats stats,
-      final DateTime? nextDueAt}) = _$UpstreamCompletedImpl;
-
-  UpstreamRunStats get stats;
-  DateTime? get nextDueAt;
-  @JsonKey(ignore: true)
-  _$$UpstreamCompletedImplCopyWith<_$UpstreamCompletedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpstreamHaltedImplCopyWith<$Res> {
-  factory _$$UpstreamHaltedImplCopyWith(_$UpstreamHaltedImpl value,
-          $Res Function(_$UpstreamHaltedImpl) then) =
-      __$$UpstreamHaltedImplCopyWithImpl<$Res>;
+abstract mixin class $UpstreamCompletedCopyWith<$Res>
+    implements $UpstreamRunResultCopyWith<$Res> {
+  factory $UpstreamCompletedCopyWith(
+          UpstreamCompleted value, $Res Function(UpstreamCompleted) _then) =
+      _$UpstreamCompletedCopyWithImpl;
   @useResult
-  $Res call(
-      {UpstreamHaltReason reason,
-      String message,
-      UpstreamRunStats stats,
-      DateTime? nextDueAt});
+  $Res call({UpstreamRunStats stats, DateTime? nextDueAt});
 
   $UpstreamRunStatsCopyWith<$Res> get stats;
 }
 
 /// @nodoc
-class __$$UpstreamHaltedImplCopyWithImpl<$Res>
-    extends _$UpstreamRunResultCopyWithImpl<$Res, _$UpstreamHaltedImpl>
-    implements _$$UpstreamHaltedImplCopyWith<$Res> {
-  __$$UpstreamHaltedImplCopyWithImpl(
-      _$UpstreamHaltedImpl _value, $Res Function(_$UpstreamHaltedImpl) _then)
-      : super(_value, _then);
+class _$UpstreamCompletedCopyWithImpl<$Res>
+    implements $UpstreamCompletedCopyWith<$Res> {
+  _$UpstreamCompletedCopyWithImpl(this._self, this._then);
 
+  final UpstreamCompleted _self;
+  final $Res Function(UpstreamCompleted) _then;
+
+  /// Create a copy of UpstreamRunResult
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? reason = null,
-    Object? message = null,
     Object? stats = null,
     Object? nextDueAt = freezed,
   }) {
-    return _then(_$UpstreamHaltedImpl(
-      reason: null == reason
-          ? _value.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as UpstreamHaltReason,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(UpstreamCompleted(
       stats: null == stats
-          ? _value.stats
+          ? _self.stats
           : stats // ignore: cast_nullable_to_non_nullable
               as UpstreamRunStats,
       nextDueAt: freezed == nextDueAt
-          ? _value.nextDueAt
+          ? _self.nextDueAt
           : nextDueAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ));
   }
 
+  /// Create a copy of UpstreamRunResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UpstreamRunStatsCopyWith<$Res> get stats {
-    return $UpstreamRunStatsCopyWith<$Res>(_value.stats, (value) {
-      return _then(_value.copyWith(stats: value));
+    return $UpstreamRunStatsCopyWith<$Res>(_self.stats, (value) {
+      return _then(_self.copyWith(stats: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$UpstreamHaltedImpl implements UpstreamHalted {
-  const _$UpstreamHaltedImpl(
+class UpstreamHalted implements UpstreamRunResult {
+  const UpstreamHalted(
       {required this.reason,
       required this.message,
       required this.stats,
       this.nextDueAt});
 
-  @override
   final UpstreamHaltReason reason;
-  @override
   final String message;
-  @override
   final UpstreamRunStats stats;
-  @override
   final DateTime? nextDueAt;
 
-  @override
-  String toString() {
-    return 'UpstreamRunResult.halted(reason: $reason, message: $message, stats: $stats, nextDueAt: $nextDueAt)';
-  }
+  /// Create a copy of UpstreamRunResult
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $UpstreamHaltedCopyWith<UpstreamHalted> get copyWith =>
+      _$UpstreamHaltedCopyWithImpl<UpstreamHalted>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpstreamHaltedImpl &&
+            other is UpstreamHalted &&
             (identical(other.reason, reason) || other.reason == reason) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.stats, stats) || other.stats == stats) &&
@@ -2251,101 +1833,74 @@ class _$UpstreamHaltedImpl implements UpstreamHalted {
   int get hashCode =>
       Object.hash(runtimeType, reason, message, stats, nextDueAt);
 
-  @JsonKey(ignore: true)
+  @override
+  String toString() {
+    return 'UpstreamRunResult.halted(reason: $reason, message: $message, stats: $stats, nextDueAt: $nextDueAt)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $UpstreamHaltedCopyWith<$Res>
+    implements $UpstreamRunResultCopyWith<$Res> {
+  factory $UpstreamHaltedCopyWith(
+          UpstreamHalted value, $Res Function(UpstreamHalted) _then) =
+      _$UpstreamHaltedCopyWithImpl;
+  @useResult
+  $Res call(
+      {UpstreamHaltReason reason,
+      String message,
+      UpstreamRunStats stats,
+      DateTime? nextDueAt});
+
+  $UpstreamRunStatsCopyWith<$Res> get stats;
+}
+
+/// @nodoc
+class _$UpstreamHaltedCopyWithImpl<$Res>
+    implements $UpstreamHaltedCopyWith<$Res> {
+  _$UpstreamHaltedCopyWithImpl(this._self, this._then);
+
+  final UpstreamHalted _self;
+  final $Res Function(UpstreamHalted) _then;
+
+  /// Create a copy of UpstreamRunResult
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? reason = null,
+    Object? message = null,
+    Object? stats = null,
+    Object? nextDueAt = freezed,
+  }) {
+    return _then(UpstreamHalted(
+      reason: null == reason
+          ? _self.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as UpstreamHaltReason,
+      message: null == message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      stats: null == stats
+          ? _self.stats
+          : stats // ignore: cast_nullable_to_non_nullable
+              as UpstreamRunStats,
+      nextDueAt: freezed == nextDueAt
+          ? _self.nextDueAt
+          : nextDueAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+
+  /// Create a copy of UpstreamRunResult
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$UpstreamHaltedImplCopyWith<_$UpstreamHaltedImpl> get copyWith =>
-      __$$UpstreamHaltedImplCopyWithImpl<_$UpstreamHaltedImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() offline,
-    required TResult Function(UpstreamRunStats stats, DateTime? nextDueAt)
-        completed,
-    required TResult Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)
-        halted,
-  }) {
-    return halted(reason, message, stats, nextDueAt);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? offline,
-    TResult? Function(UpstreamRunStats stats, DateTime? nextDueAt)? completed,
-    TResult? Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)?
-        halted,
-  }) {
-    return halted?.call(reason, message, stats, nextDueAt);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? offline,
-    TResult Function(UpstreamRunStats stats, DateTime? nextDueAt)? completed,
-    TResult Function(UpstreamHaltReason reason, String message,
-            UpstreamRunStats stats, DateTime? nextDueAt)?
-        halted,
-    required TResult orElse(),
-  }) {
-    if (halted != null) {
-      return halted(reason, message, stats, nextDueAt);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UpstreamOffline value) offline,
-    required TResult Function(UpstreamCompleted value) completed,
-    required TResult Function(UpstreamHalted value) halted,
-  }) {
-    return halted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UpstreamOffline value)? offline,
-    TResult? Function(UpstreamCompleted value)? completed,
-    TResult? Function(UpstreamHalted value)? halted,
-  }) {
-    return halted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UpstreamOffline value)? offline,
-    TResult Function(UpstreamCompleted value)? completed,
-    TResult Function(UpstreamHalted value)? halted,
-    required TResult orElse(),
-  }) {
-    if (halted != null) {
-      return halted(this);
-    }
-    return orElse();
+  $UpstreamRunStatsCopyWith<$Res> get stats {
+    return $UpstreamRunStatsCopyWith<$Res>(_self.stats, (value) {
+      return _then(_self.copyWith(stats: value));
+    });
   }
 }
 
-abstract class UpstreamHalted implements UpstreamRunResult {
-  const factory UpstreamHalted(
-      {required final UpstreamHaltReason reason,
-      required final String message,
-      required final UpstreamRunStats stats,
-      final DateTime? nextDueAt}) = _$UpstreamHaltedImpl;
-
-  UpstreamHaltReason get reason;
-  String get message;
-  UpstreamRunStats get stats;
-  DateTime? get nextDueAt;
-  @JsonKey(ignore: true)
-  _$$UpstreamHaltedImplCopyWith<_$UpstreamHaltedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

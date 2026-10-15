@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/sync/engine/erp_payloads.dart';
 import 'package:app_preventa/core/sync/engine/erp_resource.dart';

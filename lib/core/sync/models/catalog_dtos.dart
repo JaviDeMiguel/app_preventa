@@ -18,7 +18,7 @@ const _fallbackVatPercent = 21.0;
 /// modelo `Cliente`. Antes se leían `deuda` y `recargo`, que no existen: el
 /// control de riesgo siempre veía deuda 0 y el R.E. nunca se aplicaba.
 @freezed
-class FacturaScriptsClientDto with _$FacturaScriptsClientDto {
+abstract class FacturaScriptsClientDto with _$FacturaScriptsClientDto {
   const FacturaScriptsClientDto._();
 
   const factory FacturaScriptsClientDto({
@@ -54,7 +54,7 @@ class FacturaScriptsClientDto with _$FacturaScriptsClientDto {
 /// existe en FacturaScripts 2018+). El IVA llega como `codimpuesto` y el stock
 /// físico global como `stockfis`.
 @freezed
-class FacturaScriptsProductDto with _$FacturaScriptsProductDto {
+abstract class FacturaScriptsProductDto with _$FacturaScriptsProductDto {
   const factory FacturaScriptsProductDto({
     required String referencia,
     @JsonKey(fromJson: lenientString) @Default('') String descripcion,
@@ -71,7 +71,7 @@ class FacturaScriptsProductDto with _$FacturaScriptsProductDto {
 
 /// DTO de `/api/3/impuestos`.
 @freezed
-class FacturaScriptsTaxDto with _$FacturaScriptsTaxDto {
+abstract class FacturaScriptsTaxDto with _$FacturaScriptsTaxDto {
   const factory FacturaScriptsTaxDto({
     required String codimpuesto,
     @JsonKey(fromJson: lenientDouble) @Default(0.0) double iva,
@@ -83,7 +83,7 @@ class FacturaScriptsTaxDto with _$FacturaScriptsTaxDto {
 
 /// DTO de `/api/3/stocks` (stock por almacén: el de la furgoneta en autoventa).
 @freezed
-class FacturaScriptsStockDto with _$FacturaScriptsStockDto {
+abstract class FacturaScriptsStockDto with _$FacturaScriptsStockDto {
   const factory FacturaScriptsStockDto({
     required String referencia,
     @JsonKey(fromJson: lenientDouble) @Default(0.0) double cantidad,

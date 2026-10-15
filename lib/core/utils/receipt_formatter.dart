@@ -25,6 +25,7 @@ class ReceiptFormatter {
       SyncStatus.failed => 'Reintentos agotados (reintento manual)',
       SyncStatus.fatalError => 'Rechazado por el ERP',
       SyncStatus.conflict => 'En conflicto con el ERP (revisión)',
+      SyncStatus.discarded => 'ANULADO (no enviado al ERP)',
     };
 
     buffer.writeln('========================================');

@@ -7,7 +7,7 @@ import 'dart:typed_data';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/network/facturascripts_api_client.dart';
 import 'package:app_preventa/core/sync/engine/erp_payloads.dart';
@@ -18,6 +18,7 @@ import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/core/sync/states/catalog_sync_state.dart';
 import 'package:app_preventa/core/sync/states/upstream_sync_result.dart';
+import 'package:app_preventa/features/clients/data/repositories/isar_client_repository.dart';
 
 import 'support/isar_test_support.dart';
 
@@ -564,6 +565,275 @@ void main() {
 
       expect((await taskByUuid('TC')).status, SyncStatus.fatalError);
       expect((await taskByUuid('TO')).status, SyncStatus.conflict);
+    });
+  });
+
+  group('Datos encadenados al ERP (dirección y firma)', () {
+    test('completa la dirección del contacto por defecto del cliente',
+        () async {
+      const tempCode = '${tempClientCodePrefix}300';
+      erp.handler = (r) => switch (r.path) {
+            '/api/3/clientes' => jsonResponse({
+                'ok': 'record-updated-correctly',
+                'data': {'codcliente': '000123', 'idcontactofact': 55},
+              }),
+            _ => jsonResponse({'ok': 'record-updated-correctly'}),
+          };
+      await seed([
+        _task(
+          ErpResource.clientes,
+          buildClientPayload(
+            tempCode: tempCode,
+            nombre: 'Bar Nuevo',
+            cifnif: 'B00000000',
+            direccion: 'C/ Mayor 1',
+            codpostal: '28001',
+            ciudad: 'Madrid',
+          ),
+          uuid: 'TC',
+          createdAt: now,
+        ),
+      ]);
+
+      await engine.processUpstreamQueue();
+
+      final clientPost = erp.writes.first;
+      expect(clientPost.form.containsKey('direccion'), isFalse);
+      final contactPut = erp.writes.last;
+      expect(contactPut.method, 'PUT');
+      expect(contactPut.path, '/api/3/contactos/55');
+      expect(contactPut.form, {
+        'direccion': 'C/ Mayor 1',
+        'codpostal': '28001',
+        'ciudad': 'Madrid',
+      });
+      expect((await taskByUuid('TC-direccion')).status, SyncStatus.completed);
+    });
+
+    test('sin dirección no se encola ninguna tarea extra', () async {
+      erp.handler = (r) => jsonResponse({
+            'data': {'codcliente': '000124', 'idcontactofact': 56},
+          });
+      await seed([
+        _task(
+          ErpResource.clientes,
+          buildClientPayload(
+            tempCode: '${tempClientCodePrefix}301',
+            nombre: 'Sin dirección',
+            cifnif: 'B11111111',
+          ),
+          uuid: 'TC',
+          createdAt: now,
+        ),
+      ]);
+
+      await engine.processUpstreamQueue();
+
+      expect(erp.writes, hasLength(1));
+    });
+
+    test('sube la firma y la enlaza al pedido creado', () async {
+      erp.handler = (r) => switch (r.path) {
+            '/api/3/crearPedidoCliente' => jsonResponse({
+                'doc': {'codigo': 'PED2026A7', 'idpedido': 7},
+                'lines': <Object?>[],
+              }),
+            '/api/3/attachedfiles' => jsonResponse({
+                'ok': 'record-updated-correctly',
+                'data': {'idfile': 99},
+              }),
+            '/api/3/attachedfilerelations' => jsonResponse({
+                'ok': 'record-updated-correctly',
+                'data': {'id': 1, 'idfile': 99},
+              }),
+            _ => fail('Endpoint inesperado ${r.path}'),
+          };
+      await seed(
+        [
+          _task(ErpResource.pedidos, _orderPayload('ORD-1'),
+              uuid: 'T1', createdAt: now),
+        ],
+        [_order('ORD-1', 'T1')..firmaSvg = '<svg viewBox="0 0 1 1"/>'],
+      );
+
+      await engine.processUpstreamQueue();
+
+      expect(
+        erp.writes.map((r) => r.path),
+        [
+          '/api/3/crearPedidoCliente',
+          '/api/3/attachedfiles',
+          '/api/3/attachedfilerelations',
+        ],
+      );
+      final upload = erp.writes.elementAt(1);
+      expect(upload.options.contentType, startsWith('multipart/form-data'));
+      expect(upload.body, contains('filename="firma_ORD-1.svg"'));
+      expect(upload.body, contains('<svg viewBox="0 0 1 1"/>'));
+      expect(erp.writes.last.form, {
+        'idfile': '99',
+        'model': 'PedidoCliente',
+        'modelid': '7',
+        'modelcode': 'PED2026A7',
+        'observations': 'Firma del cliente (app de preventa)',
+      });
+    });
+
+    test('un pedido sin firma no sube adjuntos', () async {
+      erp.handler = (r) => jsonResponse({
+            'doc': {'codigo': 'PED1', 'idpedido': 1},
+          });
+      await seed(
+        [
+          _task(ErpResource.pedidos, _orderPayload('ORD-1'),
+              uuid: 'T1', createdAt: now),
+        ],
+        [_order('ORD-1', 'T1')],
+      );
+
+      await engine.processUpstreamQueue();
+
+      expect(erp.writes, hasLength(1));
+    });
+  });
+
+  group('Revisión de documentos rechazados', () {
+    Future<void> seedRejectedVanSale() async {
+      await isar.writeTxn(() async {
+        await isar.productEntitys.put(
+          ProductEntity()
+            ..referencia = 'REF-01'
+            ..descripcion = 'Cerveza'
+            ..precio = 1
+            ..iva = 21
+            ..stockFisico = 5
+            ..stockDisponible = 5
+            ..bloqueado = false,
+        );
+        await isar.syncTaskCollections.put(
+          _task(ErpResource.albaranes, _orderPayload('ALB-1'),
+              uuid: 'TA', createdAt: now, status: SyncStatus.conflict)
+            ..errorMessage = 'Stock insuficiente en ERP: REF-01',
+        );
+        await isar.orderEntitys.put(
+          _order('ALB-1', 'TA')
+            ..documentType = DocumentType.albaran
+            ..syncStatus = SyncStatus.conflict
+            ..lineas = [
+              OrderLineEmbedded()
+                ..referencia = 'REF-01'
+                ..cantidad = 3,
+            ],
+        );
+      });
+    }
+
+    Future<ProductEntity?> beer() =>
+        isar.productEntitys.where().referenciaEqualTo('REF-01').findFirst();
+
+    ResponseBody vanStockCatalog(RecordedRequest r) => jsonResponse(
+          r.options.queryParameters['offset'] != 0
+              ? <Object?>[]
+              : switch (r.path) {
+                  '/api/3/productos' => [
+                      {'referencia': 'REF-01'},
+                    ],
+                  '/api/3/stocks' => [
+                      {
+                        'referencia': 'REF-01',
+                        'cantidad': 20,
+                        'disponible': 20
+                      },
+                    ],
+                  _ => <Object?>[],
+                },
+        );
+
+    test('muestra el motivo del rechazo', () async {
+      await seedRejectedVanSale();
+
+      final review = await engine.taskReview('TA');
+
+      expect(review?.status, SyncStatus.conflict);
+      expect(review?.errorMessage, contains('Stock insuficiente'));
+    });
+
+    test('anular un albarán repone stock y deja de reservarlo', () async {
+      await seedRejectedVanSale();
+
+      expect(await engine.discardDocument('TA'), isTrue);
+
+      expect((await taskByUuid('TA')).status, SyncStatus.discarded);
+      expect((await beer())?.stockDisponible, 8);
+      final order =
+          await isar.orderEntitys.filter().localIdEqualTo('ALB-1').findFirst();
+      expect(order?.syncStatus, SyncStatus.discarded);
+
+      // La siguiente descarga ya no descuenta sus 3 unidades del stock ERP.
+      erp.handler = vanStockCatalog;
+      await engine.pullDownstreamCatalog();
+      expect((await beer())?.stockDisponible, 20);
+    });
+
+    test('mientras no se revise, el albarán rechazado sigue reservando',
+        () async {
+      await seedRejectedVanSale();
+      erp.handler = vanStockCatalog;
+
+      await engine.pullDownstreamCatalog();
+
+      expect((await beer())?.stockDisponible, 17);
+    });
+
+    test('reintentar reenvía el documento tras corregir la causa', () async {
+      await seedRejectedVanSale();
+      erp.handler = (r) => jsonResponse({
+            'doc': {'codigo': 'ALB9', 'idalbaran': 9},
+          });
+
+      expect(await engine.retryDocument('TA'), isTrue);
+      await engine.processUpstreamQueue();
+
+      expect((await taskByUuid('TA')).status, SyncStatus.completed);
+      expect(erp.writes.single.path, '/api/3/crearAlbaranCliente');
+    });
+
+    test('no se puede anular un documento en envío o ya en el ERP', () async {
+      await seed([
+        _task(ErpResource.pedidos, _orderPayload('ORD-1'),
+            uuid: 'T-ENVIO', createdAt: now, status: SyncStatus.inProgress),
+        _task(ErpResource.pedidos, _orderPayload('ORD-2'),
+            uuid: 'T-OK', createdAt: now, status: SyncStatus.completed),
+      ]);
+
+      expect(await engine.discardDocument('T-ENVIO'), isFalse);
+      expect(await engine.discardDocument('T-OK'), isFalse);
+      expect(await engine.retryDocument('T-OK'), isFalse);
+    });
+  });
+
+  group('Listado de clientes paginado', () {
+    test('supera los 200 clientes con orden estable', () async {
+      await isar.writeTxn(() => isar.clientEntitys.putAll([
+            for (var i = 0; i < 450; i++)
+              ClientEntity()
+                ..codcliente = 'C${i.toString().padLeft(4, '0')}'
+                ..nombre = 'Cliente ${i.toString().padLeft(4, '0')}'
+                ..cifnif = '',
+          ]));
+      final repository = IsarClientRepository(isar);
+
+      final firstPage = await repository.watchClients().first;
+      final threePages = await repository.watchClients(limit: 600).first;
+      final searched =
+          await repository.watchClients(query: 'Cliente 04', limit: 600).first;
+
+      expect(firstPage, hasLength(200));
+      expect(threePages, hasLength(450));
+      expect(threePages.first.nombre, 'Cliente 0000');
+      expect(threePages.last.nombre, 'Cliente 0449');
+      expect(searched.map((c) => c.nombre).take(2),
+          ['Cliente 0400', 'Cliente 0401']);
     });
   });
 

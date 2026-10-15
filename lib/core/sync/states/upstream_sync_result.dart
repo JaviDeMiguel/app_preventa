@@ -7,7 +7,12 @@ part 'upstream_sync_result.freezed.dart';
 @freezed
 sealed class DispatchOutcome with _$DispatchOutcome {
   /// El ERP confirmó la operación (o la verificación encontró el registro).
-  const factory DispatchOutcome.delivered({String? erpId}) = DispatchDelivered;
+  /// [record] son los campos del registro creado (ids numéricos, contacto por
+  /// defecto...) para encadenar tareas posteriores. Solo vive en memoria.
+  const factory DispatchOutcome.delivered({
+    String? erpId,
+    @Default(<String, Object?>{}) Map<String, Object?> record,
+  }) = DispatchDelivered;
 
   /// Fallo del canal (sin red, TLS, DNS). No consume reintentos y abre el
   /// circuito. `ambiguous` indica que el socket pudo caer tras enviar el cuerpo.
@@ -51,7 +56,7 @@ sealed class TaskStep with _$TaskStep {
 
 /// Contadores inmutables de una pasada de la cola ascendente.
 @freezed
-class UpstreamRunStats with _$UpstreamRunStats {
+abstract class UpstreamRunStats with _$UpstreamRunStats {
   const UpstreamRunStats._();
 
   const factory UpstreamRunStats({

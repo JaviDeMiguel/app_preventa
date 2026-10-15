@@ -4,7 +4,7 @@ import 'dart:isolate';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/network/connectivity_extensions.dart';
 import 'package:app_preventa/core/network/facturascripts_api_client.dart';
@@ -293,12 +293,21 @@ class SyncEngine {
     throw CatalogPaginationException(endpoint);
   }
 
+  /// Albaranes cuya mercancía salió de la furgoneta sin reflejarse aún en el
+  /// stock del ERP. Los rechazados/en conflicto SIGUEN reservando (la
+  /// mercancía ya se entregó) hasta que el comercial los reintente o anule;
+  /// los anulados (`discarded`) ya no reservan.
   Future<List<OrderEntity>> _unsyncedVanSales() => _isar.orderEntitys
       .filter()
       .documentTypeEqualTo(DocumentType.albaran)
       .and()
       .not()
-      .syncStatusEqualTo(SyncStatus.completed)
+      .group(
+        (q) => q
+            .syncStatusEqualTo(SyncStatus.completed)
+            .or()
+            .syncStatusEqualTo(SyncStatus.discarded),
+      )
       .findAll();
 
   /// FIX: La descarga sobrescribía el stock decrementado por albaranes de
@@ -466,6 +475,34 @@ class SyncEngine {
     return _upstreamRun = _drainUpstreamQueue();
   }
 
+  /// FEAT (Revisión): estado y motivo del último fallo de la tarea de un
+  /// documento, para mostrarlo en el historial.
+  Future<({SyncStatus status, String? errorMessage})?> taskReview(
+    String taskUuid,
+  ) async =>
+      switch (await _isar.syncTaskCollections
+          .where()
+          .uuidEqualTo(taskUuid)
+          .findFirst()) {
+        final SyncTaskCollection task => (
+            status: task.status,
+            errorMessage: task.errorMessage,
+          ),
+        null => null,
+      };
+
+  /// FEAT (Revisión): reenvía un documento en conflicto/rechazado tras
+  /// corregir la causa (stock, datos del cliente...).
+  Future<bool> retryDocument(String taskUuid) async {
+    final requeued = await _store.retryTask(taskUuid);
+    if (requeued) unawaited(processUpstreamQueue());
+    return requeued;
+  }
+
+  /// FEAT (Revisión): anula un documento que no se enviará. En albaranes
+  /// repone el stock local y libera la reserva de la furgoneta.
+  Future<bool> discardDocument(String taskUuid) => _store.discardTask(taskUuid);
+
   /// Reencola las tareas `failed` (reintentos agotados) y lanza una pasada.
   Future<UpstreamRunResult> retryFailedTasks() async {
     try {
@@ -607,6 +644,7 @@ class SyncEngine {
         SyncStatus.completed ||
         SyncStatus.fatalError ||
         SyncStatus.conflict ||
+        SyncStatus.discarded ||
         null =>
           await _settle(
             id,
@@ -628,7 +666,13 @@ class SyncEngine {
   /// FIX (Idempotencia): una entrega dudosa se verifica en el ERP antes de
   /// reenviarse. Así un crash o un receiveTimeout no duplican el pedido.
   Future<(SyncTask, DispatchOutcome)> _deliver(SyncTask task) async {
-    if (!task.deliveryUncertain) return (task, await _dispatcher.send(task));
+    // Un PUT es idempotente y un adjunto duplicado es inocuo: se reenvían sin
+    // verificar (además no tienen clave de búsqueda en el ERP).
+    final safeToResend = task.method == HttpMethod.put ||
+        (ErpResource.fromEndpoint(task.endpoint)?.resendWhenUncertain ?? false);
+    if (!task.deliveryUncertain || safeToResend) {
+      return (task, await _dispatcher.send(task));
+    }
 
     return switch (await _dispatcher.verifyDelivery(task)) {
       null => (
@@ -644,15 +688,24 @@ class SyncEngine {
     SyncTask task,
     DispatchOutcome outcome,
   ) async {
-    await _store.applyTransition(
+    final now = _clock();
+    final followUps = await _store.applyTransition(
       id,
       resolveTransition(
         task: task,
         outcome: outcome,
-        now: _clock(),
+        now: now,
         policy: _retryPolicy,
       ),
+      now: now,
+      erpRecord: switch (outcome) {
+        DispatchDelivered(:final record) => record,
+        _ => const {},
+      },
     );
+    // Las tareas encadenadas (dirección, firma) se envían en esta misma
+    // sincronización: se pide otra pasada al terminar la actual.
+    if (followUps > 0) _upstreamRerunRequested = true;
     return TaskStep.attempted(outcome);
   }
 

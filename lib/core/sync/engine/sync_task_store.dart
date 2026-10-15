@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/sync/engine/erp_resource.dart';
+import 'package:app_preventa/core/sync/engine/follow_up_tasks.dart';
 import 'package:app_preventa/core/sync/engine/task_transition.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
@@ -87,10 +88,16 @@ final class SyncTaskStore {
       });
 
   /// Persiste la transición y sus efectos colaterales en UNA transacción.
-  Future<void> applyTransition(int id, TaskTransition transition) =>
+  /// Devuelve cuántas tareas encadenadas se encolaron (dirección, firma...).
+  Future<int> applyTransition(
+    int id,
+    TaskTransition transition, {
+    required DateTime now,
+    Map<String, Object?> erpRecord = const {},
+  }) =>
       _isar.writeTxn(() async {
         final task = await _isar.syncTaskCollections.get(id);
-        if (task == null) return;
+        if (task == null) return 0;
 
         task
           ..status = transition.status
@@ -110,9 +117,117 @@ final class SyncTaskStore {
           await _reconcileTempClient(task, erpId);
         }
 
-        await _mirrorOrderStatus(
+        final linkedOrder = await _mirrorOrderStatus(
             task.uuid, transition.status, transition.erpId);
+
+        if (transition.status != SyncStatus.completed) return 0;
+        return _enqueueFollowUps(
+          task,
+          erpRecord: erpRecord,
+          linkedOrder: linkedOrder,
+          now: now,
+        );
       });
+
+  /// FEAT: encola en la MISMA transacción las tareas que dependen de ids
+  /// generados por el ERP. Si ya existían (uuid determinista) no se tocan.
+  Future<int> _enqueueFollowUps(
+    SyncTaskCollection delivered, {
+    required Map<String, Object?> erpRecord,
+    required OrderEntity? linkedOrder,
+    required DateTime now,
+  }) async {
+    final planned = planFollowUpTasks(
+      deliveredUuid: delivered.uuid,
+      deliveredEndpoint: delivered.endpoint,
+      deliveredPayload: _tryDecode(delivered.payloadJson) ?? const {},
+      erpRecord: erpRecord,
+      now: now,
+      signatureSvg: linkedOrder?.firmaSvg,
+      documentLocalId: linkedOrder?.localId,
+    );
+    final fresh = [
+      for (final task in planned)
+        if (await _isar.syncTaskCollections
+                .where()
+                .uuidEqualTo(task.uuid)
+                .count() ==
+            0)
+          task,
+    ];
+    await _isar.syncTaskCollections.putAll(fresh);
+    return fresh.length;
+  }
+
+  /// Estados que el comercial puede revisar desde el historial.
+  static const reviewableStatuses = {
+    SyncStatus.failed,
+    SyncStatus.fatalError,
+    SyncStatus.conflict,
+  };
+
+  /// FEAT (Revisión): reenvía un documento tras corregir la causa en el ERP.
+  /// Conserva `deliveryUncertain`: si el envío anterior fue dudoso, se
+  /// verificará en el ERP antes de reenviar (sin duplicados).
+  Future<bool> retryTask(String uuid) => _isar.writeTxn(() async {
+        final task = await _taskByUuid(uuid);
+        if (task == null || !reviewableStatuses.contains(task.status)) {
+          return false;
+        }
+        task
+          ..status = SyncStatus.pending
+          ..retries = 0
+          ..nextAttemptAt = null
+          ..errorMessage = null;
+        await _isar.syncTaskCollections.put(task);
+        await _mirrorOrderStatus(task.uuid, SyncStatus.pending, null);
+        return true;
+      });
+
+  /// FEAT (Revisión): anula un documento que no llegará al ERP. Si es un
+  /// albarán de autoventa, la mercancía no salió de la furgoneta: se repone
+  /// el stock local y deja de reservarse en las próximas descargas.
+  ///
+  /// No se permite sobre tareas `inProgress` (podrían estar llegando al ERP)
+  /// ni `completed` (ya existen en el ERP: se anulan allí).
+  Future<bool> discardTask(String uuid) => _isar.writeTxn(() async {
+        final task = await _taskByUuid(uuid);
+        if (task == null ||
+            !(reviewableStatuses.contains(task.status) ||
+                task.status == SyncStatus.pending)) {
+          return false;
+        }
+        task
+          ..status = SyncStatus.discarded
+          ..nextAttemptAt = null;
+        await _isar.syncTaskCollections.put(task);
+
+        final order =
+            await _mirrorOrderStatus(task.uuid, SyncStatus.discarded, null);
+        if (order case OrderEntity(documentType: DocumentType.albaran)) {
+          await _restoreVanStock(order);
+        }
+        return true;
+      });
+
+  Future<void> _restoreVanStock(OrderEntity order) async {
+    for (final line in order.lineas) {
+      if (line.referencia case final String reference) {
+        final product = await _isar.productEntitys
+            .where()
+            .referenciaEqualTo(reference)
+            .findFirst();
+        if (product == null) continue;
+        product
+          ..stockDisponible += line.cantidad
+          ..stockFisico += line.cantidad;
+        await _isar.productEntitys.put(product);
+      }
+    }
+  }
+
+  Future<SyncTaskCollection?> _taskByUuid(String uuid) =>
+      _isar.syncTaskCollections.where().uuidEqualTo(uuid).findFirst();
 
   /// Reencola manualmente las tareas `failed` (reintentos agotados).
   Future<int> requeueFailed() => _isar.writeTxn(() async {
@@ -176,7 +291,7 @@ final class SyncTaskStore {
     await _isar.syncTaskCollections.putAll(dependentTasks);
   }
 
-  Future<void> _mirrorOrderStatus(
+  Future<OrderEntity?> _mirrorOrderStatus(
     String taskUuid,
     SyncStatus status,
     String? erpId,
@@ -185,13 +300,14 @@ final class SyncTaskStore {
         .filter()
         .syncTaskIdEqualTo(taskUuid)
         .findFirst();
-    if (linkedOrder == null) return;
+    if (linkedOrder == null) return null;
 
     linkedOrder.syncStatus = status;
     if (erpId != null) {
       linkedOrder.erpId = erpId;
     }
     await _isar.orderEntitys.put(linkedOrder);
+    return linkedOrder;
   }
 }
 

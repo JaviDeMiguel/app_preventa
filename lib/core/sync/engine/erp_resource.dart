@@ -33,12 +33,36 @@ enum ErpResource {
     lookupPath: '/api/3/pedidoclientes',
     idFields: ['codigo', 'idpedido'],
     dedupeField: 'numero2',
+    modelName: 'PedidoCliente',
+    primaryKeyField: 'idpedido',
   ),
   albaranes(
     createPath: '/api/3/crearAlbaranCliente',
     lookupPath: '/api/3/albaranclientes',
     idFields: ['codigo', 'idalbaran'],
     dedupeField: 'numero2',
+    modelName: 'AlbaranCliente',
+    primaryKeyField: 'idalbaran',
+  ),
+
+  // FEAT: Firma del cliente como adjunto del documento
+  // (`Core/Controller/ApiAttachedFiles.php`, multipart). Un adjunto duplicado
+  // es inocuo, así que una subida dudosa se reenvía sin verificar.
+  adjuntos(
+    createPath: '/api/3/attachedfiles',
+    lookupPath: '/api/3/attachedfiles',
+    idFields: ['idfile'],
+    dedupeField: '',
+    resendWhenUncertain: true,
+  ),
+
+  // Enlace adjunto ↔ documento (`AttachedFileRelation`). `idfile` es único
+  // por subida: sirve como clave de idempotencia.
+  adjuntoRelaciones(
+    createPath: '/api/3/attachedfilerelations',
+    lookupPath: '/api/3/attachedfilerelations',
+    idFields: ['id'],
+    dedupeField: 'idfile',
   );
 
   const ErpResource({
@@ -46,7 +70,19 @@ enum ErpResource {
     required this.lookupPath,
     required this.idFields,
     required this.dedupeField,
+    this.modelName,
+    this.primaryKeyField,
+    this.resendWhenUncertain = false,
   });
+
+  /// Clase del modelo en FacturaScripts (para `AttachedFileRelation.model`).
+  final String? modelName;
+
+  /// Clave primaria numérica del modelo (para `AttachedFileRelation.modelid`).
+  final String? primaryKeyField;
+
+  /// `true` si reenviar una entrega dudosa es inocuo (no requiere verificar).
+  final bool resendWhenUncertain;
 
   /// Endpoint de creación (el `endpoint` persistido en la tarea).
   final String createPath;
@@ -64,3 +100,7 @@ enum ErpResource {
   static ErpResource? fromEndpoint(String endpoint) =>
       values.where((resource) => resource.createPath == endpoint).firstOrNull;
 }
+
+/// FEAT: Contacto por defecto del cliente (`Cliente::saveInsert` lo crea SIN
+/// dirección y devuelve su id en `idcontactofact`). Se completa con un PUT.
+String erpContactPath(Object idContacto) => '/api/3/contactos/$idContacto';

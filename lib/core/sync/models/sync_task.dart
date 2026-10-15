@@ -18,9 +18,22 @@ enum SyncStatus {
   // insuficiente, documento duplicado, entrega no verificable...). Requiere
   // revisión humana; nunca se reintenta automáticamente.
   conflict,
+
+  // FEAT: Anulado por el usuario tras revisarlo (conflicto/rechazo). No se
+  // envía nunca y, si es un albarán, deja de reservar stock de la furgoneta.
+  discarded,
 }
 
-enum HttpMethod { get, post, put, delete }
+/// Mismo aviso que [SyncStatus]: solo se añaden valores al final.
+enum HttpMethod {
+  get,
+  post,
+  put,
+  delete,
+
+  // FEAT: POST multipart (adjuntar la firma del cliente al documento).
+  upload,
+}
 
 enum DocumentType { pedido, albaran }
 
@@ -29,7 +42,7 @@ enum PaymentMethod { efectivo, tarjeta, transferencia, pendiente }
 /// [ECC: Inmutabilidad absoluta] Modelo de Dominio con @freezed.
 /// Representa una tarea atómica de sincronización ascendente hacia FacturaScripts v3.
 @freezed
-class SyncTask with _$SyncTask {
+abstract class SyncTask with _$SyncTask {
   const factory SyncTask({
     required String id,
     required String endpoint,

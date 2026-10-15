@@ -37,6 +37,19 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
   static const _searchDebounce = Duration(milliseconds: 300);
   Timer? _searchTimer;
 
+  /// FIX: los resultados se cortaban en 200 sin aviso. Scroll infinito.
+  static const _pageSize = 200;
+  static const _loadMoreThreshold = 600.0;
+  int _visibleLimit = _pageSize;
+
+  bool _onScroll(ScrollNotification notification, int loadedCount) {
+    final reachedEnd = notification.metrics.extentAfter < _loadMoreThreshold;
+    if (reachedEnd && loadedCount >= _visibleLimit) {
+      setState(() => _visibleLimit += _pageSize);
+    }
+    return false;
+  }
+
   @override
   void dispose() {
     _searchTimer?.cancel();
@@ -49,7 +62,10 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
     _searchTimer?.cancel();
     _searchTimer = Timer(_searchDebounce, () {
       if (!mounted) return;
-      setState(() => _searchQuery = value);
+      setState(() {
+        _searchQuery = value;
+        _visibleLimit = _pageSize;
+      });
     });
   }
 
@@ -190,10 +206,11 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
             // FIX (Rendimiento): el stream sobrevive a los setState del carrito;
             // antes cada +/− re-consultaba y deserializaba el catálogo entero.
             child: KeyedStreamBuilder<List<ProductEntity>>(
-              streamKey: (_searchQuery, _onlyWithStock),
+              streamKey: (_searchQuery, _onlyWithStock, _visibleLimit),
               create: () => widget.dependencies.clientRepository.watchProducts(
                 query: _searchQuery,
                 onlyWithStock: _onlyWithStock,
+                limit: _visibleLimit,
               ),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting &&
@@ -222,50 +239,61 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
                   );
                 }
 
-                return ListView.separated(
-                  itemCount: products.length,
-                  separatorBuilder: (_, __) => const Divider(height: 1),
-                  itemBuilder: (context, index) {
-                    final product = products[index];
-                    _productCache[product.referencia] = product;
-                    final qty = _cartQuantities[product.referencia] ?? 0;
-                    final hasStock = product.stockDisponible > 0;
+                final hasMore = products.length >= _visibleLimit;
 
-                    return ListTile(
-                      title: Text(
-                        product.descripcion,
-                        style: const TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      subtitle: Text(
-                        'Ref: ${product.referencia} • Stock: ${product.stockDisponible} uds.\nPVP: ${product.precio.toStringAsFixed(2)} € (+${product.iva}% IVA)',
-                      ),
-                      isThreeLine: true,
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (qty > 0) ...[
+                return NotificationListener<ScrollNotification>(
+                  onNotification: (n) => _onScroll(n, products.length),
+                  child: ListView.separated(
+                    itemCount: products.length + (hasMore ? 1 : 0),
+                    separatorBuilder: (_, __) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      if (index == products.length) {
+                        return const Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      }
+                      final product = products[index];
+                      _productCache[product.referencia] = product;
+                      final qty = _cartQuantities[product.referencia] ?? 0;
+                      final hasStock = product.stockDisponible > 0;
+
+                      return ListTile(
+                        title: Text(
+                          product.descripcion,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        subtitle: Text(
+                          'Ref: ${product.referencia} • Stock: ${product.stockDisponible} uds.\nPVP: ${product.precio.toStringAsFixed(2)} € (+${product.iva}% IVA)',
+                        ),
+                        isThreeLine: true,
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (qty > 0) ...[
+                              IconButton(
+                                icon: const Icon(Icons.remove_circle_outline),
+                                color: Colors.red.shade700,
+                                onPressed: () => _updateQuantity(product, -1),
+                              ),
+                              Text(
+                                '$qty',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                            ],
                             IconButton(
-                              icon: const Icon(Icons.remove_circle_outline),
-                              color: Colors.red.shade700,
-                              onPressed: () => _updateQuantity(product, -1),
-                            ),
-                            Text(
-                              '$qty',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                              icon: const Icon(Icons.add_circle_outline),
+                              color: hasStock
+                                  ? theme.colorScheme.primary
+                                  : Colors.grey,
+                              onPressed: () => _updateQuantity(product, 1),
                             ),
                           ],
-                          IconButton(
-                            icon: const Icon(Icons.add_circle_outline),
-                            color: hasStock
-                                ? theme.colorScheme.primary
-                                : Colors.grey,
-                            onPressed: () => _updateQuantity(product, 1),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             ),

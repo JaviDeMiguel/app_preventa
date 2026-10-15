@@ -33,7 +33,10 @@ DispatchOutcome classifyHttpResponse(
             message: 'Cliente creado en el ERP pero sin `codcliente` en la '
                 'respuesta: reconcilie el código manualmente.',
           ),
-        final erpId => DispatchOutcome.delivered(erpId: erpId),
+        final erpId => DispatchOutcome.delivered(
+            erpId: erpId,
+            record: erpRecordOf(response.data),
+          ),
       },
     // FIX (Seguridad): con `followRedirects: false` una 3xx llega aquí. Es un
     // problema de configuración de la URL (como un token malo): detiene la
@@ -118,6 +121,15 @@ String? extractErpId(Object? body, ErpResource? resource) => switch (body) {
           .firstOrNull
           ?.toString(),
       _ => null,
+    };
+
+/// Campos del registro creado, desenvolviendo `{"doc": ...}` / `{"data": ...}`.
+Map<String, Object?> erpRecordOf(Object? body) => switch (body) {
+      {'doc': final Map<String, dynamic> inner} ||
+      {'data': final Map<String, dynamic> inner} =>
+        Map.unmodifiable(inner),
+      final Map<String, dynamic> fields => Map.unmodifiable(fields),
+      _ => const {},
     };
 
 /// Mensaje legible del ERP, saneado (sin HTML ni URLs) y truncado.

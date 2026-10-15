@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,144 +9,89 @@ part of 'sync_task.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-SyncTask _$SyncTaskFromJson(Map<String, dynamic> json) {
-  return _SyncTask.fromJson(json);
-}
 
 /// @nodoc
 mixin _$SyncTask {
-  String get id => throw _privateConstructorUsedError;
-  String get endpoint => throw _privateConstructorUsedError;
-  HttpMethod get method => throw _privateConstructorUsedError;
-  Map<String, dynamic> get payload => throw _privateConstructorUsedError;
-  int get retries => throw _privateConstructorUsedError;
-  int get maxRetries => throw _privateConstructorUsedError;
-  SyncStatus get status => throw _privateConstructorUsedError;
-  DateTime get createdAt => throw _privateConstructorUsedError;
-  DateTime? get lastAttemptAt =>
-      throw _privateConstructorUsedError; // FEAT: Instante a partir del cual la tarea es elegible (Exponential Backoff).
-  DateTime? get nextAttemptAt =>
-      throw _privateConstructorUsedError; // FIX: true si el ERP pudo haber recibido la petición sin confirmarlo.
-  bool get deliveryUncertain => throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
+  String get id;
+  String get endpoint;
+  HttpMethod get method;
+  Map<String, dynamic> get payload;
+  int get retries;
+  int get maxRetries;
+  SyncStatus get status;
+  DateTime get createdAt;
+  DateTime?
+      get lastAttemptAt; // FEAT: Instante a partir del cual la tarea es elegible (Exponential Backoff).
+  DateTime?
+      get nextAttemptAt; // FIX: true si el ERP pudo haber recibido la petición sin confirmarlo.
+  bool get deliveryUncertain;
+  String? get errorMessage;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $SyncTaskCopyWith<SyncTask> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SyncTaskCopyWith<$Res> {
-  factory $SyncTaskCopyWith(SyncTask value, $Res Function(SyncTask) then) =
-      _$SyncTaskCopyWithImpl<$Res, SyncTask>;
-  @useResult
-  $Res call(
-      {String id,
-      String endpoint,
-      HttpMethod method,
-      Map<String, dynamic> payload,
-      int retries,
-      int maxRetries,
-      SyncStatus status,
-      DateTime createdAt,
-      DateTime? lastAttemptAt,
-      DateTime? nextAttemptAt,
-      bool deliveryUncertain,
-      String? errorMessage});
-}
-
-/// @nodoc
-class _$SyncTaskCopyWithImpl<$Res, $Val extends SyncTask>
-    implements $SyncTaskCopyWith<$Res> {
-  _$SyncTaskCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of SyncTask
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $SyncTaskCopyWith<SyncTask> get copyWith =>
+      _$SyncTaskCopyWithImpl<SyncTask>(this as SyncTask, _$identity);
+
+  /// Serializes this SyncTask to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? id = null,
-    Object? endpoint = null,
-    Object? method = null,
-    Object? payload = null,
-    Object? retries = null,
-    Object? maxRetries = null,
-    Object? status = null,
-    Object? createdAt = null,
-    Object? lastAttemptAt = freezed,
-    Object? nextAttemptAt = freezed,
-    Object? deliveryUncertain = null,
-    Object? errorMessage = freezed,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      endpoint: null == endpoint
-          ? _value.endpoint
-          : endpoint // ignore: cast_nullable_to_non_nullable
-              as String,
-      method: null == method
-          ? _value.method
-          : method // ignore: cast_nullable_to_non_nullable
-              as HttpMethod,
-      payload: null == payload
-          ? _value.payload
-          : payload // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
-      retries: null == retries
-          ? _value.retries
-          : retries // ignore: cast_nullable_to_non_nullable
-              as int,
-      maxRetries: null == maxRetries
-          ? _value.maxRetries
-          : maxRetries // ignore: cast_nullable_to_non_nullable
-              as int,
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as SyncStatus,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      lastAttemptAt: freezed == lastAttemptAt
-          ? _value.lastAttemptAt
-          : lastAttemptAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      nextAttemptAt: freezed == nextAttemptAt
-          ? _value.nextAttemptAt
-          : nextAttemptAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      deliveryUncertain: null == deliveryUncertain
-          ? _value.deliveryUncertain
-          : deliveryUncertain // ignore: cast_nullable_to_non_nullable
-              as bool,
-      errorMessage: freezed == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SyncTask &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.endpoint, endpoint) ||
+                other.endpoint == endpoint) &&
+            (identical(other.method, method) || other.method == method) &&
+            const DeepCollectionEquality().equals(other.payload, payload) &&
+            (identical(other.retries, retries) || other.retries == retries) &&
+            (identical(other.maxRetries, maxRetries) ||
+                other.maxRetries == maxRetries) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.lastAttemptAt, lastAttemptAt) ||
+                other.lastAttemptAt == lastAttemptAt) &&
+            (identical(other.nextAttemptAt, nextAttemptAt) ||
+                other.nextAttemptAt == nextAttemptAt) &&
+            (identical(other.deliveryUncertain, deliveryUncertain) ||
+                other.deliveryUncertain == deliveryUncertain) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      endpoint,
+      method,
+      const DeepCollectionEquality().hash(payload),
+      retries,
+      maxRetries,
+      status,
+      createdAt,
+      lastAttemptAt,
+      nextAttemptAt,
+      deliveryUncertain,
+      errorMessage);
+
+  @override
+  String toString() {
+    return 'SyncTask(id: $id, endpoint: $endpoint, method: $method, payload: $payload, retries: $retries, maxRetries: $maxRetries, status: $status, createdAt: $createdAt, lastAttemptAt: $lastAttemptAt, nextAttemptAt: $nextAttemptAt, deliveryUncertain: $deliveryUncertain, errorMessage: $errorMessage)';
   }
 }
 
 /// @nodoc
-abstract class _$$SyncTaskImplCopyWith<$Res>
-    implements $SyncTaskCopyWith<$Res> {
-  factory _$$SyncTaskImplCopyWith(
-          _$SyncTaskImpl value, $Res Function(_$SyncTaskImpl) then) =
-      __$$SyncTaskImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $SyncTaskCopyWith<$Res> {
+  factory $SyncTaskCopyWith(SyncTask value, $Res Function(SyncTask) _then) =
+      _$SyncTaskCopyWithImpl;
   @useResult
   $Res call(
       {String id,
@@ -164,13 +109,14 @@ abstract class _$$SyncTaskImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SyncTaskImplCopyWithImpl<$Res>
-    extends _$SyncTaskCopyWithImpl<$Res, _$SyncTaskImpl>
-    implements _$$SyncTaskImplCopyWith<$Res> {
-  __$$SyncTaskImplCopyWithImpl(
-      _$SyncTaskImpl _value, $Res Function(_$SyncTaskImpl) _then)
-      : super(_value, _then);
+class _$SyncTaskCopyWithImpl<$Res> implements $SyncTaskCopyWith<$Res> {
+  _$SyncTaskCopyWithImpl(this._self, this._then);
 
+  final SyncTask _self;
+  final $Res Function(SyncTask) _then;
+
+  /// Create a copy of SyncTask
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,63 +133,295 @@ class __$$SyncTaskImplCopyWithImpl<$Res>
     Object? deliveryUncertain = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(_$SyncTaskImpl(
+    return _then(_self.copyWith(
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       endpoint: null == endpoint
-          ? _value.endpoint
+          ? _self.endpoint
           : endpoint // ignore: cast_nullable_to_non_nullable
               as String,
       method: null == method
-          ? _value.method
+          ? _self.method
           : method // ignore: cast_nullable_to_non_nullable
               as HttpMethod,
       payload: null == payload
-          ? _value._payload
+          ? _self.payload
           : payload // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>,
       retries: null == retries
-          ? _value.retries
+          ? _self.retries
           : retries // ignore: cast_nullable_to_non_nullable
               as int,
       maxRetries: null == maxRetries
-          ? _value.maxRetries
+          ? _self.maxRetries
           : maxRetries // ignore: cast_nullable_to_non_nullable
               as int,
       status: null == status
-          ? _value.status
+          ? _self.status
           : status // ignore: cast_nullable_to_non_nullable
               as SyncStatus,
       createdAt: null == createdAt
-          ? _value.createdAt
+          ? _self.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       lastAttemptAt: freezed == lastAttemptAt
-          ? _value.lastAttemptAt
+          ? _self.lastAttemptAt
           : lastAttemptAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       nextAttemptAt: freezed == nextAttemptAt
-          ? _value.nextAttemptAt
+          ? _self.nextAttemptAt
           : nextAttemptAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       deliveryUncertain: null == deliveryUncertain
-          ? _value.deliveryUncertain
+          ? _self.deliveryUncertain
           : deliveryUncertain // ignore: cast_nullable_to_non_nullable
               as bool,
       errorMessage: freezed == errorMessage
-          ? _value.errorMessage
+          ? _self.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [SyncTask].
+extension SyncTaskPatterns on SyncTask {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SyncTask value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SyncTask() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SyncTask value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SyncTask():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SyncTask value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SyncTask() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String endpoint,
+            HttpMethod method,
+            Map<String, dynamic> payload,
+            int retries,
+            int maxRetries,
+            SyncStatus status,
+            DateTime createdAt,
+            DateTime? lastAttemptAt,
+            DateTime? nextAttemptAt,
+            bool deliveryUncertain,
+            String? errorMessage)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SyncTask() when $default != null:
+        return $default(
+            _that.id,
+            _that.endpoint,
+            _that.method,
+            _that.payload,
+            _that.retries,
+            _that.maxRetries,
+            _that.status,
+            _that.createdAt,
+            _that.lastAttemptAt,
+            _that.nextAttemptAt,
+            _that.deliveryUncertain,
+            _that.errorMessage);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String id,
+            String endpoint,
+            HttpMethod method,
+            Map<String, dynamic> payload,
+            int retries,
+            int maxRetries,
+            SyncStatus status,
+            DateTime createdAt,
+            DateTime? lastAttemptAt,
+            DateTime? nextAttemptAt,
+            bool deliveryUncertain,
+            String? errorMessage)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SyncTask():
+        return $default(
+            _that.id,
+            _that.endpoint,
+            _that.method,
+            _that.payload,
+            _that.retries,
+            _that.maxRetries,
+            _that.status,
+            _that.createdAt,
+            _that.lastAttemptAt,
+            _that.nextAttemptAt,
+            _that.deliveryUncertain,
+            _that.errorMessage);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String id,
+            String endpoint,
+            HttpMethod method,
+            Map<String, dynamic> payload,
+            int retries,
+            int maxRetries,
+            SyncStatus status,
+            DateTime createdAt,
+            DateTime? lastAttemptAt,
+            DateTime? nextAttemptAt,
+            bool deliveryUncertain,
+            String? errorMessage)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SyncTask() when $default != null:
+        return $default(
+            _that.id,
+            _that.endpoint,
+            _that.method,
+            _that.payload,
+            _that.retries,
+            _that.maxRetries,
+            _that.status,
+            _that.createdAt,
+            _that.lastAttemptAt,
+            _that.nextAttemptAt,
+            _that.deliveryUncertain,
+            _that.errorMessage);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
-class _$SyncTaskImpl implements _SyncTask {
-  const _$SyncTaskImpl(
+class _SyncTask implements SyncTask {
+  const _SyncTask(
       {required this.id,
       required this.endpoint,
       required this.method,
@@ -257,9 +435,8 @@ class _$SyncTaskImpl implements _SyncTask {
       this.deliveryUncertain = false,
       this.errorMessage})
       : _payload = payload;
-
-  factory _$SyncTaskImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SyncTaskImplFromJson(json);
+  factory _SyncTask.fromJson(Map<String, dynamic> json) =>
+      _$SyncTaskFromJson(json);
 
   @override
   final String id;
@@ -298,16 +475,26 @@ class _$SyncTaskImpl implements _SyncTask {
   @override
   final String? errorMessage;
 
+  /// Create a copy of SyncTask
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'SyncTask(id: $id, endpoint: $endpoint, method: $method, payload: $payload, retries: $retries, maxRetries: $maxRetries, status: $status, createdAt: $createdAt, lastAttemptAt: $lastAttemptAt, nextAttemptAt: $nextAttemptAt, deliveryUncertain: $deliveryUncertain, errorMessage: $errorMessage)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SyncTaskCopyWith<_SyncTask> get copyWith =>
+      __$SyncTaskCopyWithImpl<_SyncTask>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$SyncTaskToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SyncTaskImpl &&
+            other is _SyncTask &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.endpoint, endpoint) ||
                 other.endpoint == endpoint) &&
@@ -329,7 +516,7 @@ class _$SyncTaskImpl implements _SyncTask {
                 other.errorMessage == errorMessage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -346,64 +533,110 @@ class _$SyncTaskImpl implements _SyncTask {
       deliveryUncertain,
       errorMessage);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$SyncTaskImplCopyWith<_$SyncTaskImpl> get copyWith =>
-      __$$SyncTaskImplCopyWithImpl<_$SyncTaskImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SyncTaskImplToJson(
-      this,
-    );
+  String toString() {
+    return 'SyncTask(id: $id, endpoint: $endpoint, method: $method, payload: $payload, retries: $retries, maxRetries: $maxRetries, status: $status, createdAt: $createdAt, lastAttemptAt: $lastAttemptAt, nextAttemptAt: $nextAttemptAt, deliveryUncertain: $deliveryUncertain, errorMessage: $errorMessage)';
   }
 }
 
-abstract class _SyncTask implements SyncTask {
-  const factory _SyncTask(
-      {required final String id,
-      required final String endpoint,
-      required final HttpMethod method,
-      required final Map<String, dynamic> payload,
-      final int retries,
-      final int maxRetries,
-      final SyncStatus status,
-      required final DateTime createdAt,
-      final DateTime? lastAttemptAt,
-      final DateTime? nextAttemptAt,
-      final bool deliveryUncertain,
-      final String? errorMessage}) = _$SyncTaskImpl;
-
-  factory _SyncTask.fromJson(Map<String, dynamic> json) =
-      _$SyncTaskImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$SyncTaskCopyWith<$Res>
+    implements $SyncTaskCopyWith<$Res> {
+  factory _$SyncTaskCopyWith(_SyncTask value, $Res Function(_SyncTask) _then) =
+      __$SyncTaskCopyWithImpl;
   @override
-  String get id;
-  @override
-  String get endpoint;
-  @override
-  HttpMethod get method;
-  @override
-  Map<String, dynamic> get payload;
-  @override
-  int get retries;
-  @override
-  int get maxRetries;
-  @override
-  SyncStatus get status;
-  @override
-  DateTime get createdAt;
-  @override
-  DateTime? get lastAttemptAt;
-  @override // FEAT: Instante a partir del cual la tarea es elegible (Exponential Backoff).
-  DateTime? get nextAttemptAt;
-  @override // FIX: true si el ERP pudo haber recibido la petición sin confirmarlo.
-  bool get deliveryUncertain;
-  @override
-  String? get errorMessage;
-  @override
-  @JsonKey(ignore: true)
-  _$$SyncTaskImplCopyWith<_$SyncTaskImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call(
+      {String id,
+      String endpoint,
+      HttpMethod method,
+      Map<String, dynamic> payload,
+      int retries,
+      int maxRetries,
+      SyncStatus status,
+      DateTime createdAt,
+      DateTime? lastAttemptAt,
+      DateTime? nextAttemptAt,
+      bool deliveryUncertain,
+      String? errorMessage});
 }
+
+/// @nodoc
+class __$SyncTaskCopyWithImpl<$Res> implements _$SyncTaskCopyWith<$Res> {
+  __$SyncTaskCopyWithImpl(this._self, this._then);
+
+  final _SyncTask _self;
+  final $Res Function(_SyncTask) _then;
+
+  /// Create a copy of SyncTask
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? id = null,
+    Object? endpoint = null,
+    Object? method = null,
+    Object? payload = null,
+    Object? retries = null,
+    Object? maxRetries = null,
+    Object? status = null,
+    Object? createdAt = null,
+    Object? lastAttemptAt = freezed,
+    Object? nextAttemptAt = freezed,
+    Object? deliveryUncertain = null,
+    Object? errorMessage = freezed,
+  }) {
+    return _then(_SyncTask(
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      endpoint: null == endpoint
+          ? _self.endpoint
+          : endpoint // ignore: cast_nullable_to_non_nullable
+              as String,
+      method: null == method
+          ? _self.method
+          : method // ignore: cast_nullable_to_non_nullable
+              as HttpMethod,
+      payload: null == payload
+          ? _self._payload
+          : payload // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      retries: null == retries
+          ? _self.retries
+          : retries // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxRetries: null == maxRetries
+          ? _self.maxRetries
+          : maxRetries // ignore: cast_nullable_to_non_nullable
+              as int,
+      status: null == status
+          ? _self.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as SyncStatus,
+      createdAt: null == createdAt
+          ? _self.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastAttemptAt: freezed == lastAttemptAt
+          ? _self.lastAttemptAt
+          : lastAttemptAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      nextAttemptAt: freezed == nextAttemptAt
+          ? _self.nextAttemptAt
+          : nextAttemptAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      deliveryUncertain: null == deliveryUncertain
+          ? _self.deliveryUncertain
+          : deliveryUncertain // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: freezed == errorMessage
+          ? _self.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+// dart format on

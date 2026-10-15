@@ -90,7 +90,12 @@ void main() {
         _response(201, data: {'codcliente': 'CLI001', 'codigo': 'PED2026A1'}),
         resource: ErpResource.pedidos,
       );
-      expect(outcome, const DispatchOutcome.delivered(erpId: 'PED2026A1'));
+      expect(
+        outcome,
+        isA<DispatchDelivered>()
+            .having((o) => o.erpId, 'erpId', 'PED2026A1')
+            .having((o) => o.record['codigo'], 'record.codigo', 'PED2026A1'),
+      );
     });
 
     test('alta de cliente sin codcliente en la respuesta es conflicto', () {

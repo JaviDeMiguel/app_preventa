@@ -6,9 +6,9 @@ part of 'catalog_dtos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FacturaScriptsClientDtoImpl _$$FacturaScriptsClientDtoImplFromJson(
+_FacturaScriptsClientDto _$FacturaScriptsClientDtoFromJson(
         Map<String, dynamic> json) =>
-    _$FacturaScriptsClientDtoImpl(
+    _FacturaScriptsClientDto(
       codcliente: json['codcliente'] as String,
       nombre: json['nombre'] as String,
       cifnif: json['cifnif'] == null ? '' : lenientString(json['cifnif']),
@@ -24,8 +24,8 @@ _$FacturaScriptsClientDtoImpl _$$FacturaScriptsClientDtoImplFromJson(
       debaja: json['debaja'] == null ? false : lenientBool(json['debaja']),
     );
 
-Map<String, dynamic> _$$FacturaScriptsClientDtoImplToJson(
-        _$FacturaScriptsClientDtoImpl instance) =>
+Map<String, dynamic> _$FacturaScriptsClientDtoToJson(
+        _FacturaScriptsClientDto instance) =>
     <String, dynamic>{
       'codcliente': instance.codcliente,
       'nombre': instance.nombre,
@@ -39,9 +39,9 @@ Map<String, dynamic> _$$FacturaScriptsClientDtoImplToJson(
       'debaja': instance.debaja,
     };
 
-_$FacturaScriptsProductDtoImpl _$$FacturaScriptsProductDtoImplFromJson(
+_FacturaScriptsProductDto _$FacturaScriptsProductDtoFromJson(
         Map<String, dynamic> json) =>
-    _$FacturaScriptsProductDtoImpl(
+    _FacturaScriptsProductDto(
       referencia: json['referencia'] as String,
       descripcion:
           json['descripcion'] == null ? '' : lenientString(json['descripcion']),
@@ -55,8 +55,8 @@ _$FacturaScriptsProductDtoImpl _$$FacturaScriptsProductDtoImplFromJson(
           json['sevende'] == null ? true : lenientBoolTrue(json['sevende']),
     );
 
-Map<String, dynamic> _$$FacturaScriptsProductDtoImplToJson(
-        _$FacturaScriptsProductDtoImpl instance) =>
+Map<String, dynamic> _$FacturaScriptsProductDtoToJson(
+        _FacturaScriptsProductDto instance) =>
     <String, dynamic>{
       'referencia': instance.referencia,
       'descripcion': instance.descripcion,
@@ -67,23 +67,23 @@ Map<String, dynamic> _$$FacturaScriptsProductDtoImplToJson(
       'sevende': instance.sevende,
     };
 
-_$FacturaScriptsTaxDtoImpl _$$FacturaScriptsTaxDtoImplFromJson(
+_FacturaScriptsTaxDto _$FacturaScriptsTaxDtoFromJson(
         Map<String, dynamic> json) =>
-    _$FacturaScriptsTaxDtoImpl(
+    _FacturaScriptsTaxDto(
       codimpuesto: json['codimpuesto'] as String,
       iva: json['iva'] == null ? 0.0 : lenientDouble(json['iva']),
     );
 
-Map<String, dynamic> _$$FacturaScriptsTaxDtoImplToJson(
-        _$FacturaScriptsTaxDtoImpl instance) =>
+Map<String, dynamic> _$FacturaScriptsTaxDtoToJson(
+        _FacturaScriptsTaxDto instance) =>
     <String, dynamic>{
       'codimpuesto': instance.codimpuesto,
       'iva': instance.iva,
     };
 
-_$FacturaScriptsStockDtoImpl _$$FacturaScriptsStockDtoImplFromJson(
+_FacturaScriptsStockDto _$FacturaScriptsStockDtoFromJson(
         Map<String, dynamic> json) =>
-    _$FacturaScriptsStockDtoImpl(
+    _FacturaScriptsStockDto(
       referencia: json['referencia'] as String,
       cantidad:
           json['cantidad'] == null ? 0.0 : lenientDouble(json['cantidad']),
@@ -91,8 +91,8 @@ _$FacturaScriptsStockDtoImpl _$$FacturaScriptsStockDtoImplFromJson(
           json['disponible'] == null ? 0.0 : lenientDouble(json['disponible']),
     );
 
-Map<String, dynamic> _$$FacturaScriptsStockDtoImplToJson(
-        _$FacturaScriptsStockDtoImpl instance) =>
+Map<String, dynamic> _$FacturaScriptsStockDtoToJson(
+        _FacturaScriptsStockDto instance) =>
     <String, dynamic>{
       'referencia': instance.referencia,
       'cantidad': instance.cantidad,

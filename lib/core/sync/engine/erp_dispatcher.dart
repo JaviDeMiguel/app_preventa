@@ -33,10 +33,17 @@ final class ErpDispatcher {
           ),
         HttpMethod.get => _dio.get<dynamic>(task.endpoint),
         HttpMethod.delete => _dio.delete<dynamic>(task.endpoint),
+        HttpMethod.upload => switch (multipartOf(task.payload)) {
+            final FormData form =>
+              _dio.post<dynamic>(task.endpoint, data: form),
+            null => throw const FormatException('Adjunto sin contenido'),
+          },
       };
       return classifyHttpResponse(response, resource: resource);
     } on DioException catch (error) {
       return classifyDioException(error, resource: resource);
+    } on FormatException catch (error) {
+      return DispatchOutcome.rejected(message: error.message);
     }
   }
 
@@ -81,7 +88,10 @@ final class ErpDispatcher {
         [] => null,
         [final Map<String, dynamic> row, ...]
             when '${row[resource.dedupeField]}' == key =>
-          DispatchOutcome.delivered(erpId: extractErpId(row, resource)),
+          DispatchOutcome.delivered(
+            erpId: extractErpId(row, resource),
+            record: Map.unmodifiable(row),
+          ),
         // Si el ERP ignoró el filtro devolverá filas ajenas: no es fiable
         // decidir automáticamente, así que se escala a revisión humana.
         _ => const DispatchOutcome.conflict(

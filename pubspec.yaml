@@ -9,12 +9,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  isar: 3.1.0+1
-  isar_flutter_libs: 3.1.0+1
+  # Fork mantenido de Isar 3 (misma API). isar 3.1.0+1 está abandonado: su
+  # módulo Android no declara namespace (no compila con AGP 8+) y su
+  # libisar.so está alineada a 4 KB (Google Play exige 16 KB).
+  isar_community: ^3.4.1
+  isar_community_flutter_libs: ^3.4.1
   dio: ^5.4.3+1
   connectivity_plus: ^6.0.3
   path_provider: ^2.1.2
-  freezed_annotation: ^2.4.1
+  freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   flutter_secure_storage: ^11.2.0
 
@@ -22,7 +25,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  build_runner: ^2.4.9
-  freezed: ^2.5.2
-  json_serializable: ^6.8.0
-  isar_generator: 3.1.0+1
+  build_runner: ^2.5.0
+  freezed: ^3.0.0
+  json_serializable: ^6.9.0
+  isar_community_generator: ^3.4.1

@@ -6,8 +6,7 @@ part of 'sync_task.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SyncTaskImpl _$$SyncTaskImplFromJson(Map<String, dynamic> json) =>
-    _$SyncTaskImpl(
+_SyncTask _$SyncTaskFromJson(Map<String, dynamic> json) => _SyncTask(
       id: json['id'] as String,
       endpoint: json['endpoint'] as String,
       method: $enumDecode(_$HttpMethodEnumMap, json['method']),
@@ -27,8 +26,7 @@ _$SyncTaskImpl _$$SyncTaskImplFromJson(Map<String, dynamic> json) =>
       errorMessage: json['errorMessage'] as String?,
     );
 
-Map<String, dynamic> _$$SyncTaskImplToJson(_$SyncTaskImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SyncTaskToJson(_SyncTask instance) => <String, dynamic>{
       'id': instance.id,
       'endpoint': instance.endpoint,
       'method': _$HttpMethodEnumMap[instance.method]!,
@@ -48,6 +46,7 @@ const _$HttpMethodEnumMap = {
   HttpMethod.post: 'post',
   HttpMethod.put: 'put',
   HttpMethod.delete: 'delete',
+  HttpMethod.upload: 'upload',
 };
 
 const _$SyncStatusEnumMap = {
@@ -57,4 +56,5 @@ const _$SyncStatusEnumMap = {
   SyncStatus.failed: 'failed',
   SyncStatus.fatalError: 'fatalError',
   SyncStatus.conflict: 'conflict',
+  SyncStatus.discarded: 'discarded',
 };
