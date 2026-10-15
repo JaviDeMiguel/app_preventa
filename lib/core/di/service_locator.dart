@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
-import 'package:isar/isar.dart';
+import 'package:flutter/foundation.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/database/local_database_service.dart';
 import 'package:app_preventa/core/network/facturascripts_api_client.dart';
@@ -21,6 +22,9 @@ class AppDependencies {
   final ClientRepository clientRepository;
   final SettingsRepository settingsRepository;
 
+  /// Configuración vigente del ERP; el motor lee de aquí el almacén del vehículo.
+  final ValueNotifier<FacturaScriptsConfig> apiConfig;
+
   const AppDependencies({
     required this.isar,
     required this.dio,
@@ -29,12 +33,15 @@ class AppDependencies {
     required this.syncOrchestrator,
     required this.clientRepository,
     required this.settingsRepository,
+    required this.apiConfig,
   });
 
   /// Ensamblaje asíncrono ordenado de la infraestructura
   static Future<AppDependencies> initialize({
     FacturaScriptsConfig? apiConfig,
     String? dbDirectoryPath,
+    // Inyectable para las pruebas E2E (simular cortes de red).
+    Connectivity? connectivity,
   }) async {
     // 1. Inicialización de la base de datos local con todos los esquemas Isar
     final isar = await LocalDatabaseService.init(
@@ -44,23 +51,25 @@ class AppDependencies {
     // 2. Repositorio de configuración persistida
     final settingsRepo = SettingsRepository(isar);
     final effectiveConfig = apiConfig ?? await settingsRepo.loadConfig();
+    final configNotifier = ValueNotifier(effectiveConfig);
 
     // 3. Cliente de red configurado para FacturaScripts v3
     final dio = FacturaScriptsApiClient.create(effectiveConfig);
 
     // 4. Sensor de conectividad
-    final connectivity = Connectivity();
+    final networkSensor = connectivity ?? Connectivity();
 
     // 5. Motores de sincronización
     final syncEngine = SyncEngine(
       isar: isar,
       dio: dio,
-      connectivity: connectivity,
+      connectivity: networkSensor,
+      config: () => configNotifier.value,
     );
 
     final syncOrchestrator = ConnectivitySyncOrchestrator(
       syncEngine: syncEngine,
-      connectivity: connectivity,
+      connectivity: networkSensor,
     );
 
     // Iniciar el vigilante reactivo de red
@@ -72,16 +81,18 @@ class AppDependencies {
     return AppDependencies(
       isar: isar,
       dio: dio,
-      connectivity: connectivity,
+      connectivity: networkSensor,
       syncEngine: syncEngine,
       syncOrchestrator: syncOrchestrator,
       clientRepository: clientRepository,
       settingsRepository: settingsRepo,
+      apiConfig: configNotifier,
     );
   }
 
-  /// Actualiza en caliente la configuración de red y la cabecera FS-TOKEN
+  /// Actualiza en caliente la URL, el token y el almacén del vehículo.
   void updateApiConfig(FacturaScriptsConfig newConfig) {
+    apiConfig.value = newConfig;
     dio.options.baseUrl = newConfig.baseUrl;
 
     for (final interceptor in dio.interceptors) {
@@ -89,10 +100,16 @@ class AppDependencies {
         interceptor.config = newConfig;
       }
     }
+
+    // FIX: Tras un 401/403 la cola queda bloqueada (evita el baneo de IP de
+    // FacturaScripts); solo un cambio de credenciales la desbloquea.
+    syncOrchestrator.onCredentialsUpdated();
   }
 
-  void dispose() {
-    syncOrchestrator.dispose();
-    syncEngine.dispose();
+  Future<void> dispose() async {
+    await syncOrchestrator.dispose();
+    await syncEngine.dispose();
+    apiConfig.dispose();
+    dio.close();
   }
 }

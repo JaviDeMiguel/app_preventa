@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
+import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/core/sync/states/catalog_sync_state.dart';
 import 'package:app_preventa/features/clients/presentation/screens/client_detail_screen.dart';
@@ -27,15 +30,40 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
+  static const _searchDebounce = Duration(milliseconds: 300);
+  Timer? _searchTimer;
+
+  /// FIX: antes solo se veían los 200 primeros clientes sin buscar. Ahora la
+  /// lista crece por páginas al acercarse al final (scroll infinito).
+  static const _pageSize = 200;
+  static const _loadMoreThreshold = 600.0;
+  int _visibleLimit = _pageSize;
+
+  bool _onScroll(ScrollNotification notification, int loadedCount) {
+    final reachedEnd = notification.metrics.extentAfter < _loadMoreThreshold;
+    // Solo hay más si la página actual vino llena.
+    if (reachedEnd && loadedCount >= _visibleLimit) {
+      setState(() => _visibleLimit += _pageSize);
+    }
+    return false;
+  }
+
   @override
   void dispose() {
+    _searchTimer?.cancel();
     _searchController.dispose();
     super.dispose();
   }
 
+  /// FIX (Rendimiento): debounce; antes cada tecla abría una consulta nueva.
   void _onSearchChanged(String value) {
-    setState(() {
-      _searchQuery = value;
+    _searchTimer?.cancel();
+    _searchTimer = Timer(_searchDebounce, () {
+      if (!mounted) return;
+      setState(() {
+        _searchQuery = value;
+        _visibleLimit = _pageSize;
+      });
     });
   }
 
@@ -120,6 +148,7 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
           ),
           StreamBuilder<CatalogSyncState>(
             stream: widget.dependencies.syncEngine.catalogSyncStream,
+            initialData: widget.dependencies.syncEngine.currentCatalogState,
             builder: (context, snapshot) {
               final state = snapshot.data ?? const CatalogSyncState.idle();
 
@@ -167,6 +196,7 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
           // Banner de estado de sincronización reactivo
           StreamBuilder<CatalogSyncState>(
             stream: widget.dependencies.syncEngine.catalogSyncStream,
+            initialData: widget.dependencies.syncEngine.currentCatalogState,
             builder: (context, snapshot) {
               final state = snapshot.data;
               if (state == null) return const SizedBox.shrink();
@@ -237,9 +267,10 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
             ),
           ),
           Expanded(
-            child: StreamBuilder<List<ClientEntity>>(
-              stream: widget.dependencies.clientRepository
-                  .watchClients(query: _searchQuery),
+            child: KeyedStreamBuilder<List<ClientEntity>>(
+              streamKey: (_searchQuery, _visibleLimit),
+              create: () => widget.dependencies.clientRepository
+                  .watchClients(query: _searchQuery, limit: _visibleLimit),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting &&
                     !snapshot.hasData) {
@@ -276,43 +307,54 @@ class _ClientsListScreenState extends State<ClientsListScreen> {
                   );
                 }
 
-                return ListView.separated(
-                  itemCount: clients.length,
-                  separatorBuilder: (_, __) => const Divider(height: 1),
-                  itemBuilder: (context, index) {
-                    final client = clients[index];
+                final hasMore = clients.length >= _visibleLimit;
 
-                    return ListTile(
-                      leading: CircleAvatar(
-                        child: Text(
-                          client.nombre.isNotEmpty
-                              ? client.nombre[0].toUpperCase()
-                              : 'C',
-                        ),
-                      ),
-                      title: Text(
-                        client.nombre,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        'CIF: ${client.cifnif.isNotEmpty ? client.cifnif : 'N/A'} • Cód: ${client.codcliente}\n${client.ciudad ?? ''}',
-                        maxLines: 2,
-                      ),
-                      isThreeLine:
-                          client.ciudad != null && client.ciudad!.isNotEmpty,
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => ClientDetailScreen(
-                              client: client,
-                              dependencies: widget.dependencies,
-                            ),
-                          ),
+                return NotificationListener<ScrollNotification>(
+                  onNotification: (n) => _onScroll(n, clients.length),
+                  child: ListView.separated(
+                    itemCount: clients.length + (hasMore ? 1 : 0),
+                    separatorBuilder: (_, __) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      if (index == clients.length) {
+                        return const Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Center(child: CircularProgressIndicator()),
                         );
-                      },
-                    );
-                  },
+                      }
+                      final client = clients[index];
+
+                      return ListTile(
+                        leading: CircleAvatar(
+                          child: Text(
+                            client.nombre.isNotEmpty
+                                ? client.nombre[0].toUpperCase()
+                                : 'C',
+                          ),
+                        ),
+                        title: Text(
+                          client.nombre,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(
+                          'CIF: ${client.cifnif.isNotEmpty ? client.cifnif : 'N/A'} • Cód: ${client.codcliente}\n${client.ciudad ?? ''}',
+                          maxLines: 2,
+                        ),
+                        isThreeLine:
+                            client.ciudad != null && client.ciudad!.isNotEmpty,
+                        trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => ClientDetailScreen(
+                                client: client,
+                                dependencies: widget.dependencies,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 );
               },
             ),

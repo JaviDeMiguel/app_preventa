@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
 import 'package:app_preventa/core/network/facturascripts_api_client.dart';
@@ -21,6 +22,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _urlController;
   late final TextEditingController _tokenController;
+  late final TextEditingController _warehouseController;
 
   bool _obscureToken = true;
   bool _isTesting = false;
@@ -33,6 +35,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.initState();
     _urlController = TextEditingController();
     _tokenController = TextEditingController();
+    _warehouseController = TextEditingController();
     _loadCurrentConfig();
   }
 
@@ -40,6 +43,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   void dispose() {
     _urlController.dispose();
     _tokenController.dispose();
+    _warehouseController.dispose();
     super.dispose();
   }
 
@@ -49,6 +53,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     setState(() {
       _urlController.text = config.baseUrl;
       _tokenController.text = config.apiToken;
+      _warehouseController.text = config.warehouseCode ?? '';
     });
   }
 
@@ -75,6 +80,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
+  /// FIX: antes un fallo del almacenamiento dejaba el botón bloqueado en
+  /// "guardando" y la excepción sin tratar. Devuelve el error o `null`.
+  Future<String?> _persistConfig(FacturaScriptsConfig config) async {
+    try {
+      await widget.dependencies.settingsRepository.saveConfig(config);
+      widget.dependencies.updateApiConfig(config);
+      return null;
+    } on IsarError catch (error) {
+      return 'No se pudo guardar la configuración: $error';
+    } on Exception catch (error) {
+      return 'No se pudo guardar el token de forma segura: $error';
+    }
+  }
+
   Future<void> _handleSaveConfig() async {
     if (!_formKey.currentState!.validate()) return;
 
@@ -85,10 +104,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final newConfig = FacturaScriptsConfig(
       baseUrl: _urlController.text.trim().replaceAll(RegExp(r'/+$'), ''),
       apiToken: _tokenController.text.trim(),
+      warehouseCode: switch (_warehouseController.text.trim().toUpperCase()) {
+        final String code when code.isNotEmpty => code,
+        _ => null,
+      },
     );
 
-    await widget.dependencies.settingsRepository.saveConfig(newConfig);
-    widget.dependencies.updateApiConfig(newConfig);
+    final saveError = await _persistConfig(newConfig);
 
     if (!mounted) return;
 
@@ -97,9 +119,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Configuración guardada y aplicada correctamente.'),
-        backgroundColor: Colors.green,
+      SnackBar(
+        content: Text(
+          saveError ?? 'Configuración guardada y aplicada correctamente.',
+        ),
+        backgroundColor: saveError == null ? Colors.green : Colors.red.shade800,
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -142,15 +166,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   prefixIcon: Icon(Icons.dns_outlined),
                   border: OutlineInputBorder(),
                 ),
-                validator: (val) {
-                  if (val == null || val.trim().isEmpty) {
-                    return 'Introduce la URL del servidor';
-                  }
-                  if (!val.startsWith('http://') &&
-                      !val.startsWith('https://')) {
-                    return 'Debe comenzar por http:// o https://';
-                  }
-                  return null;
+                // FIX (Seguridad): HTTPS obligatorio en release.
+                validator: (val) => switch (val?.trim()) {
+                  null || '' => 'Introduce la URL del servidor',
+                  final String url => validateErpBaseUrl(url),
                 },
               ),
               const SizedBox(height: 16),
@@ -158,7 +177,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 controller: _tokenController,
                 obscureText: _obscureToken,
                 decoration: InputDecoration(
-                  labelText: 'FS-TOKEN (API Key)',
+                  labelText: 'Token API (X-Auth-Token)',
                   hintText: 'Ej: 9f8a7b6c5d4e...',
                   prefixIcon: const Icon(Icons.key_outlined),
                   border: const OutlineInputBorder(),
@@ -175,10 +194,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 validator: (val) {
                   if (val == null || val.trim().isEmpty) {
-                    return 'Introduce el FS-TOKEN';
+                    return 'Introduce el token de la API';
                   }
                   return null;
                 },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _warehouseController,
+                textCapitalization: TextCapitalization.characters,
+                decoration: const InputDecoration(
+                  labelText: 'Almacén del vehículo (codalmacen)',
+                  hintText: 'Vacío = almacén por defecto del ERP',
+                  helperText:
+                      'Autoventa: los albaranes descuentan stock de este almacén.',
+                  prefixIcon: Icon(Icons.local_shipping_outlined),
+                  border: OutlineInputBorder(),
+                ),
               ),
               const SizedBox(height: 20),
               if (_testResult != null) ...[

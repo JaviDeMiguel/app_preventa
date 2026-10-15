@@ -1,7 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
+import 'package:app_preventa/core/sync/engine/erp_payloads.dart';
+import 'package:app_preventa/core/sync/engine/erp_resource.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/features/clients/presentation/screens/client_detail_screen.dart';
@@ -52,7 +55,9 @@ class _NewClientScreenState extends State<NewClientScreen> {
     });
 
     try {
-      final tempCode = 'TEMP-CLI-${DateTime.now().millisecondsSinceEpoch}';
+      // El motor bloquea los pedidos de este cliente hasta reconciliar el código.
+      final tempCode =
+          '$tempClientCodePrefix${DateTime.now().millisecondsSinceEpoch}';
       final syncTaskUuid = 'TASK-CLI-${DateTime.now().microsecondsSinceEpoch}';
 
       final clientEntity = ClientEntity()
@@ -68,20 +73,25 @@ class _NewClientScreenState extends State<NewClientScreen> {
 
       final syncTaskEntity = SyncTaskCollection()
         ..uuid = syncTaskUuid
-        ..endpoint = '/api/3/clientes'
+        ..endpoint = ErpResource.clientes.createPath
         ..method = HttpMethod.post
-        ..payloadJson = jsonEncode({
-          'nombre': clientEntity.nombre,
-          'cifnif': clientEntity.cifnif,
-          'telefono1': clientEntity.telefono,
-          'email': clientEntity.email,
-          'direccion': clientEntity.direccion,
-          'ciudad': clientEntity.ciudad,
-          'codpostal': clientEntity.codpostal,
-          'temp_codcliente': tempCode,
-        })
+        // FIX (Contrato API): solo campos de `Cliente`; la dirección pertenece
+        // al modelo `Contacto` y se conserva en local. El código temporal va
+        // en una clave local (`_…`) que nunca se envía al ERP.
+        ..payloadJson = jsonEncode(
+          buildClientPayload(
+            tempCode: tempCode,
+            nombre: clientEntity.nombre,
+            cifnif: clientEntity.cifnif,
+            telefono: clientEntity.telefono,
+            email: clientEntity.email,
+            direccion: clientEntity.direccion,
+            codpostal: clientEntity.codpostal,
+            ciudad: clientEntity.ciudad,
+          ),
+        )
         ..retries = 0
-        ..maxRetries = 3
+        ..maxRetries = defaultTaskMaxRetries
         ..status = SyncStatus.pending
         ..createdAt = DateTime.now();
 
@@ -91,7 +101,7 @@ class _NewClientScreenState extends State<NewClientScreen> {
       });
 
       // Disparar sincronización oportunista
-      widget.dependencies.syncEngine.processUpstreamQueue();
+      unawaited(widget.dependencies.syncEngine.processUpstreamQueue());
 
       // [ECC: Seguridad de Contexto]
       if (!mounted) return;

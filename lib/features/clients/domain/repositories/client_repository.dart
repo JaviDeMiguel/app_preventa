@@ -8,7 +8,8 @@ abstract interface class ClientRepository {
     int offset = 0,
   });
 
-  Stream<List<ClientEntity>> watchClients({String? query});
+  /// [limit] acota lo que se deserializa en el Main Isolate en cada cambio.
+  Stream<List<ClientEntity>> watchClients({String? query, int limit = 200});
 
   Future<ClientEntity?> getClientByCode(String codcliente);
 
@@ -22,6 +23,7 @@ abstract interface class ClientRepository {
   Stream<List<ProductEntity>> watchProducts({
     String? query,
     bool onlyWithStock = false,
+    int limit = 200,
   });
 
   Future<ProductEntity?> getProductByReference(String referencia);

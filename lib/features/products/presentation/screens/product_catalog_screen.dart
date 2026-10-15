@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
+import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/features/orders/presentation/screens/order_submission_screen.dart';
@@ -31,10 +34,39 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
   final Map<String, int> _cartQuantities = {};
   final Map<String, ProductEntity> _productCache = {};
 
+  static const _searchDebounce = Duration(milliseconds: 300);
+  Timer? _searchTimer;
+
+  /// FIX: los resultados se cortaban en 200 sin aviso. Scroll infinito.
+  static const _pageSize = 200;
+  static const _loadMoreThreshold = 600.0;
+  int _visibleLimit = _pageSize;
+
+  bool _onScroll(ScrollNotification notification, int loadedCount) {
+    final reachedEnd = notification.metrics.extentAfter < _loadMoreThreshold;
+    if (reachedEnd && loadedCount >= _visibleLimit) {
+      setState(() => _visibleLimit += _pageSize);
+    }
+    return false;
+  }
+
   @override
   void dispose() {
+    _searchTimer?.cancel();
     _searchController.dispose();
     super.dispose();
+  }
+
+  /// FIX (Rendimiento): debounce; antes cada tecla abría una consulta nueva.
+  void _onSearchChanged(String value) {
+    _searchTimer?.cancel();
+    _searchTimer = Timer(_searchDebounce, () {
+      if (!mounted) return;
+      setState(() {
+        _searchQuery = value;
+        _visibleLimit = _pageSize;
+      });
+    });
   }
 
   void _updateQuantity(ProductEntity product, int delta) {
@@ -77,7 +109,8 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
       return;
     }
 
-    // Mapeo a las líneas de pedido esperadas por FacturaScripts v3 (/api/3/pedidoscliente)
+    // Líneas locales del carrito; `buildSalesDocumentPayload` las traduce al
+    // formato de `crearPedidoCliente`/`crearAlbaranCliente`.
     final orderLines = _cartQuantities.entries.map((entry) {
       final product = _productCache[entry.key]!;
       final pvpTotal = product.precio * entry.value;
@@ -140,12 +173,13 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
                   IconButton(
                     icon: const Icon(Icons.clear),
                     onPressed: () {
+                      _searchTimer?.cancel();
                       _searchController.clear();
                       setState(() => _searchQuery = '');
                     },
                   ),
               ],
-              onChanged: (val) => setState(() => _searchQuery = val),
+              onChanged: _onSearchChanged,
             ),
           ),
           Padding(
@@ -169,10 +203,14 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
           ),
           const Divider(height: 1),
           Expanded(
-            child: StreamBuilder<List<ProductEntity>>(
-              stream: widget.dependencies.clientRepository.watchProducts(
+            // FIX (Rendimiento): el stream sobrevive a los setState del carrito;
+            // antes cada +/− re-consultaba y deserializaba el catálogo entero.
+            child: KeyedStreamBuilder<List<ProductEntity>>(
+              streamKey: (_searchQuery, _onlyWithStock, _visibleLimit),
+              create: () => widget.dependencies.clientRepository.watchProducts(
                 query: _searchQuery,
                 onlyWithStock: _onlyWithStock,
+                limit: _visibleLimit,
               ),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting &&
@@ -201,50 +239,61 @@ class _ProductCatalogScreenState extends State<ProductCatalogScreen> {
                   );
                 }
 
-                return ListView.separated(
-                  itemCount: products.length,
-                  separatorBuilder: (_, __) => const Divider(height: 1),
-                  itemBuilder: (context, index) {
-                    final product = products[index];
-                    _productCache[product.referencia] = product;
-                    final qty = _cartQuantities[product.referencia] ?? 0;
-                    final hasStock = product.stockDisponible > 0;
+                final hasMore = products.length >= _visibleLimit;
 
-                    return ListTile(
-                      title: Text(
-                        product.descripcion,
-                        style: const TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      subtitle: Text(
-                        'Ref: ${product.referencia} • Stock: ${product.stockDisponible} uds.\nPVP: ${product.precio.toStringAsFixed(2)} € (+${product.iva}% IVA)',
-                      ),
-                      isThreeLine: true,
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (qty > 0) ...[
+                return NotificationListener<ScrollNotification>(
+                  onNotification: (n) => _onScroll(n, products.length),
+                  child: ListView.separated(
+                    itemCount: products.length + (hasMore ? 1 : 0),
+                    separatorBuilder: (_, __) => const Divider(height: 1),
+                    itemBuilder: (context, index) {
+                      if (index == products.length) {
+                        return const Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      }
+                      final product = products[index];
+                      _productCache[product.referencia] = product;
+                      final qty = _cartQuantities[product.referencia] ?? 0;
+                      final hasStock = product.stockDisponible > 0;
+
+                      return ListTile(
+                        title: Text(
+                          product.descripcion,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        subtitle: Text(
+                          'Ref: ${product.referencia} • Stock: ${product.stockDisponible} uds.\nPVP: ${product.precio.toStringAsFixed(2)} € (+${product.iva}% IVA)',
+                        ),
+                        isThreeLine: true,
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (qty > 0) ...[
+                              IconButton(
+                                icon: const Icon(Icons.remove_circle_outline),
+                                color: Colors.red.shade700,
+                                onPressed: () => _updateQuantity(product, -1),
+                              ),
+                              Text(
+                                '$qty',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                            ],
                             IconButton(
-                              icon: const Icon(Icons.remove_circle_outline),
-                              color: Colors.red.shade700,
-                              onPressed: () => _updateQuantity(product, -1),
-                            ),
-                            Text(
-                              '$qty',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                              icon: const Icon(Icons.add_circle_outline),
+                              color: hasStock
+                                  ? theme.colorScheme.primary
+                                  : Colors.grey,
+                              onPressed: () => _updateQuantity(product, 1),
                             ),
                           ],
-                          IconButton(
-                            icon: const Icon(Icons.add_circle_outline),
-                            color: hasStock
-                                ? theme.colorScheme.primary
-                                : Colors.grey,
-                            onPressed: () => _updateQuantity(product, 1),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             ),

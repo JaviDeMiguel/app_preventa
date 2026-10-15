@@ -6,8 +6,7 @@ part of 'sync_task.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SyncTaskImpl _$$SyncTaskImplFromJson(Map<String, dynamic> json) =>
-    _$SyncTaskImpl(
+_SyncTask _$SyncTaskFromJson(Map<String, dynamic> json) => _SyncTask(
       id: json['id'] as String,
       endpoint: json['endpoint'] as String,
       method: $enumDecode(_$HttpMethodEnumMap, json['method']),
@@ -20,11 +19,14 @@ _$SyncTaskImpl _$$SyncTaskImplFromJson(Map<String, dynamic> json) =>
       lastAttemptAt: json['lastAttemptAt'] == null
           ? null
           : DateTime.parse(json['lastAttemptAt'] as String),
+      nextAttemptAt: json['nextAttemptAt'] == null
+          ? null
+          : DateTime.parse(json['nextAttemptAt'] as String),
+      deliveryUncertain: json['deliveryUncertain'] as bool? ?? false,
       errorMessage: json['errorMessage'] as String?,
     );
 
-Map<String, dynamic> _$$SyncTaskImplToJson(_$SyncTaskImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SyncTaskToJson(_SyncTask instance) => <String, dynamic>{
       'id': instance.id,
       'endpoint': instance.endpoint,
       'method': _$HttpMethodEnumMap[instance.method]!,
@@ -34,6 +36,8 @@ Map<String, dynamic> _$$SyncTaskImplToJson(_$SyncTaskImpl instance) =>
       'status': _$SyncStatusEnumMap[instance.status]!,
       'createdAt': instance.createdAt.toIso8601String(),
       'lastAttemptAt': instance.lastAttemptAt?.toIso8601String(),
+      'nextAttemptAt': instance.nextAttemptAt?.toIso8601String(),
+      'deliveryUncertain': instance.deliveryUncertain,
       'errorMessage': instance.errorMessage,
     };
 
@@ -42,6 +46,7 @@ const _$HttpMethodEnumMap = {
   HttpMethod.post: 'post',
   HttpMethod.put: 'put',
   HttpMethod.delete: 'delete',
+  HttpMethod.upload: 'upload',
 };
 
 const _$SyncStatusEnumMap = {
@@ -50,4 +55,6 @@ const _$SyncStatusEnumMap = {
   SyncStatus.completed: 'completed',
   SyncStatus.failed: 'failed',
   SyncStatus.fatalError: 'fatalError',
+  SyncStatus.conflict: 'conflict',
+  SyncStatus.discarded: 'discarded',
 };

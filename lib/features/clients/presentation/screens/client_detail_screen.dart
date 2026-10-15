@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
+import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/features/products/presentation/screens/product_catalog_screen.dart';
@@ -343,8 +344,10 @@ class ClientDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            StreamBuilder<List<OrderEntity>>(
-              stream: dependencies.isar.orderEntitys
+            // FIX (Rendimiento): stream estable entre rebuilds.
+            KeyedStreamBuilder<List<OrderEntity>>(
+              streamKey: client.codcliente,
+              create: () => dependencies.isar.orderEntitys
                   .filter()
                   .codclienteEqualTo(client.codcliente)
                   .sortByFechaDesc()

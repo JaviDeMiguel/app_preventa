@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/features/clients/domain/repositories/client_repository.dart';
@@ -34,10 +34,16 @@ class IsarClientRepository implements ClientRepository {
   }
 
   @override
-  Stream<List<ClientEntity>> watchClients({String? query}) {
+  Stream<List<ClientEntity>> watchClients({String? query, int limit = 200}) {
     final trimmed = query?.trim() ?? '';
     if (trimmed.isEmpty) {
-      return _isar.clientEntitys.where().watch(fireImmediately: true);
+      // FIX (Rendimiento): orden por índice `nombre` + límite; antes se
+      // observaba la colección completa sin orden.
+      return _isar.clientEntitys
+          .where()
+          .anyNombre()
+          .limit(limit)
+          .watch(fireImmediately: true);
     }
 
     return _isar.clientEntitys
@@ -47,6 +53,9 @@ class IsarClientRepository implements ClientRepository {
         .cifnifContains(trimmed, caseSensitive: false)
         .or()
         .codclienteContains(trimmed, caseSensitive: false)
+        // FIX: orden estable; sin él cada página podía traer filas distintas.
+        .sortByNombre()
+        .limit(limit)
         .watch(fireImmediately: true);
   }
 
@@ -94,6 +103,7 @@ class IsarClientRepository implements ClientRepository {
   Stream<List<ProductEntity>> watchProducts({
     String? query,
     bool onlyWithStock = false,
+    int limit = 200,
   }) {
     final trimmed = query?.trim() ?? '';
     final queryBuilder = _isar.productEntitys.filter();
@@ -114,10 +124,18 @@ class IsarClientRepository implements ClientRepository {
           .or()
           .referenciaContains(trimmed, caseSensitive: false));
     } else {
-      return _isar.productEntitys.where().watch(fireImmediately: true);
+      return _isar.productEntitys
+          .where()
+          .anyDescripcion()
+          .limit(limit)
+          .watch(fireImmediately: true);
     }
 
-    return afterFilter.watch(fireImmediately: true);
+    // FIX: orden estable; sin él cada página podía traer filas distintas.
+    return afterFilter
+        .sortByDescripcion()
+        .limit(limit)
+        .watch(fireImmediately: true);
   }
 
   @override

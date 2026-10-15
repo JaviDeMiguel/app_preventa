@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Release: solo HTTPS con las CA del sistema (sin CA de usuario, que un
+     proxy de interceptación podría instalar). Coincide con la validación de
+     URL de la app (validateErpBaseUrl). -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

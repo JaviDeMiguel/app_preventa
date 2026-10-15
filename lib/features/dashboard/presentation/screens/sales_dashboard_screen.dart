@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'package:app_preventa/core/di/service_locator.dart';
+import 'package:app_preventa/core/widgets/keyed_stream_builder.dart';
 import 'package:app_preventa/core/sync/models/sync_task.dart';
 import 'package:app_preventa/core/sync/models/sync_task_collection.dart';
 import 'package:app_preventa/core/sync/states/catalog_sync_state.dart';
+import 'package:app_preventa/features/orders/presentation/widgets/pending_review_banner.dart';
 
 /// Pantalla de Liquidación Diaria y Control de Stock en Vehículo para el Comercial
 class SalesDashboardScreen extends StatelessWidget {
+  /// Productos con más stock mostrados en el resumen del vehículo.
+  static const _vanStockPreviewLimit = 50;
+
   final AppDependencies dependencies;
 
   const SalesDashboardScreen({
@@ -38,8 +43,10 @@ class SalesDashboardScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Resumen de Jornada'),
       ),
-      body: StreamBuilder<List<OrderEntity>>(
-        stream: dependencies.isar.orderEntitys
+      // FIX (Rendimiento): streams estables entre rebuilds (KeyedStreamBuilder).
+      body: KeyedStreamBuilder<List<OrderEntity>>(
+        streamKey: todayStart,
+        create: () => dependencies.isar.orderEntitys
             .filter()
             .fechaGreaterThan(todayStart)
             .watch(fireImmediately: true),
@@ -79,6 +86,10 @@ class SalesDashboardScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // Lo primero que ve el comercial: documentos que el ERP rechazó.
+                PendingReviewBanner(dependencies: dependencies),
+                const SizedBox(height: 8),
+
                 // Tarjeta Principal de Facturación de Hoy
                 Card(
                   elevation: 0,
@@ -149,14 +160,22 @@ class SalesDashboardScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 12),
                     Expanded(
-                      child: StreamBuilder<int>(
-                        stream: dependencies.isar.syncTaskCollections
-                            .filter()
-                            .statusEqualTo(SyncStatus.pending)
-                            .or()
-                            .statusEqualTo(SyncStatus.failed)
-                            .watch(fireImmediately: true)
-                            .map((tasks) => tasks.length),
+                      // FIX (Rendimiento): watchLazy + count(); antes se
+                      // deserializaban todas las tareas (con firmas SVG) solo
+                      // para contarlas.
+                      child: KeyedStreamBuilder<int>(
+                        create: () => dependencies.isar.syncTaskCollections
+                            .watchLazy(fireImmediately: true)
+                            .asyncMap(
+                              (_) => dependencies.isar.syncTaskCollections
+                                  .filter()
+                                  .statusEqualTo(SyncStatus.pending)
+                                  .or()
+                                  .statusEqualTo(SyncStatus.inProgress)
+                                  .or()
+                                  .statusEqualTo(SyncStatus.failed)
+                                  .count(),
+                            ),
                         builder: (context, queueSnapshot) {
                           final pendingCount = queueSnapshot.data ?? 0;
                           final hasPending = pendingCount > 0;
@@ -254,6 +273,7 @@ class SalesDashboardScreen extends StatelessWidget {
                 // Botón de Cierre de Jornada
                 StreamBuilder<CatalogSyncState>(
                   stream: dependencies.syncEngine.catalogSyncStream,
+                  initialData: dependencies.syncEngine.currentCatalogState,
                   builder: (context, snapshot) {
                     final syncState =
                         snapshot.data ?? const CatalogSyncState.idle();
@@ -308,10 +328,13 @@ class SalesDashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
 
-                StreamBuilder<List<ProductEntity>>(
-                  stream: dependencies.isar.productEntitys
+                // FIX (Rendimiento): antes observaba el catálogo COMPLETO y
+                // lo re-deserializaba en cada escritura de productos.
+                KeyedStreamBuilder<List<ProductEntity>>(
+                  create: () => dependencies.isar.productEntitys
                       .where()
                       .sortByStockDisponibleDesc()
+                      .limit(_vanStockPreviewLimit)
                       .watch(fireImmediately: true),
                   builder: (context, prodSnapshot) {
                     final products = prodSnapshot.data ?? [];

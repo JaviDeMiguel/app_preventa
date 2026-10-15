@@ -1,4 +1,4 @@
-import 'package:isar/isar.dart';
+import 'package:isar_community/isar.dart';
 
 import 'sync_task.dart';
 
@@ -32,6 +32,15 @@ class SyncTaskCollection {
 
   DateTime? lastAttemptAt;
 
+  // FEAT: Próximo intento programado (Exponential Backoff persistente: sobrevive
+  // a reinicios de la app). null = elegible inmediatamente.
+  @Index()
+  DateTime? nextAttemptAt;
+
+  // FIX: La petición pudo llegar al ERP sin confirmación (crash a mitad de envío,
+  // receiveTimeout, 5xx). Antes de reenviar se consulta al ERP para no duplicar.
+  bool deliveryUncertain = false;
+
   String? errorMessage;
 
   SyncTask toDomain(Map<String, dynamic> decodedPayload) => SyncTask(
@@ -44,6 +53,8 @@ class SyncTaskCollection {
         status: status,
         createdAt: createdAt,
         lastAttemptAt: lastAttemptAt,
+        nextAttemptAt: nextAttemptAt,
+        deliveryUncertain: deliveryUncertain,
         errorMessage: errorMessage,
       );
 }
