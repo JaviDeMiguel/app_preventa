@@ -40,6 +40,8 @@ class AppDependencies {
   static Future<AppDependencies> initialize({
     FacturaScriptsConfig? apiConfig,
     String? dbDirectoryPath,
+    // Inyectable para las pruebas E2E (simular cortes de red).
+    Connectivity? connectivity,
   }) async {
     // 1. Inicialización de la base de datos local con todos los esquemas Isar
     final isar = await LocalDatabaseService.init(
@@ -55,19 +57,19 @@ class AppDependencies {
     final dio = FacturaScriptsApiClient.create(effectiveConfig);
 
     // 4. Sensor de conectividad
-    final connectivity = Connectivity();
+    final networkSensor = connectivity ?? Connectivity();
 
     // 5. Motores de sincronización
     final syncEngine = SyncEngine(
       isar: isar,
       dio: dio,
-      connectivity: connectivity,
+      connectivity: networkSensor,
       config: () => configNotifier.value,
     );
 
     final syncOrchestrator = ConnectivitySyncOrchestrator(
       syncEngine: syncEngine,
-      connectivity: connectivity,
+      connectivity: networkSensor,
     );
 
     // Iniciar el vigilante reactivo de red
@@ -79,7 +81,7 @@ class AppDependencies {
     return AppDependencies(
       isar: isar,
       dio: dio,
-      connectivity: connectivity,
+      connectivity: networkSensor,
       syncEngine: syncEngine,
       syncOrchestrator: syncOrchestrator,
       clientRepository: clientRepository,
