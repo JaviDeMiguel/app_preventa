@@ -6,3 +6,4 @@ analyzer:
     - "**/*.freezed.dart"
     - build/**
     - android/**
+    - windows/**
